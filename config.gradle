@@ -1,0 +1,87 @@
+ext {
+    /**
+     * isBuildModule 为 true 时可以使每个组件独立运行, false 则可以将所有组件集成到宿主 App 中
+     * isBuildModule=true
+     * 修改之后需要Sync方可生效
+     */
+    isBuildModule = false
+
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2",
+            minSdkVersion    : 15,
+            targetSdkVersion : 26,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+
+    version = [
+            androidSupportSdkVersion: "27.1.1",
+            retrofitSdkVersion      : "2.4.0",
+            glideSdkVersion         : "4.6.1",
+            butterknifeSdkVersion   : "8.8.1",
+            eventbusVersion         : "3.0.0",
+            espressoSdkVersion      : "3.0.2",
+            rxlifecycle2SdkVersion  : "2.2.1"
+    ]
+    dependencies = [
+            //support
+            "appcompat-v7"            : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
+            "design"                  : "com.android.support:design:${version["androidSupportSdkVersion"]}",
+            "constraint-layout"       : "com.android.support.constraint:constraint-layout:1.1.3",
+            "cardview-v7"             : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
+            "recyclerview-v7"         : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
+
+            //test
+            "junit"                   : "junit:junit:4.12",
+            "androidJUnitRunner"      : "android.support.test.runner.AndroidJUnitRunner",
+            "test-runner"             : "com.android.support.test:runner:1.0.2",
+            "espresso-core"           : "com.android.support.test.espresso:espresso-core:${version["espressoSdkVersion"]}",
+
+            //network
+            "retrofit"                : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",
+            "retrofit-converter-gson" : "com.squareup.retrofit2:converter-gson:${version["retrofitSdkVersion"]}",
+            "retrofit-adapter-rxjava2": "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitSdkVersion"]}",
+            "retrofit-log"            : "com.squareup.okhttp3:logging-interceptor:3.4.1",
+            "rxjava2"                 : "io.reactivex.rxjava2:rxjava:2.1.10",
+            "rxandroid"               : "io.reactivex.rxjava2:rxandroid:2.0.2",
+
+            //rxjava2
+            "rxlifecycle2"            : "com.trello.rxlifecycle2:rxlifecycle:${version["rxlifecycle2SdkVersion"]}",
+            "rxlifecycle2-android"    : "com.trello.rxlifecycle2:rxlifecycle-android:${version["rxlifecycle2SdkVersion"]}",
+            "rxlifecycle2-components" : "com.trello.rxlifecycle2:rxlifecycle-components:${version["rxlifecycle2SdkVersion"]}",
+            "rxcache2"                : "com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x",
+            "rxpermissions2"          : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar",
+            "rxerrorhandler2"         : "me.jessyan:rxerrorhandler:2.1.1",
+
+            //事件订阅
+            "eventbus"                : "org.greenrobot:eventbus:${version["eventbusVersion"]}",
+
+            //图片加载
+            "glide"                   : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
+            "glide-compiler"          : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
+            "glide-loader-okhttp3"    : "com.github.bumptech.glide:okhttp3-integration:${version["glideSdkVersion"]}",
+            "picasso"                 : "com.squareup.picasso:picasso:2.5.2",
+
+            //view
+            "autolayout"              : "com.zhy:autolayout:1.4.5",
+            "butterknife"             : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
+            "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",
+            "pickerview"              : "com.contrarywind:Android-PickerView:3.2.5",
+            "photoview"               : "com.github.chrisbanes.photoview:library:1.2.3",
+            "numberprogressbar"       : "com.daimajia.numberprogressbar:library:1.2@aar",
+            "nineoldandroids"         : "com.nineoldandroids:library:2.4.0",
+            "paginate"                : "com.github.markomilos:paginate:0.5.1",
+            "vlayout"                 : "com.alibaba.android:vlayout:1.1.0@aar",
+            "lottie"                  : "com.airbnb.android:lottie:2.5.4",
+
+            //tools
+            "multidex"                : "com.android.support:multidex:1.0.2",
+            "arouter"                 : "com.alibaba:arouter-api:1.3.1",
+            "arouter-compiler"        : "com.alibaba:arouter-compiler:1.1.4",
+            "arouter_annotation"      : "com.alibaba:arouter-annotation:1.0.4",
+    ]
+
+
+}

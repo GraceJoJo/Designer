@@ -1,0 +1,73 @@
+if (Boolean.valueOf(rootProject.ext.isBuildModule)) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'kotlin-android'
+//kotlin扩展插件,无需findViewbyId
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+//ARouter
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+    generateStubs = true
+}
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+        //MultiDex分包方法
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //支持DataBinding
+    dataBinding {
+        enabled = true
+    }
+
+    //java插件引入了一个概念叫做SourceSets，通过修改SourceSets中的属性，可以指定哪些源文件
+    //（ 或文件夹下的源文件 ） 要被编译 ， 哪些源文件要被排除 。
+    sourceSets {
+        main {
+            if (Boolean.valueOf(rootProject.ext.isBuildModule)) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    //排除java/debug文件夹下的所有文件
+                    exclude '*module'
+                }
+            }
+        }
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":common-base")
+    //ARouter
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+    //解决Kotlin和DataBinding冲突
+    kapt "com.android.databinding:compiler:$android_version"
+    //butterknife-compiler
+    kapt rootProject.ext.dependencies["butterknife-compiler"]
+    kapt 'com.google.dagger:dagger-compiler:2.11'
+}
+
+repositories {
+    mavenCentral()
+}

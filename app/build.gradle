@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+//1.当*.kt 后缀的Activity上使用@Router（path =xxxxx）时候遇到No match path；原因： *.kt 上的注解需要使用 kotlin方式的注解解释器才可以识别。
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+    generateStubs = true
+}
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        applicationId "com.jojo.design"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+        //MultiDex分包方法
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //支持DataBinding
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //所有需要使用ARouter的组件（使用了@Route(path = "/test/test")注解的模块）都需要添加下面这句依赖，否则会找不到路由（there's no route matched）
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+    //解决Kotlin和DataBinding冲突
+    kapt "com.android.databinding:compiler:$android_version"
+    //butterknife-compiler
+    kapt rootProject.ext.dependencies["butterknife-compiler"]
+    kapt 'com.google.dagger:dagger-compiler:2.11'
+    implementation project(":common-base")
+    implementation project(":module-core")
+    implementation project(":module-mall")
+}
+repositories {
+    mavenCentral()
+}

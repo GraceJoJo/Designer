@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.jojo.design.common_base.bean.ErrorBean"></variable>
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_head"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:text="Fragment测试"
+            android:textSize="20sp" />
+
+        <com.jojo.design.common_base.view.MultipleStatusView
+            android:id="@+id/multiplestatusview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#ff0000"
+            app:layout_constraintTop_toBottomOf="@+id/tv_head">
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{bean.msg}"
+                android:textColor="@color/color_ffffff"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv"
+                android:textColor="@color/color_ffffff"
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_txt"></android.support.v7.widget.RecyclerView>
+        </com.jojo.design.common_base.view.MultipleStatusView>
+    </android.support.constraint.ConstraintLayout>
+
+
+</layout>

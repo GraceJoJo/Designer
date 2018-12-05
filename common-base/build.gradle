@@ -1,0 +1,79 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+//kotlin扩展插件,无需findViewbyId
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+//ARouter
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+    generateStubs = true
+}
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+        //MultiDex分包方法
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //支持DataBinding
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    //MultiDex分包
+    api rootProject.ext.dependencies["multidex"]
+
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["recyclerview-v7"]
+    api rootProject.ext.dependencies["constraint-layout"]
+    api rootProject.ext.dependencies["junit"]
+    api rootProject.ext.dependencies["test-runner"]
+    api rootProject.ext.dependencies["espresso-core"]
+
+    //net request
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["retrofit-converter-gson"]
+    api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+    api rootProject.ext.dependencies["retrofit-log"]
+    api rootProject.ext.dependencies["rxjava2"]
+    api rootProject.ext.dependencies["rxandroid"]
+    //ARouter
+    api rootProject.ext.dependencies["arouter"]
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+    //dagger2
+    api 'com.google.dagger:dagger:2.11'
+    kapt 'com.google.dagger:dagger-compiler:2.11'
+
+    //解决Kotlin和DataBinding冲突
+    kapt "com.android.databinding:compiler:$android_version"
+    //事件订阅
+    api rootProject.ext.dependencies["eventbus"]
+    //黄油刀
+    api rootProject.ext.dependencies["butterknife"]
+    kapt rootProject.ext.dependencies["butterknife-compiler"]
+    //BaseAdapter
+    api 'com.github.GraceJoJo:DataBindingBaseAdapter:1.0.1'
+}
+repositories {
+    mavenCentral()
+}

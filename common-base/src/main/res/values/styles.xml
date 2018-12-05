@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Base AppTheme-->
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--指定windowIsTranslucent = true时，执行Activity动画时背景不会为黑色-->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <!--自定义加载Dialog-->
+    <declare-styleable name="CircleDialogLoading">
+        <attr name="bgColor" format="color" />
+        <attr name="barColor" format="color" />
+    </declare-styleable>
+
+
+    <!--Loading Dialog-->
+    <style name="LoadingDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <color name="transparent">#00000000</color>
+</resources>

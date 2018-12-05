@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 弹出时动画 -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <scale
+        android:interpolator="@android:anim/accelerate_interpolator"
+        android:fromXScale="1.0"
+        android:toXScale="1.0"
+        android:fromYScale="0.0"
+        android:toYScale="1.0"
+        android:pivotX="0%"
+        android:pivotY="100%"
+        android:fillAfter="false"
+        android:duration="400"/>
+</set>
+
+    <!--
+        android:fromXscale="1.0" 表示开始时X轴缩放比例为 1.0 (原图大小 * 1.0 为原图大小)
+        android:toXscale="0.0"表示结束时X轴缩放比例为0.0(原图大小 *0.0 为缩小到看不见)
+        android:fromYscale="1.0" 表示开始时Y轴缩放比例为 1.0 (原图大小 * 1.0 为原图大小)
+        android:toYscale="0.0"表示结束时Y轴缩放比例为0.0(原图大小 *0.0 为缩小的看不到了)
+        android:pivotX="50%" X轴缩放的位置为中心点
+        android:pivotY="50%" Y轴缩放的位置为中心点
+        android:duration="2000" 动画播放时间 这里是2000毫秒也就是2秒
+     -->

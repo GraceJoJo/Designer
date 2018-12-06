@@ -53,8 +53,8 @@ class TestMVPActivity : BaseDBActivity<TestPresenter, TestModel, ActTestMvpBindi
         tv_txt.text = "测试ButterKnife成功,点我跳转"
 //
         tv_txt.setOnClickListener({
-            //            ARouter.getInstance().build("/base/act_testdagger").navigation()
-            ARouter.getInstance().build("/appmodule/test").navigation()
+                        ARouter.getInstance().build("/base/act_testdagger").navigation()
+//            ARouter.getInstance().build("/appmodule/test").navigation()
         })
     }
 }

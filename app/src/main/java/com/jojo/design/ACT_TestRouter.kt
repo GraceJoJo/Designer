@@ -16,13 +16,8 @@ import com.jojo.design.databinding.ActTestBinding
  */
 @Route(path = "/appmodule/test")
 class ACT_TestRouter : AppCompatActivity() {
-    //    @BindView(R.id.tv) lateinit var tv :TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        val viewDataBinding = DataBindingUtil.setContentView<ActTestBinding>(this, R.layout.act_test)
-//        var bean = ErrorBean()
-//        bean.msg = "DataBinding测试"
-//        viewDataBinding?.bean = bean
         var viewDataBinding = DataBindingUtil.inflate<ActTestBinding>(LayoutInflater.from(this), R.layout.act_test, null, false)
         setContentView(viewDataBinding.root)
         var bean = ErrorBean()

@@ -14,13 +14,13 @@ import dagger.Provides
 @Module
 class ApplicationModule(private val mContext: Context) {
 
-    @Provides
-    internal fun provideApplication(): BaseAppliction {
-        return mContext.applicationContext as BaseAppliction
-    }
-
-    @Provides
-    internal fun provideContext(): Context {
-        return mContext
-    }
+//    @Provides
+//    internal fun provideApplication(): BaseAppliction {
+//        return mContext.applicationContext as BaseAppliction
+//    }
+//
+//    @Provides
+//    internal fun provideContext(): Context {
+//        return mContext
+//    }
 }

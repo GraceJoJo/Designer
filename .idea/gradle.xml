@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common-base" />
             <option value="$PROJECT_DIR$/common-sdk" />
+            <option value="$PROJECT_DIR$/common-ui" />
             <option value="$PROJECT_DIR$/module-core" />
             <option value="$PROJECT_DIR$/module-mall" />
             <option value="$PROJECT_DIR$/module-test" />

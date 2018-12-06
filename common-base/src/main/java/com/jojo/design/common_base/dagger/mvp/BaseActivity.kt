@@ -13,14 +13,14 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import butterknife.ButterKnife
 import butterknife.Unbinder
+import com.example.jojo.databindingadapter.listview.ViewHolderListView.viewDataBinding
 import com.jojo.design.common_base.BaseAppliction
-import com.jojo.design.common_base.LoadingDialog
 import com.jojo.design.common_base.R
 import com.jojo.design.common_base.bean.ErrorBean
-import com.jojo.design.common_base.constants.BroadCastConstant
-import com.jojo.design.common_base.mvvm.BaseActivity
+import com.jojo.design.common_base.config.constants.BroadCastConstant
 import com.jojo.design.common_base.utils.StatusBarHelper
-import com.jojo.design.common_base.view.MultipleStatusView
+import com.jojo.design.common_ui.dialog.LoadingDialog
+import com.jojo.design.common_ui.view.MultipleStatusView
 import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 
@@ -28,9 +28,9 @@ import javax.inject.Inject
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2018/12/4 9:21 PM
- *    desc   : Dagger2_MVP-Activity的基类 (Activity动画、DataBinding、事件订阅EventBus/广播、状态栏、ButterKnife，多状态View)
+ *    desc   : Dagger2_MVP-Activity的基类 (Activity动画、事件订阅EventBus/广播、状态栏、ButterKnife，多状态View切换)
  */
-abstract class BaseActivity<P : BaseContract.BasePresenter, M : BaseContract.BaseModel, DB : ViewDataBinding> : AppCompatActivity(), IBase, BaseContract.BaseView {
+abstract class BaseActivity<P : BaseContract.BasePresenter, M : BaseContract.BaseModel> : AppCompatActivity(), IBase, BaseContract.BaseView {
     @Nullable
     @Inject
     @JvmField
@@ -43,7 +43,6 @@ abstract class BaseActivity<P : BaseContract.BasePresenter, M : BaseContract.Bas
     protected var mMultipleStatusView: MultipleStatusView? = null
     protected lateinit var mContext: Context
     private lateinit var unBinder: Unbinder
-    protected var viewDataBinding: DB? = null
     protected var mIsBind: Boolean = false
     protected var mTransitionMode = BaseActivity.TransitionMode.RIGHT
     protected var mIsRegisterReceiver = false
@@ -61,30 +60,23 @@ abstract class BaseActivity<P : BaseContract.BasePresenter, M : BaseContract.Bas
         mContext = this
         mLoadingDialog = LoadingDialog(this)
 
-        viewDataBinding = DataBindingUtil.inflate(LayoutInflater.from(this), getContentViewLayoutId(), null, false)
-        setContentView(viewDataBinding?.root)
+        setContentView(getContentViewLayoutId())
         //根据子类布局自定义的区域show多状态布局
         mMultipleStatusView = getLoadingMultipleStatusView()
-        //如果子类返回null,则处理成showloading为整个布局范围
-        if (mMultipleStatusView == null) {
-            mMultipleStatusView = MultipleStatusView(this)
-            viewDataBinding = DataBindingUtil.inflate(LayoutInflater.from(this), getContentViewLayoutId(), mMultipleStatusView, true)
-            setContentView(mMultipleStatusView)
-        }
-        unBinder = ButterKnife.bind(this, viewDataBinding?.root!!)
+        unBinder = ButterKnife.bind(this)
 
         initDaggerInject(BaseAppliction.mApplicationComponent)
         mPresenter?.attachViewModel(this, mModel!!)
 
         //Activity默认动画为右进右出
         when (getOverridePendingTransitionMode(mTransitionMode)) {
-            BaseActivity.TransitionMode.LEFT -> overridePendingTransition(R.anim.left_in, R.anim.left_out)
-            BaseActivity.TransitionMode.RIGHT -> overridePendingTransition(R.anim.enter_trans, R.anim.exit_scale)
-            BaseActivity.TransitionMode.TOP -> overridePendingTransition(R.anim.top_in, R.anim.top_out)
-            BaseActivity.TransitionMode.BOTTOM -> overridePendingTransition(R.anim.bottom_in, 0)
-            BaseActivity.TransitionMode.SCALE -> overridePendingTransition(R.anim.scale_in, R.anim.scale_out)
-            BaseActivity.TransitionMode.FADE -> overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-            BaseActivity.TransitionMode.ZOOM -> overridePendingTransition(R.anim.zoomin, R.anim.zoomout)
+            TransitionMode.LEFT -> overridePendingTransition(R.anim.left_in, R.anim.left_out)
+            TransitionMode.RIGHT -> overridePendingTransition(R.anim.enter_trans, R.anim.exit_scale)
+            TransitionMode.TOP -> overridePendingTransition(R.anim.top_in, R.anim.top_out)
+            TransitionMode.BOTTOM -> overridePendingTransition(R.anim.bottom_in, 0)
+            TransitionMode.SCALE -> overridePendingTransition(R.anim.scale_in, R.anim.scale_out)
+            TransitionMode.FADE -> overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            TransitionMode.ZOOM -> overridePendingTransition(R.anim.zoomin, R.anim.zoomout)
         }
 
         //事件订阅
@@ -168,13 +160,13 @@ abstract class BaseActivity<P : BaseContract.BasePresenter, M : BaseContract.Bas
     override fun finish() {
         super.finish()
         when (getOverridePendingTransitionMode(mTransitionMode)) {
-            BaseActivity.TransitionMode.LEFT -> overridePendingTransition(R.anim.left_in, R.anim.left_out)
-            BaseActivity.TransitionMode.RIGHT -> overridePendingTransition(R.anim.enter_scale, R.anim.exit_trans)
-            BaseActivity.TransitionMode.TOP -> overridePendingTransition(R.anim.top_in, R.anim.top_out)
-            BaseActivity.TransitionMode.BOTTOM -> overridePendingTransition(0, R.anim.bottom_out)
-            BaseActivity.TransitionMode.SCALE -> overridePendingTransition(R.anim.scale_in, R.anim.scale_out)
-            BaseActivity.TransitionMode.FADE -> overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-            BaseActivity.TransitionMode.ZOOM -> overridePendingTransition(R.anim.zoomin, R.anim.zoomout)
+            TransitionMode.LEFT -> overridePendingTransition(R.anim.left_in, R.anim.left_out)
+            TransitionMode.RIGHT -> overridePendingTransition(R.anim.enter_scale, R.anim.exit_trans)
+            TransitionMode.TOP -> overridePendingTransition(R.anim.top_in, R.anim.top_out)
+            TransitionMode.BOTTOM -> overridePendingTransition(0, R.anim.bottom_out)
+            TransitionMode.SCALE -> overridePendingTransition(R.anim.scale_in, R.anim.scale_out)
+            TransitionMode.FADE -> overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            TransitionMode.ZOOM -> overridePendingTransition(R.anim.zoomin, R.anim.zoomout)
         }
     }
 

@@ -1,7 +1,6 @@
 package com.jojo.design.common_base.dagger.mvp
 
 import com.jojo.design.common_base.bean.ErrorBean
-import com.jojo.design.common_base.mvvm.IBaseView
 
 /**
  *    author : JOJO

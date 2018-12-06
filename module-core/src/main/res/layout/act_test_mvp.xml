@@ -1,0 +1,57 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.jojo.design.common_base.bean.ErrorBean"></variable>
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <include
+            android:id="@+id/title"
+            layout="@layout/common_title"></include>
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.msg}"
+            android:textColor="@color/color_ffffff"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <TextView
+            android:id="@+id/tv_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@color/color_212121"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="嘻嘻嘻嘻嘻点我"
+            android:textColor="@color/color_ffffff"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv"
+            app:layout_goneMarginBottom="20dp" />
+
+
+        <FrameLayout
+            android:id="@+id/fl_container"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:background="@color/color_ffffff"
+            app:layout_constraintTop_toBottomOf="@+id/tv_txt"></FrameLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

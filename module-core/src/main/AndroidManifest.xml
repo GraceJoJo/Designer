@@ -3,7 +3,7 @@
 
     <application>
 
-        <activity android:name=".ui.TestMVPNormalActivity">
+        <activity android:name=".ui.TestMVPActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

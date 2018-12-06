@@ -3,7 +3,7 @@ package com.jojo.design.common_base.net
 import android.util.Log
 
 import com.jojo.design.common_base.bean.ErrorBean
-import com.jojo.design.common_base.mvvm.IBaseView
+import com.jojo.design.common_base.dagger.mvp.BaseContract
 import com.jojo.design.common_base.utils.ToastUtils
 
 
@@ -12,7 +12,7 @@ import com.jojo.design.common_base.utils.ToastUtils
  * wechat：18510829974
  * description：网络数据监听
  */
-abstract class RxObserverListener<T> protected constructor(private val mView: IBaseView?) : BaseObserverListener<T> {
+abstract class RxObserverListener<T> protected constructor(private val mView: BaseContract.BaseView?) : BaseObserverListener<T> {
 
     override fun onComplete() {
 

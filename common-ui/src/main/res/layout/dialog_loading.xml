@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_shape_cc000000_6"
+    android:gravity="center"
+    android:minWidth="100dp"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <com.jojo.design.common_ui.LoadingCircleView
+        android:id="@+id/loading_view"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"/>
+
+
+    <!--<com.jojo.design.common_base.view.IOSLoadingView-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="30dp" />-->
+
+    <TextView
+        android:id="@+id/loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:textColor="@color/color_ffffff"
+        android:textSize="14sp" />
+
+</LinearLayout>

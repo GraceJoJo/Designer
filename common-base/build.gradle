@@ -49,6 +49,7 @@ dependencies {
     api rootProject.ext.dependencies["junit"]
     api rootProject.ext.dependencies["test-runner"]
     api rootProject.ext.dependencies["espresso-core"]
+    implementation project(":common-ui")
 
     //net request
     api rootProject.ext.dependencies["retrofit"]

@@ -1,6 +1,6 @@
 package com.jojo.design.common_base.dagger.mvp
 
-import com.jojo.design.common_base.view.MultipleStatusView
+import com.jojo.design.common_ui.view.MultipleStatusView
 import com.will.weiyuekotlin.component.ApplicationComponent
 
 /**

@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+//kotlin扩展插件,无需findViewbyId
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+    generateStubs = true
+}
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+        //MultiDex分包方法
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //支持DataBinding
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    //解决Kotlin和DataBinding冲突
+    kapt "com.android.databinding:compiler:$android_version"
+    //MultiDex分包
+    api rootProject.ext.dependencies["multidex"]
+
+    api rootProject.ext.dependencies["appcompat-v7"]
+//    api rootProject.ext.dependencies["recyclerview-v7"]
+//    api rootProject.ext.dependencies["constraint-layout"]
+    api rootProject.ext.dependencies["junit"]
+    api rootProject.ext.dependencies["test-runner"]
+    api rootProject.ext.dependencies["espresso-core"]
+
+}
+repositories {
+    mavenCentral()
+}

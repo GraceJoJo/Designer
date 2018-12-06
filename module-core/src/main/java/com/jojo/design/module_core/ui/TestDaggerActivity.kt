@@ -4,13 +4,11 @@ import android.os.Handler
 import android.util.Log
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.jojo.design.common_base.bean.ErrorBean
 import com.jojo.design.common_base.dagger.mvp.BaseActivity
 import com.jojo.design.common_base.utils.ToastUtils
-import com.jojo.design.common_base.view.MultipleStatusView
+import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R
 import com.jojo.design.module_core.dagger2.DaggerCoreComponent
-import com.jojo.design.module_core.databinding.TestBinding
 import com.jojo.design.module_core.mvp.contract.TestContract
 import com.jojo.design.module_core.mvp.model.TestModel
 import com.jojo.design.module_core.mvp.presenter.TestPresenter
@@ -25,14 +23,14 @@ import kotlinx.android.synthetic.main.test.*
  *    desc   : 测试Dagger2+MVP 架构
  */
 @Route(path = "/base/act_testdagger")
-class TestDaggerActivity : BaseActivity<TestPresenter, TestModel, TestBinding>(), TestContract.View {
+class TestDaggerActivity : BaseActivity<TestPresenter, TestModel>(), TestContract.View {
     private val tv_head by bindView<TextView>(R.id.tv_head)
     override fun getData(result: String) {
         ToastUtils.makeShortToast(result)
         Log.e("TAG", "result=" + result)
-        var bean = ErrorBean()
-        bean.msg = result
-        viewDataBinding?.bean = bean
+//        var bean = ErrorBean()
+//        bean.msg = result
+//        viewDataBinding?.bean = bean
     }
 
     override fun getContentViewLayoutId(): Int = R.layout.test
@@ -53,7 +51,7 @@ class TestDaggerActivity : BaseActivity<TestPresenter, TestModel, TestBinding>()
 
     }
 
-    override fun getOverridePendingTransitionMode(transitionMode: com.jojo.design.common_base.mvvm.BaseActivity.TransitionMode): com.jojo.design.common_base.mvvm.BaseActivity.TransitionMode {
-        return super.getOverridePendingTransitionMode(com.jojo.design.common_base.mvvm.BaseActivity.TransitionMode.BOTTOM)
+    override fun getOverridePendingTransitionMode(transitionMode: TransitionMode): TransitionMode {
+        return super.getOverridePendingTransitionMode(TransitionMode.BOTTOM)
     }
 }

@@ -1,8 +1,6 @@
 package com.jojo.design.common_base.dagger.mvp
 
-import com.jojo.design.common_base.mvvm.IBaseModel
-import com.jojo.design.common_base.mvvm.IBaseView
-import com.jojo.design.common_base.mvvm.RxManager
+import com.jojo.design.common_base.net.RxManager
 
 /**
  *    author : JOJO

@@ -17,10 +17,10 @@ import android.view.View
 import android.view.ViewGroup
 import butterknife.ButterKnife
 import butterknife.Unbinder
-import com.jojo.design.common_base.LoadingDialog
 import com.jojo.design.common_base.bean.ErrorBean
-import com.jojo.design.common_base.constants.BroadCastConstant
-import com.jojo.design.common_base.view.MultipleStatusView
+import com.jojo.design.common_base.config.constants.BroadCastConstant
+import com.jojo.design.common_ui.dialog.LoadingDialog
+import com.jojo.design.common_ui.view.MultipleStatusView
 import org.greenrobot.eventbus.EventBus
 
 /**
@@ -34,7 +34,7 @@ abstract class BaseLazyFragment : Fragment(), IBase, IBaseLazyFragment, BaseCont
     private lateinit var unBinder: Unbinder
     protected var mIsBind: Boolean = false
     protected var mIsRegisterReceiver = false
-    protected lateinit var viewDataBinding: ViewDataBinding
+    protected var viewDataBinding: ViewDataBinding? = null
     protected lateinit var mContext: Context
     @Nullable
     protected var mMultipleStatusView: MultipleStatusView? = null
@@ -61,8 +61,7 @@ abstract class BaseLazyFragment : Fragment(), IBase, IBaseLazyFragment, BaseCont
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (getContentViewLayoutId() != 0) {
-            viewDataBinding = DataBindingUtil.inflate(inflater, getContentViewLayoutId(), null, false)
-            return viewDataBinding?.root
+            return inflater.inflate(getContentViewLayoutId(), null)
         } else {
             return super.onCreateView(inflater, container, savedInstanceState)
         }

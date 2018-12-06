@@ -4,14 +4,12 @@ import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.TextView
-import com.jojo.design.common_base.bean.ErrorBean
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_base.utils.ToastUtils
-import com.jojo.design.common_base.view.MultipleStatusView
+import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R
 import com.jojo.design.module_core.adapter.ADA_TestFragment
 import com.jojo.design.module_core.dagger2.DaggerCoreComponent
-import com.jojo.design.module_core.databinding.TestFragmentBinding
 import com.jojo.design.module_core.mvp.contract.TestContract
 import com.jojo.design.module_core.mvp.model.TestModel
 import com.jojo.design.module_core.mvp.presenter.TestPresenter
@@ -25,7 +23,7 @@ import kotlinx.android.synthetic.main.test_fragment.*
  *    date   : 2018/12/5 3:56 PM
  *    desc   :
  */
-class TestFragment : BaseFragment<TestPresenter, TestModel, TestFragmentBinding>(), TestContract.View {
+class TestFragment : BaseFragment<TestPresenter, TestModel>(), TestContract.View {
     private val tvTxt by bindView<TextView>(R.id.tv_txt)
     override fun onFirstUserVisible() {
         Log.e("frag", " onFirstUserVisible()")
@@ -52,9 +50,9 @@ class TestFragment : BaseFragment<TestPresenter, TestModel, TestFragmentBinding>
     }
 
     override fun startFragmentEvents() {
-        var bean = ErrorBean()
-        bean.msg = "Fragment中测试DataBinding"
-        viewBinding?.bean = bean
+//        var bean = ErrorBean()
+//        bean.msg = "Fragment中测试DataBinding"
+//        viewBinding?.bean = bean
 //        tv_txt.text = "Fragment-kotlin初始化View的值"
         tvTxt.text = "Fragment测试ButterKnife"
         Log.e("TAG", "TestFragment-Presenter=" + mPresenter)

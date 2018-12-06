@@ -22,7 +22,7 @@
             android:text="我在上面"
             android:textSize="20sp" />
 
-        <com.jojo.design.common_base.view.MultipleStatusView
+        <com.jojo.design.common_ui.view.MultipleStatusView
             android:id="@+id/multiplestatusview"
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -37,7 +37,7 @@
                 android:text="@{bean.msg}"
                 android:textColor="@color/color_ffffff"
                 android:textSize="20sp" />
-        </com.jojo.design.common_base.view.MultipleStatusView>
+        </com.jojo.design.common_ui.view.MultipleStatusView>
     </android.support.constraint.ConstraintLayout>
 
 

@@ -11,7 +11,7 @@ import javax.inject.Inject
  *    date   : 2018/12/5 3:51 PM
  *    desc   : Dagger2-MVP-BaseFragment
  */
-abstract class BaseFragment<P : BaseContract.BasePresenter, M : BaseContract.BaseModel, DB : ViewDataBinding> : BaseLazyFragment() {
+abstract class BaseFragment<P : BaseContract.BasePresenter, M : BaseContract.BaseModel> : BaseLazyFragment() {
     @Nullable
     @Inject
     @JvmField
@@ -20,11 +20,9 @@ abstract class BaseFragment<P : BaseContract.BasePresenter, M : BaseContract.Bas
     @Inject
     @JvmField
     var mModel: M? = null
-    protected var viewBinding: DB? = null
 
 
     override fun startEvents() {
-        viewBinding = viewDataBinding as DB
         initDaggerInject(BaseAppliction.mApplicationComponent)
         mPresenter?.attachViewModel(this, mModel!!)
         startFragmentEvents()

@@ -1,0 +1,8 @@
+<resources>
+
+    <array name="designer_tabs">
+        <item>行业</item>
+        <item>风格</item>
+    </array>
+
+</resources>

@@ -1,8 +1,7 @@
-package com.jojo.design.module_core.ui
+package com.jojo.design.module_core.ui.test
 
 import android.os.Handler
 import android.widget.TextView
-import butterknife.BindView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.BaseAppliction

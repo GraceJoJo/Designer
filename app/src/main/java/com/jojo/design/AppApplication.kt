@@ -14,4 +14,5 @@ import com.jojo.design.common_base.BuildConfig
  *    desc   :
  */
 class AppApplication : BaseAppliction() {
+
 }

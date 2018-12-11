@@ -4,4 +4,8 @@
     <color name="color_black">#000000</color>
     <color name="color_212121">#212121</color>
     <color name="transparent">#00000000</color>
+    <!--App主要颜色-->
+    <color name="color_app_yellow">#d1a938</color>
+    <color name="color_app_divider">#b2b2b2</color>
+    <color name="color_f9f9f9">#f9f9f9</color>
 </resources>

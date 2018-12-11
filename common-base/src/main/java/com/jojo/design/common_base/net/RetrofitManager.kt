@@ -199,15 +199,46 @@ object RetrofitManager {
     }
 
     /**
-     * 建立请求
+     * 建立请求:data下无嵌套json的正常情况
      */
-    fun <T> doRequest(observable: Observable<BaseHttpResponse<T>>, observerListener: BaseObserverListener<T>): DisposableObserver<BaseHttpResponse<T>> {
+    fun <T> doCommonRequest(observable: Observable<BaseHttpResponse<T>>, observerListener: BaseObserverListener<T>): DisposableObserver<BaseHttpResponse<T>> {
 
         return observable
                 .compose(RxSchedulers.io_main())
                 .subscribeWith(object : DisposableObserver<BaseHttpResponse<T>>() {
 
                     override fun onNext(result: BaseHttpResponse<T>) {
+                        if (result.code === 200) {
+                            observerListener.onSuccess(result.data)
+                        } else {
+                            val errorBean = ErrorBean()
+                            errorBean.code = result.code.toString()
+                            errorBean.msg = result.msg.toString()
+                            observerListener.onBusinessError(errorBean)
+                        }
+                    }
+
+                    override fun onError(e: Throwable) {
+                        observerListener.onError(e)
+                    }
+
+                    override fun onComplete() {
+                        observerListener.onComplete()
+                    }
+                })
+
+    }
+
+    /**
+     * 建立请求
+     */
+    fun <T> doRequestOther(observable: Observable<BaseResponse<T>>, observerListener: BaseObserverListener<T>): DisposableObserver<BaseResponse<T>> {
+
+        return observable
+                .compose(RxSchedulers.io_main())
+                .subscribeWith(object : DisposableObserver<BaseResponse<T>>() {
+
+                    override fun onNext(result: BaseResponse<T>) {
                         if (result.code === 200) {
                             if (result.data?.content != null) {
                                 observerListener.onSuccess(result.data?.content)

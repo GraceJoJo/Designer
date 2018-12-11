@@ -10,6 +10,7 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.annotation.Nullable
 import android.support.v7.app.AppCompatActivity
+import android.text.TextUtils
 import android.view.LayoutInflater
 import butterknife.ButterKnife
 import butterknife.Unbinder
@@ -206,7 +207,8 @@ abstract class BaseActivity<P : BaseContract.BasePresenter, M : BaseContract.Bas
     }
 
     override fun showDialogLoading(msg: String) {
-        mLoadingDialog.setTitleText(msg).show()
+        if (!TextUtils.isEmpty(msg)) mLoadingDialog.setTitleText(msg).show() else mLoadingDialog.show()
+
     }
 
     override fun dismissDialogLoading() {

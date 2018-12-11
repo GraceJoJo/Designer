@@ -1,8 +1,11 @@
 package com.zongxueguan.naochanle_android.retrofitrx
 
+import com.smart.novel.net.BaseHttpResponse
 import io.reactivex.Observable
 import okhttp3.RequestBody
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
 
 
 /**
@@ -27,7 +30,10 @@ interface ApiService {
 //    @GET("designer2/list")
 //    abstract fun getDesignerList(): Observable<DesignBean>
 
-    //获取设计师分类
-    @GET("designer2/tag/index")
-    abstract fun getDesignerTypeList(): Observable<Any>
+//    获取顶部推荐设计师
+//    @GET("designer2/recommend/operate")
+//    fun getRecommendDesigner(): Observable<BaseHttpResponse<List<TagCategoryEntity>>>
+////    获取设计师分类
+//    @GET("designer2/tag/index")
+//    fun getDesignerTypeList(): Observable<BaseHttpResponse<List<TagCategoryEntity>>>
 }

@@ -3,15 +3,15 @@
 
     <application>
 
-        <activity android:name=".ui.TestMVPActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.HomeActivity"></activity>
-        <activity android:name=".ui.TestDaggerActivity"></activity>
+        <activity android:name=".ui.test.TestMVPActivity"></activity>
+        <activity android:name=".ui.test.TestDaggerActivity"></activity>
     </application>
 
 

@@ -33,6 +33,10 @@ android {
     dataBinding {
         enabled = true
     }
+
+    configurations.all {
+        resolutionStrategy.force "com.android.support:support-v4:27.1.1"
+    }
 }
 
 dependencies {
@@ -45,12 +49,17 @@ dependencies {
     api rootProject.ext.dependencies["multidex"]
 
     api rootProject.ext.dependencies["appcompat-v7"]
-//    api rootProject.ext.dependencies["recyclerview-v7"]
-//    api rootProject.ext.dependencies["constraint-layout"]
     api rootProject.ext.dependencies["junit"]
     api rootProject.ext.dependencies["test-runner"]
     api rootProject.ext.dependencies["espresso-core"]
-
+    //解决V4包重复依赖的问题:./gradlew :app:dependencies可以查看项目包的依赖关系
+    api(rootProject.ext.dependencies["design"]) {
+        exclude group: 'com.android.support'
+    }
+    //tab
+    api rootProject.ext.dependencies["FlycoTabLayout"]
+    api rootProject.ext.dependencies["Smarttablayout"]
+    api rootProject.ext.dependencies["Smarttablayout-utils"]
 }
 repositories {
     mavenCentral()

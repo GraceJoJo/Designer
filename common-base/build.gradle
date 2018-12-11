@@ -74,6 +74,8 @@ dependencies {
     kapt rootProject.ext.dependencies["butterknife-compiler"]
     //BaseAdapter
     api 'com.github.GraceJoJo:DataBindingBaseAdapter:1.0.1'
+    //图片
+    api rootProject.ext.dependencies["glide"]
 }
 repositories {
     mavenCentral()

@@ -12,7 +12,6 @@ import dagger.Component
 @Component(dependencies = [(ApplicationComponent::class)])
 interface HttpComponent {
 
-
     fun inject(activity: AppCompatActivity)
 
 }

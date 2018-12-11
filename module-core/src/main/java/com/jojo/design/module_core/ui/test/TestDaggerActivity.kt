@@ -1,4 +1,4 @@
-package com.jojo.design.module_core.ui
+package com.jojo.design.module_core.ui.test
 
 import android.os.Handler
 import android.util.Log

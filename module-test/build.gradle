@@ -24,6 +24,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":common-base")
+    implementation project(":common-ui")
     kapt 'com.google.dagger:dagger-compiler:2.11'
     //butterknife-compiler
     kapt rootProject.ext.dependencies["butterknife-compiler"]

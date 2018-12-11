@@ -12,6 +12,7 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.annotation.Nullable
 import android.support.v4.app.Fragment
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -229,7 +230,7 @@ abstract class BaseLazyFragment : Fragment(), IBase, IBaseLazyFragment, BaseCont
     protected open fun onReceiveBroadcast(intent: Int, bundle: Bundle) {
     }
 
-    fun isBindEventBus(isBind: Boolean): Boolean {
+    open fun isBindEventBus(isBind: Boolean): Boolean {
         mIsBind = isBind
         return mIsBind
     }
@@ -239,7 +240,7 @@ abstract class BaseLazyFragment : Fragment(), IBase, IBaseLazyFragment, BaseCont
     }
 
     override fun showDialogLoading(msg: String) {
-        mLoadingDialog.setTitleText(msg).show()
+        if (!TextUtils.isEmpty(msg)) mLoadingDialog.setTitleText(msg).show() else mLoadingDialog.show()
     }
 
     override fun dismissDialogLoading() {

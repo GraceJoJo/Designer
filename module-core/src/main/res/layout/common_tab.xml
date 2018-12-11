@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/color_ffffff">
+
+    <com.ogaclejapan.smarttablayout.SmartTabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        app:stl_customTabTextLayoutId="@layout/custom_tab_text"
+        app:stl_customTabTextViewId="@id/custom_text"
+        app:stl_defaultTabTextMinWidth="1dp"
+        app:stl_defaultTabTextSize="12sp"
+        app:stl_distributeEvenly="true"
+        app:stl_dividerColor="@color/transparent"
+        app:stl_indicatorColor="@color/color_app_yellow"
+        app:stl_indicatorInterpolation="linear"
+        app:stl_indicatorThickness="2dp"
+        app:stl_indicatorWidth="20dp"
+        app:stl_underlineThickness="0dp" />
+</RelativeLayout>

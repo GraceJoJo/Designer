@@ -67,6 +67,9 @@ dependencies {
     //butterknife-compiler
     kapt rootProject.ext.dependencies["butterknife-compiler"]
     kapt 'com.google.dagger:dagger-compiler:2.11'
+    api(rootProject.ext.dependencies["design"]) {
+        exclude group: 'com.android.support'
+    }
 }
 
 repositories {

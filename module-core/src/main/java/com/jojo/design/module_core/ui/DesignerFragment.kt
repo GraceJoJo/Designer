@@ -1,13 +1,11 @@
 package com.jojo.design.module_core.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_base.utils.GlideUtils
 import com.jojo.design.common_base.utils.StatusBarHelper
-import com.jojo.design.common_ui.view.CustomViewPager
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R
 import com.jojo.design.module_core.bean.DesignerEntity
@@ -71,9 +69,12 @@ class DesignerFragment : BaseFragment<DesignerPresenter, DesignerModel>(), Desig
     }
 
     private fun initListener() {
-        fade_status_bar.layoutParams.height = StatusBarHelper.getStatusBarHeight(mContext)
         dropScrollView.setOnScrollViewListener { scrollX, scrollY, oldx, oldY ->
-            var distanceScrollY = rl_head.height + tab.height - sus_tab.height
+            var lp = fade_status_bar.layoutParams
+            lp.height = StatusBarHelper.getStatusBarHeight(mContext)
+            fade_status_bar.layoutParams = lp
+
+            var distanceScrollY = (rl_head.height + tab.height) - (rl_sus_tab.height + fade_status_bar.height)
             if (scrollY >= distanceScrollY) {
                 StatusBarHelper.setStatusTextColor(true, activity!!)
                 tab.visibility = View.INVISIBLE
@@ -82,7 +83,6 @@ class DesignerFragment : BaseFragment<DesignerPresenter, DesignerModel>(), Desig
                 StatusBarHelper.setStatusTextColor(false, activity!!)
                 tab.visibility = View.VISIBLE
                 sus_tab.visibility = View.INVISIBLE
-
             }
         }
     }

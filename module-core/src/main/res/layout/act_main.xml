@@ -43,7 +43,7 @@
             app:tl_iconHeight="23dp"
             app:tl_iconWidth="23dp"
             app:tl_textSelectColor="@color/color_app_yellow"
-            app:tl_textUnselectColor="@color/color_app_divider"
+            app:tl_textUnselectColor="@color/color_212121"
             app:tl_textsize="10sp"
             app:tl_underline_color="#DDDDDD"
             app:tl_underline_height="1dp"></com.flyco.tablayout.CommonTabLayout>

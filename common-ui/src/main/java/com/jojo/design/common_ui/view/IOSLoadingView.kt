@@ -82,7 +82,8 @@ class IOSLoadingView @JvmOverloads constructor(context: Context, attrs: Attribut
 
         mPaint!!.strokeWidth = mSegmentWidth.toFloat()
 
-
+        //使得view初始化的时候就开始动画
+        startAnimation()
     }
 
 
@@ -122,6 +123,11 @@ class IOSLoadingView @JvmOverloads constructor(context: Context, attrs: Attribut
 
         super.onFinishInflate()
 
+        startAnimation()
+
+    }
+
+    private fun startAnimation() {
         val valueAnimator = ValueAnimator.ofInt(12, 1)
 
         valueAnimator.duration = 1000
@@ -139,6 +145,5 @@ class IOSLoadingView @JvmOverloads constructor(context: Context, attrs: Attribut
         }
 
         valueAnimator.start()
-
     }
 }

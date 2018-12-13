@@ -27,10 +27,10 @@ class MainActivity : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseM
     // 被选中的图标
     private val mIconSelectIds = intArrayOf(R.drawable.icn_zhuanti_highlight, R.drawable.icn_designer_highlight, R.drawable.icn_guang_highlight, R.drawable.icn_mycenter_highlight)
     //默认tab索引
-    private var mIndex = 0
+    private var mIndex = 2
     private var mSpecialFragment: SpecialFragment? = null
     open var mDesignerFragment: DesignerFragment? = null
-    private var mMallFragment: MallFragment? = null
+    private var mShoppingFragment: ShoppingFragment? = null
     private var mDiscorverFragment: DiscoveryFragment? = null
     override fun getContentViewLayoutId(): Int = R.layout.act_main
 
@@ -102,11 +102,11 @@ class MainActivity : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseM
             }
             2 //逛
             -> {
-                if (mMallFragment == null) {
-                    mMallFragment = MallFragment.getInstance(mTitles[position])
-                    transaction.add(R.id.fl_container, mMallFragment, "mall")
+                if (mShoppingFragment == null) {
+                    mShoppingFragment = ShoppingFragment.getInstance(mTitles[position])
+                    transaction.add(R.id.fl_container, mShoppingFragment, "mall")
                 } else {
-                    transaction.show(mMallFragment)
+                    transaction.show(mShoppingFragment)
                 }
                 StatusBarHelper.setStatusTextColor(false, this)
             }
@@ -139,8 +139,8 @@ class MainActivity : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseM
         if (null != mDesignerFragment) {
             transaction.hide(mDesignerFragment)
         }
-        if (null != mMallFragment) {
-            transaction.hide(mMallFragment)
+        if (null != mShoppingFragment) {
+            transaction.hide(mShoppingFragment)
         }
         if (null != mDiscorverFragment) {
             transaction.hide(mDiscorverFragment)

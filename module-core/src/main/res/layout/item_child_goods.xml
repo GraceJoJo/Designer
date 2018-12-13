@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/icn_mycenter" />
+
+    <TextView
+        android:id="@+id/tv_branch_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="韩黑骑士"
+        android:textColor="@color/color_212121"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_image"
+        app:layout_constraintRight_toRightOf="@+id/iv_image"
+        app:layout_constraintTop_toBottomOf="@+id/iv_image" />
+
+    <TextView
+        android:id="@+id/tv_keyword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:text="棉衣"
+        android:textColor="@color/color_212121"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_image"
+        app:layout_constraintRight_toRightOf="@+id/iv_image"
+        app:layout_constraintTop_toBottomOf="@+id/tv_branch_name" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="￥239"
+        android:textColor="@color/color_212121"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_image"
+        app:layout_constraintRight_toRightOf="@+id/iv_image"
+        app:layout_constraintTop_toBottomOf="@+id/tv_keyword" />
+</android.support.constraint.ConstraintLayout>

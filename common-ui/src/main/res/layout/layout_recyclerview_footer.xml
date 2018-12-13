@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:background="#FFDDFF"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="72dp"
+        android:layout_height="66dp"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/person_video_list_honey_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="10dp"
+        android:text="The Footer"
+        android:textColor="@color/color_app_yellow"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="72dp"
+        android:layout_height="66dp" />
+
+</LinearLayout>

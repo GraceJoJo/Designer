@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/color_app_divider"></View>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下面是ViewPager嵌套Fragment"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/view_divider" />
+
+    <View
+        android:id="@+id/view_divider2"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/color_app_divider"
+        app:layout_constraintTop_toBottomOf="@+id/tv"></View>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/view_divider2"></android.support.v4.view.ViewPager>
+</android.support.constraint.ConstraintLayout>

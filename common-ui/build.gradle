@@ -60,6 +60,8 @@ dependencies {
     api rootProject.ext.dependencies["FlycoTabLayout"]
     api rootProject.ext.dependencies["Smarttablayout"]
     api rootProject.ext.dependencies["Smarttablayout-utils"]
+    //Recyclerview
+    api rootProject.ext.dependencies["recyclerview-v7"]
 }
 repositories {
     mavenCentral()

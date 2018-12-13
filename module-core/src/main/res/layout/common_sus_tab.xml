@@ -11,6 +11,7 @@
         android:layout_height="0dp"></View>
     <!--与common_tab高度一样-->
     <RelativeLayout
+        android:id="@+id/rl_sus_tab"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/fade_status_bar">

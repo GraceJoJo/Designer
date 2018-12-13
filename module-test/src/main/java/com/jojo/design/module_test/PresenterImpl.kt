@@ -5,7 +5,7 @@ import javax.inject.Inject
 /**
  *    author : JOJO
  *    e-mail : 18510829974@163.com
- *    date   : 2018/12/4 6:29 PM
+ *    date   : 2018/12/line_4 6:29 PM
  *    desc   :
  */
 class PresenterImpl @Inject constructor() : MainPresenter {

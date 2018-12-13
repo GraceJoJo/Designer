@@ -5,14 +5,21 @@
     android:layout_height="wrap_content"
     android:background="@color/color_212121">
 
+    <View
+        android:id="@+id/view_statusbar"
+        android:layout_width="match_parent"
+        android:focusableInTouchMode="true"
+        android:layout_height="20dp"
+        android:background="@color/color_212121"></View>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="15dp"
         android:text="这是标题栏"
         android:textColor="@color/color_ffffff"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/view_statusbar" />
 </android.support.constraint.ConstraintLayout>

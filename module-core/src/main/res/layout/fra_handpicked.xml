@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_ffffff">
+    android:layout_height="wrap_content">
 
     <com.jojo.design.common_ui.view.NoScrollGridView
-        android:id="@+id/gridview"
+        android:id="@+id/girdview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
         android:horizontalSpacing="2dp"
+        android:listSelector="@color/transparent"
         android:numColumns="2"
-        android:verticalSpacing="2dp"></com.jojo.design.common_ui.view.NoScrollGridView>
+        android:verticalSpacing="5dp"></com.jojo.design.common_ui.view.NoScrollGridView>
 
 </android.support.constraint.ConstraintLayout>

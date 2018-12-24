@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="15dp">
+
+    <ImageView
+        android:id="@+id/iv_avatarPath"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/icn_mycenter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_nickName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:text="用户姓名"
+        android:textColor="@color/color_black"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/iv_avatarPath" />
+
+    <TextView
+        android:id="@+id/tv_feedsSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="15dp"
+        android:text="喜欢了6件商品"
+        android:textColor="@color/color_838282"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/iv_avatarPath"
+        app:layout_constraintTop_toBottomOf="@+id/tv_nickName" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:text="15:32"
+        android:textColor="@color/color_838282"
+        android:textSize="14sp"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.jojo.design.common_ui.view.NoScrollGridView
+        android:id="@+id/girdview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="5dp"
+        android:horizontalSpacing="0dp"
+        android:listSelector="@color/transparent"
+        android:numColumns="2"
+        android:verticalSpacing="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/iv_avatarPath"></com.jojo.design.common_ui.view.NoScrollGridView>
+</android.support.constraint.ConstraintLayout>

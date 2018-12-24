@@ -3,6 +3,8 @@ package com.jojo.design.common_base.utils
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.jojo.design.common_base.BaseAppliction
@@ -28,6 +30,27 @@ object GlideUtils {
                 .placeholder(defaultImg)
                 .error(defaultImg)
                 .priority(Priority.HIGH)
+        Glide.with(BaseAppliction.context)
+                .load(image + ".png")
+                .apply(requestOptions)
+                .transition(DrawableTransitionOptions().crossFade())
+                .into(targetView)
+    }
+
+    /**
+     * 圆形图片
+     *
+     * @param imageUrl   图片地址
+     * @param defaultImg 加载异常图
+     * @param targetView 目标ImageView
+     */
+    fun loadCircleImage(imageUrl: String, targetView: ImageView, defaultImg: Int) {
+        var image = imageUrl.substring(0, imageUrl.length - 1)
+        val requestOptions = RequestOptions()
+                .placeholder(defaultImg)
+                .error(defaultImg)
+                .priority(Priority.HIGH)
+                .transform(CircleCrop())
         Glide.with(BaseAppliction.context)
                 .load(image + ".png")
                 .apply(requestOptions)

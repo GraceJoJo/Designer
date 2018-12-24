@@ -1,7 +1,10 @@
 package com.jojo.design.module_core.dagger2
 
-import com.jojo.design.module_core.ui.DesignerFragment
-import com.jojo.design.module_core.ui.ShoppingFragment
+import com.jojo.design.module_core.ui.designer.ACT_DesignerList
+import com.jojo.design.module_core.ui.home.DesignerFragment
+import com.jojo.design.module_core.ui.home.HandpickedFragment
+import com.jojo.design.module_core.ui.home.PersonLikeFragment
+import com.jojo.design.module_core.ui.home.ShoppingFragment
 import com.jojo.design.module_core.ui.test.TestDaggerActivity
 import com.jojo.design.module_core.ui.test.TestFragment
 import com.jojo.design.module_core.ui.test.TestMVPActivity
@@ -21,4 +24,7 @@ interface CoreComponent {
     fun inject(fragment: TestFragment)
     fun inject(fragment: DesignerFragment)
     fun inject(fragment: ShoppingFragment)
+    fun inject(fragment: HandpickedFragment)
+    fun inject(fragment: PersonLikeFragment)
+    fun inject(activity: ACT_DesignerList)
 }

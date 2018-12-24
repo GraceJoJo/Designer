@@ -5,16 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.annotation.Nullable
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import android.view.LayoutInflater
+import android.widget.TextView
 import butterknife.ButterKnife
 import butterknife.Unbinder
-import com.example.jojo.databindingadapter.listview.ViewHolderListView.viewDataBinding
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.R
 import com.jojo.design.common_base.bean.ErrorBean
@@ -157,6 +154,21 @@ abstract class BaseActivity<P : BaseContract.BasePresenter, M : BaseContract.Bas
             finish()
         }
     }
+
+    /**
+     * 设置标题
+     *
+     * @param title
+     */
+    fun setHeaderTitle(title: String) {
+
+        if (TextUtils.isEmpty(title)) {
+            return
+        }
+        val titleTV = findViewById<TextView>(R.id.tv_common_title) as TextView
+        titleTV.text = title
+    }
+
 
     override fun finish() {
         super.finish()

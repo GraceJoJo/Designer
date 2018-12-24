@@ -1,4 +1,4 @@
-package com.jojo.design.module_core.ui
+package com.jojo.design.module_core.ui.home
 
 import android.os.Bundle
 import com.jojo.design.common_base.dagger.mvp.BaseContract

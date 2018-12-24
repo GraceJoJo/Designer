@@ -1,4 +1,4 @@
-package com.jojo.design.module_core.ui
+package com.jojo.design.module_core.ui.home
 
 import android.os.Bundle
 import android.support.v4.app.FragmentTransaction
@@ -30,7 +30,7 @@ class MainActivity : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseM
     private var mIndex = 2
     private var mSpecialFragment: SpecialFragment? = null
     open var mDesignerFragment: DesignerFragment? = null
-    private var mShoppingFragment: ShoppingFragment? = null
+    open var mShoppingFragment: ShoppingFragment? = null
     private var mDiscorverFragment: DiscoveryFragment? = null
     override fun getContentViewLayoutId(): Int = R.layout.act_main
 

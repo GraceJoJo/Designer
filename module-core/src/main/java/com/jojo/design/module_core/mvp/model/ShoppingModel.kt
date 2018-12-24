@@ -1,10 +1,7 @@
 package com.jojo.design.module_core.mvp.model
 
 import com.jojo.design.common_base.net.BaseResponse
-import com.jojo.design.module_core.bean.CategoryEntity
-import com.jojo.design.module_core.bean.DesignerEntity
-import com.jojo.design.module_core.bean.GoodsEntity
-import com.jojo.design.module_core.bean.TagCategoryEntity
+import com.jojo.design.module_core.bean.*
 import com.jojo.design.module_core.mvp.contract.DesignerContract
 import com.jojo.design.module_core.mvp.contract.ShoppingContract
 import com.jojo.design.module_core.net.NetSeriviceProvider
@@ -19,7 +16,12 @@ import javax.inject.Inject
  *    desc   : 逛
  */
 class ShoppingModel @Inject constructor() : ShoppingContract.Model {
+    //商品分类
     override fun getCategoryList(): Observable<BaseHttpResponse<List<CategoryEntity>>> = NetSeriviceProvider.requestService.getCategoryList()
-
+    //商品列表
     override fun getGoodsList(): Observable<BaseResponse<List<GoodsEntity>>> = NetSeriviceProvider.requestService.getGoodsList()
+    //精选
+    override fun getHandPickedGoods(page: String): Observable<BaseHttpResponse<RecordsEntity>> = NetSeriviceProvider.requestService.getHandPickedGoods(page)
+    //大家喜欢
+    override fun getPersonLike(): Observable<BaseHttpResponse<List<AllfaverEntity>>> = NetSeriviceProvider.requestService.getPersonLike()
 }

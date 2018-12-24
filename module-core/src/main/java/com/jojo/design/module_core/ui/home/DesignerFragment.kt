@@ -1,6 +1,7 @@
-package com.jojo.design.module_core.ui
+package com.jojo.design.module_core.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
@@ -8,6 +9,7 @@ import com.jojo.design.common_base.utils.GlideUtils
 import com.jojo.design.common_base.utils.StatusBarHelper
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R
+import com.jojo.design.module_core.R.id.viewpager
 import com.jojo.design.module_core.bean.DesignerEntity
 import com.jojo.design.module_core.bean.TagCategoryEntity
 import com.jojo.design.module_core.dagger2.DaggerCoreComponent
@@ -87,11 +89,21 @@ class DesignerFragment : BaseFragment<DesignerPresenter, DesignerModel>(), Desig
         }
     }
 
+    override fun getDesinerList(dataList: List<DesignerEntity>) {
+    }
+    override fun getDesignerTypeList(dataList: List<TagCategoryEntity>) {
+        Log.e("TAG", "getDesignerTypeList")
+        createFragmentByTags(dataList)
+        EventBus.getDefault().post(dataList)
+    }
     /**
      * 根据标签数量动态创建Fragment
      */
     private fun createFragmentByTags(dataList: List<TagCategoryEntity>) {
         val pages = FragmentPagerItems(mContext)
+//        for (i in 0..dataList.size-1){
+//            pages.add(FragmentPagerItem.of(dataList[i].name, FRA_DesignerTypeList::class.java!!))
+//        }
         (0 until dataList.size).mapTo(pages) { FragmentPagerItem.of(dataList[it].name, FRA_DesignerTypeList::class.java!!) }
         val adapter = FragmentPagerItemAdapter(activity?.supportFragmentManager,
                 pages)
@@ -99,17 +111,16 @@ class DesignerFragment : BaseFragment<DesignerPresenter, DesignerModel>(), Desig
         tablayout.setViewPager(viewpager)
         susTablayout.setViewPager(viewpager)
     }
-
-    override fun getDesignerTypeList(dataList: List<TagCategoryEntity>) {
-        createFragmentByTags(dataList)
-        EventBus.getDefault().post(dataList)
-    }
-
     override fun getRecommendDesigner(topDesigner: DesignerEntity) {
         tv_user_nike.text = topDesigner.userNick
         tv_op_tag.text = topDesigner.opTag
         tv_shop_name.text = topDesigner.shopName
-        tv_tags.text = topDesigner.tags[0].name + "   " + topDesigner.tags[1].name
+
+        if (topDesigner.tags.size == 1) {
+            tv_tags.text = topDesigner.tags[0].name + "   "
+        } else if (topDesigner.tags.size == 2) {
+            tv_tags.text = topDesigner.tags[0].name + "   " + topDesigner.tags[1].name
+        }
         GlideUtils.loadImage(topDesigner.banner, iv_head_cover, 0)
 
     }

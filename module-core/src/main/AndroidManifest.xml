@@ -3,7 +3,7 @@
 
     <application>
 
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -12,6 +12,7 @@
         </activity>
         <activity android:name=".ui.test.TestMVPActivity"></activity>
         <activity android:name=".ui.test.TestDaggerActivity"></activity>
+        <activity android:name=".ui.designer.ACT_DesignerList"></activity>
     </application>
 
 

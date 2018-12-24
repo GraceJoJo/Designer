@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jojo.design.common_ui.lrecyclerview.recyclerview.LRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lrecyclerview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+</com.jojo.design.common_ui.lrecyclerview.recyclerview.LRecyclerView>

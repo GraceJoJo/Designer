@@ -16,6 +16,14 @@ import javax.inject.Inject
  *    desc   : 设计师 presenter
  */
 class DesignerPresenter @Inject constructor() : BasePresenter<DesignerContract.View, DesignerContract.Model>(), DesignerContract.Presenter {
+    override fun getDesinerList(tagCategoryId: String, tagId: String) {
+        rxManager?.addObserver(RetrofitManager.doRequestOther(mModel!!.getDesinerList(tagCategoryId, tagId), object : RxObserverListener<List<DesignerEntity>>(mView) {
+            override fun onSuccess(result: List<DesignerEntity>?) {
+                mView?.getDesinerList(result!!)
+            }
+        }))
+    }
+
     override fun getRecommendDesigner() {
         rxManager?.addObserver(RetrofitManager.doCommonRequest(mModel!!.getRecommendDesigner(), object : RxObserverListener<DesignerEntity>(mView) {
             override fun onSuccess(result: DesignerEntity?) {

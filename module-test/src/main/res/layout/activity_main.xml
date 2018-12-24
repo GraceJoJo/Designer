@@ -7,12 +7,21 @@
     tools:context="com.jojo.design.module_test.MainActivity">
 
     <TextView
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textSize="18sp"
+        android:text="Hello World!" />
+    <TextView
+        android:id="@+id/tv_2"
+        app:layout_constraintTop_toBottomOf="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textSize="10sp"
+        android:text="Hello World!"/>
 
 </android.support.constraint.ConstraintLayout>

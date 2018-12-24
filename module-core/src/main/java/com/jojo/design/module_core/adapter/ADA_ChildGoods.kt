@@ -15,7 +15,7 @@ import com.jojo.design.module_core.bean.GoodsEntity
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2018/12/13 6:14 PM
- *    desc   :
+ *    desc   : 逛-横线滑动的商品列表Adapter
  */
 class ADA_ChildGoods constructor(context: Context) : CommonAdapter<GoodsEntity.ItemProductBean>(context) {
     override fun convert(holder: ViewHolder, bean: GoodsEntity.ItemProductBean, position: Int) {

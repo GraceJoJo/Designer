@@ -2,31 +2,44 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <View
         android:id="@+id/view_divider"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="@color/color_app_divider"></View>
+        android:layout_height="10dp"
+        android:background="@color/color_f0f0f0"></View>
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="下面是ViewPager嵌套Fragment"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/view_divider" />
-
-    <View
-        android:id="@+id/view_divider2"
+    <!--与common_tab高度一样-->
+    <RelativeLayout
+        android:id="@+id/rl_tablayout"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="@color/color_app_divider"
-        app:layout_constraintTop_toBottomOf="@+id/tv"></View>
+        android:layout_height="50dp"
+        android:layout_below="@+id/fade_status_bar"
+        app:layout_constraintTop_toBottomOf="@+id/view_divider">
 
-    <android.support.v4.view.ViewPager
+        <com.ogaclejapan.smarttablayout.SmartTabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            app:stl_customTabTextLayoutId="@layout/custom_tab_text"
+            app:stl_customTabTextViewId="@id/custom_text"
+            app:stl_defaultTabTextMinWidth="1dp"
+            app:stl_defaultTabTextSize="12sp"
+            app:stl_distributeEvenly="true"
+            app:stl_dividerColor="@color/transparent"
+            app:stl_indicatorColor="@color/color_app_yellow"
+            app:stl_indicatorInterpolation="linear"
+            app:stl_indicatorThickness="2dp"
+            app:stl_indicatorWidth="20dp"
+            app:stl_underlineThickness="0dp" />
+    </RelativeLayout>
+
+    <com.jojo.design.common_ui.view.CustomViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/view_divider2"></android.support.v4.view.ViewPager>
+        android:layout_height="7445px"
+        app:layout_constraintTop_toBottomOf="@+id/rl_tablayout"></com.jojo.design.common_ui.view.CustomViewPager>
+
 </android.support.constraint.ConstraintLayout>

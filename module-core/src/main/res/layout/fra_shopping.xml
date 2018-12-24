@@ -16,10 +16,10 @@
 
         <include
             android:id="@+id/title"
-            layout="@layout/common_title"></include>
+            layout="@layout/common_search_title"></include>
 
         <include
-            layout="@layout/common_recyclcerview"
+            layout="@layout/common_lrecyclcerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

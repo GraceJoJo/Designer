@@ -1,15 +1,16 @@
-package com.jojo.design.module_core.ui
+package com.jojo.design.module_core.ui.home
 
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import com.jojo.design.common_base.dagger.mvp.BaseContract
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
+import com.jojo.design.common_ui.lrecyclerview.interfaces.OnItemClickListener
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R
-import com.jojo.design.module_core.R.id.girdview
 import com.jojo.design.module_core.adapter.ADA_DesignerTypeList
-import com.jojo.design.module_core.adapter.ADA_TestFragment
 import com.jojo.design.module_core.bean.TagCategoryEntity
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem
 import com.will.weiyuekotlin.component.ApplicationComponent
@@ -41,14 +42,14 @@ class FRA_DesignerTypeList : BaseFragment<BaseContract.BasePresenter, BaseContra
     }
 
     /**
-     *
+     * 接收ShopingFragment请求的设计师分类列表数据
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun refreshData(dataList: List<TagCategoryEntity>) {
+        Log.e("sss", "dataList[mSelectedPosition].tags=" + mSelectedPosition)
         mAdapter?.update(dataList[mSelectedPosition].tags, true)
         //解决进入页面时列表高度显示不全的问题
         Handler().postDelayed({
-            //1.显示空页面
             (activity as MainActivity).mDesignerFragment?.resetViewPagerHeight(0)
         }, 500)
 
@@ -82,8 +83,7 @@ class FRA_DesignerTypeList : BaseFragment<BaseContract.BasePresenter, BaseContra
         mSelectedPosition = FragmentPagerItem.getPosition(arguments)
 
         mAdapter = ADA_DesignerTypeList(mContext)
-        girdview.adapter = mAdapter
-        girdview.isFocusableInTouchMode = false
-
+        gridview.adapter = mAdapter
+        gridview.isFocusableInTouchMode = false
     }
 }

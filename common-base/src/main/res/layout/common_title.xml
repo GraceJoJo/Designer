@@ -8,11 +8,12 @@
     <View
         android:id="@+id/view_statusbar"
         android:layout_width="match_parent"
-        android:focusableInTouchMode="true"
         android:layout_height="20dp"
-        android:background="@color/color_212121"></View>
+        android:background="@color/color_212121"
+        android:focusableInTouchMode="true"></View>
 
     <TextView
+        android:id="@+id/tv_common_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="15dp"

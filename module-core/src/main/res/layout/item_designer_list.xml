@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:id="@+id/iv_userAvatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/icn_mycenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_userNick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="用户姓名"
+        android:textColor="@color/color_black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/iv_userAvatar" />
+
+    <TextView
+        android:id="@+id/tv_opTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:text="设计师身份"
+        android:textColor="@color/color_838282"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@id/iv_userAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_userNick" />
+
+    <TextView
+        android:id="@+id/tv_tags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="6dp"
+        android:text="简约"
+        android:textColor="@color/color_838282"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@id/iv_userAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_opTag" />
+
+    <TextView
+        android:id="@+id/tv_productNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="6dp"
+        android:text="98个作品"
+        android:textColor="@color/color_838282"
+        android:textSize="12sp"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_d8d8d8"
+        app:layout_constraintStart_toStartOf="@+id/tv_userNick"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tags"></View>
+</android.support.constraint.ConstraintLayout>

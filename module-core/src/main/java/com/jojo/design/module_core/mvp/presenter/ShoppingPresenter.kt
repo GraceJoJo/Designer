@@ -3,10 +3,7 @@ package com.jojo.design.module_core.mvp.presenter
 import com.jojo.design.common_base.dagger.mvp.BasePresenter
 import com.jojo.design.common_base.net.RetrofitManager
 import com.jojo.design.common_base.net.RxObserverListener
-import com.jojo.design.module_core.bean.CategoryEntity
-import com.jojo.design.module_core.bean.DesignerEntity
-import com.jojo.design.module_core.bean.GoodsEntity
-import com.jojo.design.module_core.bean.TagCategoryEntity
+import com.jojo.design.module_core.bean.*
 import com.jojo.design.module_core.mvp.contract.DesignerContract
 import com.jojo.design.module_core.mvp.contract.ShoppingContract
 import javax.inject.Inject
@@ -34,6 +31,22 @@ class ShoppingPresenter @Inject constructor() : BasePresenter<ShoppingContract.V
             override fun onSuccess(result: List<GoodsEntity>?) {
                 mView?.getGoodsList(result!!)
                 mView?.dismissDialogLoading()
+            }
+        }))
+    }
+
+    override fun getHandPickedGoods(page: String) {
+        rxManager?.addObserver(RetrofitManager.doCommonRequest(mModel!!.getHandPickedGoods(page), object : RxObserverListener<RecordsEntity>(mView) {
+            override fun onSuccess(result: RecordsEntity?) {
+                mView?.getHandPickedGoods(result!!)
+            }
+        }))
+    }
+
+    override fun getPersonLike() {
+        rxManager?.addObserver(RetrofitManager.doCommonRequest(mModel!!.getPersonLike(), object : RxObserverListener<List<AllfaverEntity>>(mView) {
+            override fun onSuccess(result: List<AllfaverEntity>?) {
+                mView?.getPersonLike(result!!)
             }
         }))
     }

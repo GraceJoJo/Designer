@@ -1,4 +1,4 @@
-package com.jojo.design.module_core.ui
+package com.jojo.design.module_core.ui.home
 
 import android.os.Bundle
 import android.os.Handler
@@ -15,15 +15,14 @@ import com.jojo.design.module_core.R
 import com.jojo.design.module_core.RefreshView
 import com.jojo.design.module_core.adapter.ADA_ShoppingContent
 import com.jojo.design.module_core.adapter.ADA_TestFragment
-import com.jojo.design.module_core.bean.CategoryEntity
-import com.jojo.design.module_core.bean.ContentBean
-import com.jojo.design.module_core.bean.GoodsEntity
+import com.jojo.design.module_core.bean.*
 import com.jojo.design.module_core.dagger2.DaggerCoreComponent
 import com.jojo.design.module_core.mvp.contract.ShoppingContract
 import com.jojo.design.module_core.mvp.model.ShoppingModel
 import com.jojo.design.module_core.mvp.presenter.ShoppingPresenter
 import com.will.weiyuekotlin.component.ApplicationComponent
-import kotlinx.android.synthetic.main.common_recyclcerview.*
+import kotlinx.android.synthetic.main.common_lrecyclcerview.*
+import org.greenrobot.eventbus.EventBus
 
 /**
  *    author : JOJO
@@ -35,7 +34,7 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
     private var mTitle: String? = null
 
     override fun getContentViewLayoutId(): Int = R.layout.fra_shopping
-    lateinit var mAdapter: ADA_ShoppingContent
+    open lateinit var mAdapter: ADA_ShoppingContent
 
     companion object {
         fun getInstance(title: String): ShoppingFragment {
@@ -72,6 +71,7 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
         val mLRecyclerViewAdapter = LRecyclerViewAdapter(mAdapter)
         lrecyclerview.setRefreshHeader(RefreshView(mContext))
         val headerView = LayoutInflater.from(mContext).inflate(R.layout.shoping_head_view, null, false)
+        //头部添加Recyclerview
         var recyclerview = headerView.findViewById<RecyclerView>(R.id.recyclerview)
 //        mLRecyclerViewAdapter.addHeaderView(headerView)
         //设置外层列表Adapter
@@ -86,7 +86,7 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
         lrecyclerview.setFooterViewColor(R.color.color_app_yellow, R.color.color_app_yellow, R.color.color_ffffff)
         //设置底部加载文字提示
         lrecyclerview.setFooterViewHint(mContext.resources.getString(R.string.list_footer_loading), mContext.resources.getString(R.string.list_footer_end), mContext.resources.getString(R.string.list_footer_network_error))
-
+        //Headview为RecyclerView时的处理
         var data = ArrayList<String>()
         (0..50).mapTo(data) { "Item=" + it }
 //        mAdapter.update(data, true)
@@ -102,27 +102,41 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
         mAdapter2.update(data.subList(0, 5), true)
 
 
+        //获取商品分类
         mPresenter?.getCategoryList()
+        initListener()
+    }
+
+    private fun initListener() {
+        lrecyclerview.setOnLoadMoreListener {
+            Handler().postDelayed({
+                lrecyclerview.setNoMore(true)
+            }, 2000)
+        }
     }
 
     var mCategoryList: ArrayList<CategoryEntity> = ArrayList<CategoryEntity>()
     override fun getCategoryList(dataList: List<CategoryEntity>) {
-        Log.e("TAG", "getCategoryList=" + dataList.size)
         mCategoryList.addAll(dataList)
+        //获取商品列表
         mPresenter?.getGoodsList()
     }
 
     override fun getGoodsList(dataList: List<GoodsEntity>) {
         var mData = ArrayList<ContentBean>()
-        Log.e("TAG", "getGoodsList=" + dataList.size)
         var categoryBean = ContentBean(1, mCategoryList, dataList)
         var goodsBean = ContentBean(2, mCategoryList, dataList)
-        var normalBean = ContentBean(3, mCategoryList, dataList)
+        var viewPagerBean = ContentBean(3, mCategoryList, dataList)
         mData.add(categoryBean)
         mData.add(goodsBean)
-//        mData.add(normalBean)
+        mData.add(viewPagerBean)
         mAdapter.update(mData, true)
 
     }
 
+    override fun getHandPickedGoods(bean: RecordsEntity) {
+    }
+
+    override fun getPersonLike(dataList: List<AllfaverEntity>) {
+    }
 }

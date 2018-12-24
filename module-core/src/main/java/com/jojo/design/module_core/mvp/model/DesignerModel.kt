@@ -1,5 +1,6 @@
 package com.jojo.design.module_core.mvp.model
 
+import com.jojo.design.common_base.net.BaseResponse
 import com.jojo.design.module_core.net.NetSeriviceProvider
 import com.jojo.design.module_core.bean.DesignerEntity
 import com.jojo.design.module_core.bean.TagCategoryEntity
@@ -24,4 +25,9 @@ class DesignerModel @Inject constructor() : DesignerContract.Model {
      * 获取涉及标签类型列表
      */
     override fun getDesignerTypeList(): Observable<BaseHttpResponse<List<TagCategoryEntity>>> = NetSeriviceProvider.requestService.getDesignerTypeList()
+
+    /**
+     * 获取设计师列表
+     */
+    override fun getDesinerList(tagCategoryId: String, tagId: String): Observable<BaseResponse<List<DesignerEntity>>> = NetSeriviceProvider.requestService.getDesignerList(tagCategoryId, tagId)
 }

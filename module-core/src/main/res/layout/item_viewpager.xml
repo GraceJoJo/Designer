@@ -39,7 +39,7 @@
     <com.jojo.design.common_ui.view.CustomViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="7445px"
+        android:layout_height="13194px"
         app:layout_constraintTop_toBottomOf="@+id/rl_tablayout"></com.jojo.design.common_ui.view.CustomViewPager>
 
 </android.support.constraint.ConstraintLayout>

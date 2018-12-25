@@ -13,6 +13,7 @@
         <activity android:name=".ui.test.TestMVPActivity"></activity>
         <activity android:name=".ui.test.TestDaggerActivity"></activity>
         <activity android:name=".ui.designer.ACT_DesignerList"></activity>
+        <activity android:name=".ui.common.ACT_CommonWebView"></activity>
     </application>
 
 

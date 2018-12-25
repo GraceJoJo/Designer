@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.designer.ACT_DesignerList"></activity>
+        <activity android:name=".ui.common.ACT_CommonWebView"></activity>
     </application>
 
 </manifest>

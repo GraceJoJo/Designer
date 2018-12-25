@@ -4,11 +4,11 @@ import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.adapter.lv.CommonAdapterListView
 import com.jojo.design.common_base.adapter.lv.ViewHolderListView
+import com.jojo.design.common_base.config.arouter.ARouterConfig
+import com.jojo.design.common_base.config.arouter.ARouterConstants
 import com.jojo.design.common_base.utils.GlideUtils
 import com.jojo.design.module_core.R
 import com.jojo.design.module_core.bean.TagCategoryEntity
-import com.jojo.design.module_core.constants.ARouterConfig
-import com.jojo.design.module_core.constants.ARouterConstants
 
 /**
  *    author : JOJO
@@ -28,7 +28,7 @@ class ADA_DesignerTypeList constructor(context: Context) : CommonAdapterListView
                     .withString(ARouterConstants.TAGCATEGORY_ID, bean.categoryId)
                     .withString(ARouterConstants.TAG_ID, bean.id)
                     .withString(ARouterConstants.TAG_NAME, bean.name)
-                    .navigation();
+                    .navigation()
         }
     }
 

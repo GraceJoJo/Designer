@@ -17,9 +17,11 @@ import javax.inject.Inject
  */
 class DesignerPresenter @Inject constructor() : BasePresenter<DesignerContract.View, DesignerContract.Model>(), DesignerContract.Presenter {
     override fun getDesinerList(tagCategoryId: String, tagId: String) {
+        mView?.showDialogLoading("")
         rxManager?.addObserver(RetrofitManager.doRequestOther(mModel!!.getDesinerList(tagCategoryId, tagId), object : RxObserverListener<List<DesignerEntity>>(mView) {
             override fun onSuccess(result: List<DesignerEntity>?) {
                 mView?.getDesinerList(result!!)
+                mView?.dismissDialogLoading()
             }
         }))
     }

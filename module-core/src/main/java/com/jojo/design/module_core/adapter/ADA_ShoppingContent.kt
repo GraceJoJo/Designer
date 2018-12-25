@@ -12,7 +12,7 @@ import com.jojo.design.module_core.bean.ContentBean
  *    date   : 2018/12/12 9:32 PM
  *    desc   : 逛
  */
-class ADA_ShoppingContent constructor(context: FragmentActivity) : MultiItemTypeAdapter<ContentBean>(context) {
+class ADA_ShoppingContent constructor(context: Activity) : MultiItemTypeAdapter<ContentBean>(context) {
     var pagerViewType: ViewPagerViewType? = null
 
     init {

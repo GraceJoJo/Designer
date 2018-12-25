@@ -90,17 +90,10 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
         var data = ArrayList<String>()
         (0..50).mapTo(data) { "Item=" + it }
 //        mAdapter.update(data, true)
-        lrecyclerview.setOnRefreshListener {
-            Handler().postDelayed({
-                lrecyclerview.refreshComplete(1)
-            }, 1000)
-        }
-
         var mAdapter2 = ADA_TestFragment(mContext)
         recyclerview.adapter = mAdapter2
         recyclerview.layoutManager = LinearLayoutManager(mContext)
         mAdapter2.update(data.subList(0, 5), true)
-
 
         //获取商品分类
         mPresenter?.getCategoryList()
@@ -108,6 +101,11 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
     }
 
     private fun initListener() {
+        lrecyclerview.setOnRefreshListener {
+            Handler().postDelayed({
+                lrecyclerview.refreshComplete(1)
+            }, 1000)
+        }
         lrecyclerview.setOnLoadMoreListener {
             Handler().postDelayed({
                 lrecyclerview.setNoMore(true)

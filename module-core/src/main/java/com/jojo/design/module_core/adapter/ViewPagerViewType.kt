@@ -1,6 +1,6 @@
 package com.jojo.design.module_core.adapter
 
-import android.os.Bundle
+import android.app.Activity
 import android.support.v4.app.FragmentActivity
 import com.jojo.design.common_base.adapter.rv.ItemViewDelegate
 import com.jojo.design.common_base.adapter.rv.ViewHolder
@@ -20,8 +20,8 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems
  *    date   : 2018/12/12 10:02 PM
  *    desc   :
  */
-class ViewPagerViewType constructor(context: FragmentActivity) : ItemViewDelegate<ContentBean> {
-    var activity: FragmentActivity? = null
+class ViewPagerViewType constructor(context: Activity) : ItemViewDelegate<ContentBean> {
+    var activity: Activity? = null
     var viewpager: CustomViewPager? = null
 
     init {
@@ -37,7 +37,7 @@ class ViewPagerViewType constructor(context: FragmentActivity) : ItemViewDelegat
     override fun convert(holder: ViewHolder, bean: ContentBean, position: Int) {
         viewpager = holder.getView<CustomViewPager>(R.id.viewpager)
         var tablayout = holder.getView<SmartTabLayout>(R.id.tablayout)
-        createFragment(viewpager!!, tablayout,bean)
+        createFragment(viewpager!!, tablayout, bean)
     }
 
     /**
@@ -56,7 +56,7 @@ class ViewPagerViewType constructor(context: FragmentActivity) : ItemViewDelegat
             }
 
         }
-        val adapter = FragmentPagerItemAdapter(activity?.supportFragmentManager,
+        val adapter = FragmentPagerItemAdapter((activity as FragmentActivity)?.supportFragmentManager,
                 pages)
         viewpager.adapter = adapter!!
         tablayout.setViewPager(viewpager)

@@ -25,7 +25,7 @@
         <com.jojo.design.common_ui.view.MultipleStatusView
             android:id="@+id/multiplestatusview"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:background="#ff0000"
             app:layout_constraintTop_toBottomOf="@+id/tv_head">
 

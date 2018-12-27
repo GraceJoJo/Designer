@@ -1,40 +1,43 @@
 package com.jojo.design.module_core.ui.home
 
+import android.app.Activity
 import android.os.Bundle
-import android.os.Handler
+import android.support.v4.app.FragmentActivity
+import android.support.v4.view.ViewPager
+import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.LayoutInflater
+import android.view.View
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
-import com.jojo.design.common_ui.lrecyclerview.recyclerview.LRecyclerViewAdapter
-import com.jojo.design.common_ui.lrecyclerview.recyclerview.ProgressStyle
+import com.jojo.design.common_base.utils.ScreenUtil
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R
-import com.jojo.design.module_core.RefreshView
 import com.jojo.design.module_core.adapter.ADA_ShoppingContent
-import com.jojo.design.module_core.adapter.ADA_TestFragment
 import com.jojo.design.module_core.bean.*
 import com.jojo.design.module_core.dagger2.DaggerCoreComponent
 import com.jojo.design.module_core.mvp.contract.ShoppingContract
 import com.jojo.design.module_core.mvp.model.ShoppingModel
 import com.jojo.design.module_core.mvp.presenter.ShoppingPresenter
+import com.ogaclejapan.smarttablayout.SmartTabLayout
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems
 import com.will.weiyuekotlin.component.ApplicationComponent
-import kotlinx.android.synthetic.main.common_lrecyclcerview.*
-import org.greenrobot.eventbus.EventBus
+import kotlinx.android.synthetic.main.fra_shopping_new.*
 
 /**
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2018/12/7 11:34 AM
- *    desc   : 逛（shoping）
+ *    desc   : 逛（shoping）-采用NestedScrollView嵌套TabLayout+ViewPager+Fragment+RecyclerView 复杂嵌套滑动冲突解决
  */
 class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), ShoppingContract.View {
-    private var mTitle: String? = null
 
-    override fun getContentViewLayoutId(): Int = R.layout.fra_shopping
-    open lateinit var mAdapter: ADA_ShoppingContent
+    private var mTitle: String? = null
+    open lateinit var mHeaderAdapter: ADA_ShoppingContent
+    var mCategoryList: ArrayList<CategoryEntity> = ArrayList<CategoryEntity>()
+    override fun getContentViewLayoutId(): Int = R.layout.fra_shopping_new
 
     companion object {
         fun getInstance(title: String): ShoppingFragment {
@@ -65,55 +68,81 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
     }
 
     override fun startFragmentEvents() {
-//        var mAdapter = ADA_TestFragment(mContext)
-
-        mAdapter = ADA_ShoppingContent(activity!!)
-        val mLRecyclerViewAdapter = LRecyclerViewAdapter(mAdapter)
-        lrecyclerview.setRefreshHeader(RefreshView(mContext))
-        val headerView = LayoutInflater.from(mContext).inflate(R.layout.shoping_head_view, null, false)
-        //头部添加Recyclerview
-        var recyclerview = headerView.findViewById<RecyclerView>(R.id.recyclerview)
-//        mLRecyclerViewAdapter.addHeaderView(headerView)
-        //设置外层列表Adapter
-        lrecyclerview.adapter = mLRecyclerViewAdapter
-        lrecyclerview.setHasFixedSize(true)
-        lrecyclerview.layoutManager = LinearLayoutManager(mContext)
-        lrecyclerview.setRefreshProgressStyle(ProgressStyle.SysProgress)
-        lrecyclerview.setLoadingMoreProgressStyle(ProgressStyle.SysProgress)
-        //设置头部文字颜色
-        lrecyclerview.setHeaderViewColor(R.color.color_app_yellow, R.color.color_app_yellow, R.color.color_ffffff)
-        //设置底部加载颜色-loading动画颜色,文字颜色,footer的背景颜色
-        lrecyclerview.setFooterViewColor(R.color.color_app_yellow, R.color.color_app_yellow, R.color.color_ffffff)
-        //设置底部加载文字提示
-        lrecyclerview.setFooterViewHint(mContext.resources.getString(R.string.list_footer_loading), mContext.resources.getString(R.string.list_footer_end), mContext.resources.getString(R.string.list_footer_network_error))
-        //Headview为RecyclerView时的处理
-        var data = ArrayList<String>()
-        (0..50).mapTo(data) { "Item=" + it }
-//        mAdapter.update(data, true)
-        var mAdapter2 = ADA_TestFragment(mContext)
-        recyclerview.adapter = mAdapter2
-        recyclerview.layoutManager = LinearLayoutManager(mContext)
-        mAdapter2.update(data.subList(0, 5), true)
-
         //获取商品分类
         mPresenter?.getCategoryList()
+
+        mHeaderAdapter = ADA_ShoppingContent(activity!!)
+        recyclerview.layoutManager = object : LinearLayoutManager(mContext) {
+            override fun canScrollVertically(): Boolean {
+                return false
+            }
+        }
+        recyclerview.adapter = mHeaderAdapter
+
+
+        ll_title.post {
+            dealWithViewPager()
+        }
+
+//        createFragment(vp_shoping, tablayout)
         initListener()
     }
 
+    var toolBarPositionY = 0
     private fun initListener() {
-        lrecyclerview.setOnRefreshListener {
-            Handler().postDelayed({
-                lrecyclerview.refreshComplete(1)
-            }, 1000)
-        }
-        lrecyclerview.setOnLoadMoreListener {
-            Handler().postDelayed({
-                lrecyclerview.setNoMore(true)
-            }, 2000)
-        }
+        scrollView.setOnScrollChangeListener(object : NestedScrollView.OnScrollChangeListener {
+            internal var lastScrollY = 0
+
+            override fun onScrollChange(v: NestedScrollView, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
+                var scrollY = scrollY
+                val location = IntArray(2)
+                rl_tablayout.getLocationOnScreen(location)
+                val yPosition = location[1]
+                Log.e("scrollView", "滑动的TabLayout的位置：yPosition=" + yPosition + "固定顶部标题栏toolBarPositionY=" + toolBarPositionY)
+                if (yPosition < toolBarPositionY) {
+                    rl_sus_tab.visibility = View.VISIBLE
+                    scrollView.setNeedScroll(false)
+                } else {
+                    rl_sus_tab.visibility = View.GONE
+                    scrollView.setNeedScroll(true)
+
+                }
+            }
+        })
     }
 
-    var mCategoryList: ArrayList<CategoryEntity> = ArrayList<CategoryEntity>()
+    private fun dealWithViewPager() {
+        toolBarPositionY = ll_title.height
+        val params = vp_shoping.layoutParams
+        params.height = ScreenUtil.getScreenHeight(activity as Activity) - toolBarPositionY - rl_tablayout.height
+        vp_shoping.layoutParams = params
+        Log.e("TAG", "viewpager=" + vp_shoping.layoutParams.height)
+    }
+
+    /**
+     * 创建Fragment和ViewPager
+     */
+    private fun createFragment(viewpager: ViewPager, tablayout: SmartTabLayout) {
+        var dataList = ArrayList<String>()
+        dataList.add("精选")
+        dataList.add("大家喜欢")
+        val pages = FragmentPagerItems(activity)
+        for (i in 0 until dataList.size) {
+            if (i == 0) {
+                pages.add(FragmentPagerItem.of(dataList[i], HandpickedFragment::class.java!!))
+            } else {
+                pages.add(FragmentPagerItem.of(dataList[i], PersonLikeFragment::class.java!!))
+            }
+
+        }
+        val adapter = FragmentPagerItemAdapter((activity as FragmentActivity)?.supportFragmentManager,
+                pages)
+        viewpager.adapter = adapter!!
+        tablayout.setViewPager(viewpager)
+        sus_tablayout.setViewPager(viewpager)
+    }
+
+
     override fun getCategoryList(dataList: List<CategoryEntity>) {
         mCategoryList.addAll(dataList)
         //获取商品列表
@@ -124,12 +153,14 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
         var mData = ArrayList<ContentBean>()
         var categoryBean = ContentBean(1, mCategoryList, dataList)
         var goodsBean = ContentBean(2, mCategoryList, dataList)
-        var viewPagerBean = ContentBean(3, mCategoryList, dataList)
+//        var viewPagerBean = ContentBean(3, mCategoryList, dataList)
         mData.add(categoryBean)
         mData.add(goodsBean)
-        mData.add(viewPagerBean)
-        mAdapter.update(mData, true)
+//        mData.add(viewPagerBean)
+        mHeaderAdapter.update(mData, true)
 
+        //创建精选+大家喜欢的Tab+ViewPager
+        createFragment(vp_shoping, tablayout)
     }
 
     override fun getHandPickedGoods(bean: RecordsEntity) {
@@ -137,4 +168,5 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
 
     override fun getPersonLike(dataList: List<AllfaverEntity>) {
     }
+
 }

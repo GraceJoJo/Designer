@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff">
+
+    <include
+        android:id="@+id/ll_title"
+        layout="@layout/common_search_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
+
+    <com.jojo.design.module_core.widgets.MyNestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            <!--TabLayout+ViewPager-->
+            <RelativeLayout
+                android:id="@+id/rl_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/fade_status_bar">
+
+                <com.ogaclejapan.smarttablayout.SmartTabLayout
+                    android:id="@+id/tablayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    app:stl_customTabTextLayoutId="@layout/custom_tab_text"
+                    app:stl_customTabTextViewId="@id/custom_text"
+                    app:stl_defaultTabTextMinWidth="1dp"
+                    app:stl_defaultTabTextSize="12sp"
+                    app:stl_distributeEvenly="true"
+                    app:stl_dividerColor="@color/transparent"
+                    app:stl_indicatorColor="@color/color_app_yellow"
+                    app:stl_indicatorInterpolation="linear"
+                    app:stl_indicatorThickness="2dp"
+                    app:stl_indicatorWidth="20dp"
+                    app:stl_underlineThickness="0dp" />
+            </RelativeLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_shoping"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </com.jojo.design.module_core.widgets.MyNestedScrollView>
+
+    <!--悬浮的Tablayout-->
+    <RelativeLayout
+        android:id="@+id/rl_sus_tab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ll_title"
+        android:background="@color/color_ffffff"
+        android:visibility="gone">
+
+        <com.ogaclejapan.smarttablayout.SmartTabLayout
+            android:id="@+id/sus_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            app:stl_customTabTextLayoutId="@layout/custom_tab_text"
+            app:stl_customTabTextViewId="@id/custom_text"
+            app:stl_defaultTabTextMinWidth="1dp"
+            app:stl_defaultTabTextSize="12sp"
+            app:stl_distributeEvenly="true"
+            app:stl_dividerColor="@color/transparent"
+            app:stl_indicatorColor="@color/color_app_yellow"
+            app:stl_indicatorInterpolation="linear"
+            app:stl_indicatorThickness="2dp"
+            app:stl_indicatorWidth="20dp"
+            app:stl_underlineThickness="0dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

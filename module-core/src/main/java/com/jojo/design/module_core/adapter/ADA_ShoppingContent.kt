@@ -20,7 +20,7 @@ class ADA_ShoppingContent constructor(context: Activity) : MultiItemTypeAdapter<
         addItemViewDelegate(GoodsCategoryViewType(context))
         addItemViewDelegate(GoodsViewType(context))
         pagerViewType = ViewPagerViewType(context)
-        addItemViewDelegate(pagerViewType)
+//        addItemViewDelegate(pagerViewType)
     }
 
 }

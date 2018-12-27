@@ -1,6 +1,6 @@
 package com.jojo.design.module_core.ui.home
 
-import android.os.Handler
+import android.support.v7.widget.GridLayoutManager
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_ui.view.MultipleStatusView
@@ -12,8 +12,7 @@ import com.jojo.design.module_core.mvp.contract.ShoppingContract
 import com.jojo.design.module_core.mvp.model.ShoppingModel
 import com.jojo.design.module_core.mvp.presenter.ShoppingPresenter
 import com.will.weiyuekotlin.component.ApplicationComponent
-import kotlinx.android.synthetic.main.fra_designer.*
-import kotlinx.android.synthetic.main.fra_handpicked.*
+import kotlinx.android.synthetic.main.common_recyclcerview.*
 
 /**
  * author : JOJO
@@ -46,7 +45,8 @@ class HandpickedFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Sho
         mPresenter?.getHandPickedGoods("2")
 
         mAdapter = ADA_Handpicked(mContext)
-        girdview.adapter = mAdapter
+        recyclerview.layoutManager = GridLayoutManager(mContext, 2)
+        recyclerview.adapter = mAdapter
     }
 
     override fun getCategoryList(dataList: List<CategoryEntity>) {

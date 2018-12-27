@@ -63,7 +63,7 @@ class TestFragment : BaseFragment<TestPresenter, TestModel>(), TestContract.View
         var mAdapter = ADA_TestFragment(mContext)
         recyclerview.adapter = mAdapter
         var data = ArrayList<String>()
-        for (i in 0..10) {
+        for (i in 0..50) {
             data.add("item=" + i)
         }
         mAdapter.update(data, true)

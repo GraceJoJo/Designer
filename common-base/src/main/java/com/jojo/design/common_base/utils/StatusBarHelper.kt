@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
+import android.os.Environment
 import android.support.annotation.ColorInt
 import android.support.annotation.IntRange
 import android.util.DisplayMetrics
@@ -12,7 +13,10 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.LinearLayout
 import com.jojo.design.common_base.R
+import java.io.File
+import java.io.FileInputStream
 import java.io.IOException
+import java.util.*
 
 /**
  *    author : JOJO
@@ -35,7 +39,8 @@ object StatusBarHelper {
      * @param useThemeStatusBarColor   是否要状态栏的颜色，不设置则为透明色   true:全屏不透明状态栏  false：全屏透明状态栏
      * @param isStatusBarLightMode 是否使用状态栏为浅色色调  true:白色文字、icon  false:黑色文字、icon
      */
-   @JvmStatic fun setStatusBar(activity: Activity, useThemeStatusBarColor: Boolean, isStatusBarLightMode: Boolean) {
+    @JvmStatic
+    fun setStatusBar(activity: Activity, useThemeStatusBarColor: Boolean, isStatusBarLightMode: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
             val decorView = activity.window.decorView
             val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -162,6 +167,58 @@ object StatusBarHelper {
     }
 
     /**
+     * 改变魅族的状态栏字体为黑色，要求FlyMe4以上
+     */
+    fun processFlyMe(isDarkMode: Boolean, activity: Activity) {
+        val lp = activity.getWindow().getAttributes()
+        try {
+            val instance = Class.forName("android.view.WindowManager\$LayoutParams")
+            val value = instance.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON").getInt(lp)
+            val field = instance.getDeclaredField("meizuFlags")
+            field.isAccessible = true
+            val origin = field.getInt(lp)
+            if (isDarkMode) {
+                field.set(lp, origin or value)
+            } else {
+                field.set(lp, value.inv() and origin)
+            }
+        } catch (ignored: Exception) {
+            ignored.printStackTrace()
+        }
+
+    }
+
+    /**
+     * 改变小米的状态栏字体颜色为黑色, 要求MIUI6以上  isDarkMode为真时表示黑色字体
+     */
+    private fun processMIUI(isDarkMode: Boolean, activity: Activity) {
+        val clazz = activity.window.javaClass
+        try {
+            val darkModeFlag: Int
+            val layoutParams = Class.forName("android.view.MiuiWindowManager\$LayoutParams")
+            val field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE")
+            darkModeFlag = field.getInt(layoutParams)
+            val extraFlagField = clazz.getMethod("setExtraFlags", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
+            extraFlagField.invoke(activity.window, if (isDarkMode) darkModeFlag else 0, darkModeFlag)
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isMIUI()) {
+                //开发版 7.7.13 及以后版本采用了系统API，旧方法无效但不会报错，所以两个方式都要加上：https://www.jianshu.com/p/7392237bc1de
+                if (isDarkMode) {
+                    activity.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                } else {
+                    activity.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                }
+            }
+
+        } catch (ignored: Exception) {
+            ignored.printStackTrace()
+        }
+
+    }
+
+
+    /**
      * 判断手机是否是小米
      * @return
      */
@@ -178,6 +235,28 @@ object StatusBarHelper {
     }
 
     /**
+     * 判断手机是否是小米
+     * @return
+     */
+    private fun isMiUIV6OrAbove(): Boolean {
+        try {
+            val properties = Properties()
+            properties.load(FileInputStream(File(Environment.getRootDirectory(), "build.prop")))
+            val uiCode = properties.getProperty(KEY_MIUI_VERSION_CODE, null)
+            if (uiCode != null) {
+                val code = Integer.parseInt(uiCode)
+                return code >= 4
+            } else {
+                return false
+            }
+
+        } catch (e: Exception) {
+            return false
+        }
+
+    }
+
+    /**
      * 判断是否是魅族手机
      */
     fun isFlyme(): Boolean {
@@ -187,46 +266,6 @@ object StatusBarHelper {
             return method != null
         } catch (e: Exception) {
             return false
-        }
-
-    }
-
-    /**
-     * 改变魅族的状态栏字体为黑色，要求FlyMe4以上
-     */
-    fun processFlyMe(isLightStatusBar: Boolean, activity: Activity) {
-        val lp = activity.getWindow().getAttributes()
-        try {
-            val instance = Class.forName("android.view.WindowManager\$LayoutParams")
-            val value = instance.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON").getInt(lp)
-            val field = instance.getDeclaredField("meizuFlags")
-            field.isAccessible = true
-            val origin = field.getInt(lp)
-            if (isLightStatusBar) {
-                field.set(lp, origin or value)
-            } else {
-                field.set(lp, value.inv() and origin)
-            }
-        } catch (ignored: Exception) {
-            ignored.printStackTrace()
-        }
-
-    }
-
-    /**
-     * 改变小米的状态栏字体颜色为黑色, 要求MIUI6以上  lightStatusBar为真时表示黑色字体
-     */
-    private fun processMIUI(lightStatusBar: Boolean, activity: Activity) {
-        val clazz = activity.window.javaClass
-        try {
-            val darkModeFlag: Int
-            val layoutParams = Class.forName("android.view.MiuiWindowManager\$LayoutParams")
-            val field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE")
-            darkModeFlag = field.getInt(layoutParams)
-            val extraFlagField = clazz.getMethod("setExtraFlags", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
-            extraFlagField.invoke(activity.window, if (lightStatusBar) darkModeFlag else 0, darkModeFlag)
-        } catch (ignored: Exception) {
-            ignored.printStackTrace()
         }
 
     }

@@ -1,4 +1,4 @@
-package com.jojo.design.module_core;
+package com.jojo.design.module_core.widgets;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jojo.design.common_ui.lrecyclerview.interfaces.IRefreshHeader;
+import com.jojo.design.module_core.R;
 
 
 /**

@@ -14,7 +14,7 @@ import com.jojo.design.module_core.databinding.ItemTestBinding
  */
 class ADA_TestFragment constructor(context: Context) : CommonAdapter<String, ItemTestBinding>(context) {
     override fun convert(viewBinding: ItemTestBinding?, holder: ViewHolder.BindingHolder?, p2: String?, position: Int) {
-
+        holder?.setText(R.id.tv,p2)
     }
 
     override fun itemLayoutId(): Int = R.layout.item_test

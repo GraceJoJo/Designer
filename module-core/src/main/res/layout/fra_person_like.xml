@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <com.jojo.design.common_ui.view.NoScrollGridView
-        android:id="@+id/girdview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:horizontalSpacing="2dp"
-        android:listSelector="@color/transparent"
-        android:numColumns="1"
-        android:verticalSpacing="2dp"></com.jojo.design.common_ui.view.NoScrollGridView>
-
+    android:layout_height="wrap_content"
+    android:background="@color/color_ffffff">
+    <include layout="@layout/common_recyclcerview"></include>
 </android.support.constraint.ConstraintLayout>

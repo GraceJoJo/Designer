@@ -1,6 +1,6 @@
 package com.jojo.design.module_core.ui.home
 
-import android.os.Handler
+import android.support.v7.widget.LinearLayoutManager
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_ui.view.MultipleStatusView
@@ -12,7 +12,7 @@ import com.jojo.design.module_core.mvp.contract.ShoppingContract
 import com.jojo.design.module_core.mvp.model.ShoppingModel
 import com.jojo.design.module_core.mvp.presenter.ShoppingPresenter
 import com.will.weiyuekotlin.component.ApplicationComponent
-import kotlinx.android.synthetic.main.fra_handpicked.*
+import kotlinx.android.synthetic.main.common_recyclcerview.*
 
 /**
  * author : JOJO
@@ -45,7 +45,8 @@ class PersonLikeFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Sho
         mPresenter?.getPersonLike()
 
         mAdapter = ADA_PersonLike(mContext)
-        girdview.adapter = mAdapter
+        recyclerview.layoutManager = LinearLayoutManager(mContext)
+        recyclerview.adapter = mAdapter
     }
 
     override fun getCategoryList(dataList: List<CategoryEntity>) {

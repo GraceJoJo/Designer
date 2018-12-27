@@ -9,7 +9,6 @@ import com.jojo.design.common_base.utils.GlideUtils
 import com.jojo.design.common_base.utils.StatusBarHelper
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R
-import com.jojo.design.module_core.R.id.viewpager
 import com.jojo.design.module_core.bean.DesignerEntity
 import com.jojo.design.module_core.bean.TagCategoryEntity
 import com.jojo.design.module_core.dagger2.DaggerCoreComponent
@@ -91,6 +90,10 @@ class DesignerFragment : BaseFragment<DesignerPresenter, DesignerModel>(), Desig
 
     override fun getDesinerList(dataList: List<DesignerEntity>) {
     }
+
+    /**
+     * 获取设计师类型
+     */
     override fun getDesignerTypeList(dataList: List<TagCategoryEntity>) {
         Log.e("TAG", "getDesignerTypeList")
         createFragmentByTags(dataList)
@@ -111,6 +114,10 @@ class DesignerFragment : BaseFragment<DesignerPresenter, DesignerModel>(), Desig
         tablayout.setViewPager(viewpager)
         susTablayout.setViewPager(viewpager)
     }
+
+    /**
+     * 获取顶部推荐设计师
+     */
     override fun getRecommendDesigner(topDesigner: DesignerEntity) {
         tv_user_nike.text = topDesigner.userNick
         tv_op_tag.text = topDesigner.opTag

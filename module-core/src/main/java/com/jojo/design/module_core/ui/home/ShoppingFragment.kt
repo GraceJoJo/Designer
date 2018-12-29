@@ -8,7 +8,9 @@ import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.BaseAppliction
+import com.jojo.design.common_base.config.arouter.ARouterConfig
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_base.utils.ScreenUtil
 import com.jojo.design.common_ui.view.MultipleStatusView
@@ -24,6 +26,7 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems
 import com.will.weiyuekotlin.component.ApplicationComponent
+import kotlinx.android.synthetic.main.common_search_title.*
 import kotlinx.android.synthetic.main.fra_shopping_new.*
 
 /**
@@ -97,18 +100,28 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
                 var scrollY = scrollY
                 val location = IntArray(2)
                 rl_tablayout.getLocationOnScreen(location)
-                val yPosition = location[1]
+                val yPosition = location[1] //rl_tablayout顶部距离屏幕顶部的距离（Y方向的坐标）
                 Log.e("scrollView", "滑动的TabLayout的位置：yPosition=" + yPosition + "固定顶部标题栏toolBarPositionY=" + toolBarPositionY)
+                //直接通过yPosition < toolBarPositionY判断是否拦截子View，下滑时会顿一下，滑动距离有偏差
                 if (yPosition < toolBarPositionY) {
                     rl_sus_tab.visibility = View.VISIBLE
-                    scrollView.setNeedScroll(false)
+//                    scrollView.setNeedScroll(false) //NetsedScrollView不拦截子View，让子View消费事件，处理滑动
                 } else {
                     rl_sus_tab.visibility = View.GONE
+//                    scrollView.setNeedScroll(true)
+                }
+                //解决（原因暂未明）：当上滑yPosition <toolBarPositionY时，设置scrollView.setNeedScroll(false)没有即时生效，NetsedScrollView还继续滑动了一段距离（从toolBarPositionY变到了73,子View才响应滑动事件）
+                if (yPosition + (toolBarPositionY - 73) <= toolBarPositionY) {
+                    scrollView.setNeedScroll(false)
+                } else {
                     scrollView.setNeedScroll(true)
-
                 }
             }
         })
+
+        et_search.setOnClickListener {
+            ARouter.getInstance().build(ARouterConfig.ACT_SEARCH).navigation()
+        }
     }
 
     private fun dealWithViewPager() {
@@ -131,7 +144,7 @@ class ShoppingFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
             if (i == 0) {
                 pages.add(FragmentPagerItem.of(dataList[i], HandpickedFragment::class.java!!))
             } else {
-                pages.add(FragmentPagerItem.of(dataList[i], PersonLikeFragment::class.java!!))
+                pages.add(FragmentPagerItem.of(dataList[i], AllFavorFragment::class.java!!))
             }
 
         }

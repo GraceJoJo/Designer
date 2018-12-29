@@ -8,7 +8,7 @@ import com.jojo.design.common_base.net.RetrofitManager
  *    date   : 2018/12/7 4:11 PM
  *    desc   : 单例提供Retrofit请求的Service
  */
-object NetSeriviceProvider {
+object NetCoreProvider {
 
     val requestService: ApiCoreService
         get() = RetrofitManager.getRetrofit().create<ApiCoreService>(ApiCoreService::class.java)

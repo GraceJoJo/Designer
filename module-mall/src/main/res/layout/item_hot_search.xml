@@ -1,0 +1,12 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_item_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_shape_search_coner_100"
+    android:paddingBottom="12px"
+    android:paddingLeft="36px"
+    android:paddingRight="36px"
+    android:paddingTop="12px"
+    android:text="连衣裙"
+    android:textColor="@color/color_212121"
+    android:textSize="12sp" />

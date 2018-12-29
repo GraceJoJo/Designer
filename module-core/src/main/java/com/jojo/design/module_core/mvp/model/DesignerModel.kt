@@ -1,7 +1,7 @@
 package com.jojo.design.module_core.mvp.model
 
 import com.jojo.design.common_base.net.BaseResponse
-import com.jojo.design.module_core.net.NetSeriviceProvider
+import com.jojo.design.module_core.net.NetCoreProvider
 import com.jojo.design.module_core.bean.DesignerEntity
 import com.jojo.design.module_core.bean.TagCategoryEntity
 import com.jojo.design.module_core.mvp.contract.DesignerContract
@@ -19,15 +19,15 @@ class DesignerModel @Inject constructor() : DesignerContract.Model {
     /**
      * 获取推荐设计师
      */
-    override fun getRecommendDesigner(): Observable<BaseHttpResponse<DesignerEntity>> = NetSeriviceProvider.requestService.getRecommendDesigner()
+    override fun getRecommendDesigner(): Observable<BaseHttpResponse<DesignerEntity>> = NetCoreProvider.requestService.getRecommendDesigner()
 
     /**
      * 获取涉及标签类型列表
      */
-    override fun getDesignerTypeList(): Observable<BaseHttpResponse<List<TagCategoryEntity>>> = NetSeriviceProvider.requestService.getDesignerTypeList()
+    override fun getDesignerTypeList(): Observable<BaseHttpResponse<List<TagCategoryEntity>>> = NetCoreProvider.requestService.getDesignerTypeList()
 
     /**
      * 获取设计师列表
      */
-    override fun getDesinerList(tagCategoryId: String, tagId: String): Observable<BaseResponse<List<DesignerEntity>>> = NetSeriviceProvider.requestService.getDesignerList(tagCategoryId, tagId)
+    override fun getDesinerList(tagCategoryId: String, tagId: String): Observable<BaseResponse<List<DesignerEntity>>> = NetCoreProvider.requestService.getDesignerList(tagCategoryId, tagId)
 }

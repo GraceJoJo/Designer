@@ -7,7 +7,7 @@
         android:name="com.jojo.design.module_mall.MallApplication"
         android:label="@string/app_name"
         android:theme="@style/BaseAppTheme">
-        <activity android:name="com.jojo.design.module_mall.ACT_Mall">
+        <activity android:name="com.jojo.design.module_mall.ui.ACT_Search">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

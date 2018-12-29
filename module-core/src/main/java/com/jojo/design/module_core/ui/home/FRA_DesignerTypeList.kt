@@ -3,11 +3,8 @@ package com.jojo.design.module_core.ui.home
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import com.jojo.design.common_base.dagger.mvp.BaseContract
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
-import com.jojo.design.common_ui.lrecyclerview.interfaces.OnItemClickListener
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R
 import com.jojo.design.module_core.adapter.ADA_DesignerTypeList
@@ -50,7 +47,7 @@ class FRA_DesignerTypeList : BaseFragment<BaseContract.BasePresenter, BaseContra
         mAdapter?.update(dataList[mSelectedPosition].tags, true)
         //解决进入页面时列表高度显示不全的问题
         Handler().postDelayed({
-            (activity as MainActivity).mDesignerFragment?.resetViewPagerHeight(0)
+            (activity as ACT_Home).mDesignerFragment?.resetViewPagerHeight(0)
         }, 500)
 
     }

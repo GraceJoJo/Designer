@@ -3,11 +3,10 @@ package com.jojo.design
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
-import butterknife.BindView
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.facade.callback.NavigationCallback
 import com.alibaba.android.arouter.launcher.ARouter
+import com.jojo.design.common_base.config.arouter.ARouterConfig
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         tv.setOnClickListener({
             //发起路由跳转
-            ARouter.getInstance().build("/mall/act_mall").navigation(this, object : NavigationCallback {
+            ARouter.getInstance().build(ARouterConfig.ACT_SEARCH).navigation(this, object : NavigationCallback {
                 override fun onFound(postcard: Postcard) {
                     Log.e("TAG", "找到了")
                 }
@@ -33,6 +32,9 @@ class MainActivity : AppCompatActivity() {
                     Log.e("TAG", "拦截了")
                 }
             })
+//            val intents = Intent()
+//            intents.setClass(this,ACT_Home::class.java)
+//            startActivity(intents)
         })
     }
 }

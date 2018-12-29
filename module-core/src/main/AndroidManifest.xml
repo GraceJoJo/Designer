@@ -3,7 +3,7 @@
 
     <application>
 
-        <activity android:name=".ui.home.MainActivity">
+        <activity android:name=".ui.home.ACT_Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

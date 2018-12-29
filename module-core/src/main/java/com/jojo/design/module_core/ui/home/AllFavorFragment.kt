@@ -20,9 +20,9 @@ import kotlinx.android.synthetic.main.common_recyclcerview.*
  * date   : 2018/12/20 5:54 PM
  * desc   : 逛-底部-大家喜欢
  */
-class PersonLikeFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), ShoppingContract.View {
+class AllFavorFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), ShoppingContract.View {
     private var mAdapter: ADA_PersonLike? = null
-    override fun getContentViewLayoutId(): Int = R.layout.fra_person_like
+    override fun getContentViewLayoutId(): Int = R.layout.fra_all_favor
     override fun onFirstUserVisible() {
     }
 

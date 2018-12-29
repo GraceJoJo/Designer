@@ -54,7 +54,7 @@ interface ApiCoreService {
     @GET("shopping/banner/list")
     fun getGoodsList(): Observable<BaseResponse<List<GoodsEntity>>>
 
-    //    //获取精选商品列表
+    //获取精选商品列表
     @GET("search/list")
     fun getHandPickedGoods(@Query("page") page: String): Observable<BaseHttpResponse<RecordsEntity>>
 

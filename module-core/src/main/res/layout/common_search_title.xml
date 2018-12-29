@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_shape_search_000000"
         android:drawableLeft="@drawable/icn_search_little"
+        android:focusable="false"
         android:hint="搜索好设计"
         android:paddingBottom="4dp"
         android:paddingLeft="4dp"

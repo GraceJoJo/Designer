@@ -8,7 +8,7 @@ import com.jojo.design.common_ui.view.CustomViewPager
 import com.jojo.design.module_core.R
 import com.jojo.design.module_core.bean.ContentBean
 import com.jojo.design.module_core.ui.home.HandpickedFragment
-import com.jojo.design.module_core.ui.home.PersonLikeFragment
+import com.jojo.design.module_core.ui.home.AllFavorFragment
 import com.ogaclejapan.smarttablayout.SmartTabLayout
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter
@@ -52,7 +52,7 @@ class ViewPagerViewType constructor(context: Activity) : ItemViewDelegate<Conten
             if (i == 0) {
                 pages.add(FragmentPagerItem.of(dataList[i], HandpickedFragment::class.java!!))
             } else {
-                pages.add(FragmentPagerItem.of(dataList[i], PersonLikeFragment::class.java!!))
+                pages.add(FragmentPagerItem.of(dataList[i], AllFavorFragment::class.java!!))
             }
 
         }

@@ -17,9 +17,9 @@ import kotlinx.android.synthetic.main.act_main.*
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2018/12/2 2:53 PM
- *    desc   : 主页Activity
+ *    desc   : 主页四个Tab Activity
  */
-class MainActivity : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel>() {
+class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel>() {
     private val mTitles = arrayOf("专题", "设计师", "逛", "发现")
     private val mTabList = ArrayList<CustomTabEntity>()
     // 未被选中的图标

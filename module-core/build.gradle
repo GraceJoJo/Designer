@@ -60,7 +60,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":common-base")
     implementation project(":common-ui")
-//    implementation project(":LRecyclerview_library")
     //ARouter
     kapt rootProject.ext.dependencies["arouter-compiler"]
     //解决Kotlin和DataBinding冲突

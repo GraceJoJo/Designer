@@ -18,7 +18,7 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2018/12/12 10:02 PM
- *    desc   :
+ *    desc   : 精选+大家喜欢 Adapter
  */
 class ViewPagerViewType constructor(context: Activity) : ItemViewDelegate<ContentBean> {
     var activity: Activity? = null

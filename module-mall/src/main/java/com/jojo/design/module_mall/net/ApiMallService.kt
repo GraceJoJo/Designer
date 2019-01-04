@@ -1,4 +1,4 @@
-package com.jojo.design.module_core.net
+package com.jojo.design.module_mall.net
 
 import com.jojo.design.module_mall.bean.RecordsEntity
 import com.smart.novel.net.BaseHttpResponse

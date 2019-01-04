@@ -21,11 +21,5 @@ class ADA_ItemGoodsCategory constructor(context: Context) : CommonAdapterListVie
         GlideUtils.loadImage(bean.logo, holder.getView(R.id.iv_category_logo), 0)
         holder.setText(R.id.tv_category_name, bean.name)
     }
-
-//    override fun convert(holder: ViewHolder, bean: CategoryEntity, position: Int) {
-//        GlideUtils.loadImage(bean.logo, holder.getView(R.id.iv_category_logo), 0)
-//        holder.setText(R.id.tv_category_name, bean.name)
-//    }
-
     override fun itemLayoutId(): Int = R.layout.item_goods_category
 }

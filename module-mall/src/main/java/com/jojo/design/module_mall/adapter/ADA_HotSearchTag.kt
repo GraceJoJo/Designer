@@ -6,7 +6,7 @@ import android.widget.TextView
 import com.jojo.design.common_base.BaseAppliction.Companion.context
 import com.jojo.design.common_ui.view.tag.FlowLayout
 import com.jojo.design.common_ui.view.tag.TagAdapter
-import com.jojo.design.module_core.R
+import com.jojo.design.module_mall.R
 
 /**
  *    author : JOJO

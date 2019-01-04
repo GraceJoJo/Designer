@@ -10,17 +10,14 @@ import com.jojo.design.module_core.bean.ContentBean
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2018/12/12 9:32 PM
- *    desc   : 逛
+ *    desc   : 逛 -分类型列表
  */
 class ADA_ShoppingContent constructor(context: Activity) : MultiItemTypeAdapter<ContentBean>(context) {
-    var pagerViewType: ViewPagerViewType? = null
-
     init {
         super.mContext = context
         addItemViewDelegate(GoodsCategoryViewType(context))
         addItemViewDelegate(GoodsViewType(context))
-        pagerViewType = ViewPagerViewType(context)
-//        addItemViewDelegate(pagerViewType)
+//        addItemViewDelegate(ViewPagerViewType(context))
     }
 
 }

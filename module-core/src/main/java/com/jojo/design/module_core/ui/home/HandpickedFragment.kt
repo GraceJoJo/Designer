@@ -1,6 +1,8 @@
 package com.jojo.design.module_core.ui.home
 
+import android.graphics.Rect
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_ui.view.MultipleStatusView
@@ -47,6 +49,13 @@ class HandpickedFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Sho
         mAdapter = ADA_Handpicked(mContext)
         recyclerview.layoutManager = GridLayoutManager(mContext, 2)
         recyclerview.adapter = mAdapter
+        //设置item之间的间距
+        recyclerview.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView?) {
+                outRect.left = 30
+                outRect.top = 20
+            }
+        })
     }
 
     override fun getCategoryList(dataList: List<CategoryEntity>) {

@@ -6,7 +6,7 @@ package com.jojo.design.module_core.bean
  *    date   : 2018/12/12 2:17 PM
  *    desc   : 商品分类
  */
-data class CategoryEntity(val logo: String, val name: String){}
+data class CategoryEntity(val logo: String, val name: String, var id: String) {}
 
 //{
 //    "allowPartition": false,

@@ -1,8 +1,8 @@
 package com.jojo.design.module_mall.mvp.presenter
 
-import com.jojo.design.module_core.net.NetMallProvider
 import com.jojo.design.module_mall.bean.RecordsEntity
 import com.jojo.design.module_mall.mvp.SearchContract
+import com.jojo.design.module_mall.net.NetMallProvider
 import com.smart.novel.net.BaseHttpResponse
 import io.reactivex.Observable
 import javax.inject.Inject

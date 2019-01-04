@@ -1,0 +1,7 @@
+<resources>
+    <!--从右往左弹出动画-->
+    <style name="AnimationRightFade">
+        <item name="android:windowEnterAnimation">@anim/right_in</item>
+        <item name="android:windowExitAnimation">@anim/right_out</item>
+    </style>
+</resources>

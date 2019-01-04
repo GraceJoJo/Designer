@@ -1,4 +1,4 @@
-package com.jojo.design.module_core.net
+package com.jojo.design.module_mall.net
 
 import com.jojo.design.common_base.net.RetrofitManager
 

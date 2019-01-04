@@ -20,20 +20,23 @@
         app:layout_constraintTop_toBottomOf="@+id/view_statusbar">
 
         <EditText
-            android:id="@+id/et"
+            android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/bg_shape_ffffff_6"
             android:drawableLeft="@drawable/icn_search_little"
             android:hint="请输入商品名称"
+            android:imeOptions="actionSearch"
             android:padding="3dp"
+            android:singleLine="true"
             android:textColor="@color/color_black"
             android:textColorHint="@color/color_c1c1c1"
             android:textCursorDrawable="@drawable/bg_shape_edit_cusor_010101"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tv_cancle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

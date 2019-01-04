@@ -76,6 +76,9 @@ dependencies {
     api 'com.github.GraceJoJo:DataBindingBaseAdapter:1.0.1'
     //图片
     api rootProject.ext.dependencies["glide"]
+    //数据库
+    api rootProject.ext.dependencies["room"]
+    kapt rootProject.ext.dependencies["room-compiler"]
 }
 repositories {
     mavenCentral()

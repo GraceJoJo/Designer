@@ -19,7 +19,7 @@
         android:padding="15dp"
         android:text="这是标题栏"
         android:textColor="@color/color_ffffff"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_statusbar" />
@@ -32,5 +32,18 @@
         android:src="@drawable/ic_back_arrow_white"
         app:layout_constraintBottom_toBottomOf="@+id/tv_common_title"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_common_title" />
+
+
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:src="@drawable/ic_search_white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_common_title"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_common_title" />
 </android.support.constraint.ConstraintLayout>

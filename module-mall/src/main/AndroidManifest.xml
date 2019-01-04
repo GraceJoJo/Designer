@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jojo.design.module_core">
+    package="com.jojo.design.module_mall">
 
     <application>
         <!--<activity android:name="com.jojo.design.module_mall.ui.ACT_Search">-->
@@ -11,6 +11,7 @@
         <!--</activity>-->
 
         <activity android:name="com.jojo.design.module_mall.ui.ACT_Search" />
+        <activity android:name=".ui.ACT_GoodsFilter"></activity>
     </application>
 
 

@@ -66,7 +66,9 @@ dependencies {
     kapt "com.android.databinding:compiler:$android_version"
     //butterknife-compiler
     kapt rootProject.ext.dependencies["butterknife-compiler"]
-    kapt 'com.google.dagger:dagger-compiler:2.11'
+    kapt rootProject.ext.dependencies["dagger-compiler"]
+    //room
+    kapt rootProject.ext.dependencies["room-compiler"]
 }
 
 repositories {

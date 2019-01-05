@@ -2,6 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+//ARouter
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+    generateStubs = true
+}
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -25,9 +32,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":common-base")
     implementation project(":common-ui")
-    kapt 'com.google.dagger:dagger-compiler:2.11'
+    kapt rootProject.ext.dependencies["dagger-compiler"]
     //butterknife-compiler
     kapt rootProject.ext.dependencies["butterknife-compiler"]
+    //room
+    kapt rootProject.ext.dependencies["room-compiler"]
 }
 repositories {
     mavenCentral()

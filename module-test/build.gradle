@@ -18,6 +18,14 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+        //指定room.schemaLocation生成的文件路径,当执行项目后，在Android Studio 的Project视图下，查看项目，会发现Module生成了一个schemas的文件夹.
+        //会生成版x.Json文件,可以在.json文件查看Room数据库的配置情况
+        javaCompileOptions {
+            annotationProcessorOptions {
+                //记录数据库sql
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -37,6 +45,8 @@ dependencies {
     kapt rootProject.ext.dependencies["butterknife-compiler"]
     //room
     kapt rootProject.ext.dependencies["room-compiler"]
+    //添加Room的RxJava支持(必须在使用的module中添加上)
+    api rootProject.ext.dependencies["room-support-rxjava2"]
 }
 repositories {
     mavenCentral()

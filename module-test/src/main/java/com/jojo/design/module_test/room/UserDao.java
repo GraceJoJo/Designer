@@ -6,8 +6,11 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
+import android.content.Intent;
 
 import java.util.List;
+
+import io.reactivex.Flowable;
 
 /**
  * author : JOJO
@@ -33,9 +36,9 @@ public interface UserDao {
             + "last_name LIKE :last LIMIT 1")
     User findByName(String first, String last);
 
-    //同上
+    //Single不会自动发射，Flowable会自动发射
     @Query("SELECT * FROM user WHERE uid = :uid")
-    User findByUid(int uid);
+    Flowable<User> findByUid(int uid);
 
 //-----------------------insert----------------------
 

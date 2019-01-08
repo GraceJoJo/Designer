@@ -90,6 +90,8 @@ ext {
             //数据库存储
             "room"                    : "android.arch.persistence.room:runtime:1.0.0",
             "room-compiler"           : "android.arch.persistence.room:compiler:1.0.0",
+            //添加Room的RxJava支持(必须在使用的module中添加上)
+            "room-support-rxjava2"             : "android.arch.persistence.room:rxjava2:1.0.0",
     ]
 
 

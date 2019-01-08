@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
 import android.view.inputmethod.InputMethodManager
+import cn.foretree.db.star.RxJava2Helper
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.BaseAppliction
@@ -15,19 +16,23 @@ import com.jojo.design.common_base.utils.RecyclerviewHelper
 import com.jojo.design.common_base.utils.ToastUtils
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_mall.R
-import com.jojo.design.module_mall.R.id.taglayout
 import com.jojo.design.module_mall.adapter.ADA_SearchHistory
 import com.jojo.design.module_mall.bean.RecordsEntity
 import com.jojo.design.module_mall.db.bean.SearchHistoryBean
 import com.jojo.design.module_mall.dagger2.DaggerMallComponent
-import com.jojo.design.module_mall.db.AppDataBaseHelper
+import com.jojo.design.module_mall.db.AppDatabaseHelper
 import com.jojo.design.module_mall.mvp.SearchContract
 import com.jojo.design.module_mall.mvp.presenter.SearchModel
 import com.jojo.design.module_mall.mvp.presenter.SearchPresenter
 import com.smart.novel.adapter.ADA_HotSearchTag
 import com.will.weiyuekotlin.component.ApplicationComponent
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.act_search.*
 import kotlinx.android.synthetic.main.layout_search.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -40,6 +45,8 @@ import kotlinx.android.synthetic.main.layout_search.*
 class ACT_Search : BaseActivity<SearchPresenter, SearchModel>(), SearchContract.View {
     var mHistoryAdapter: ADA_SearchHistory? = null
     var mHotSearchAdapter: ADA_HotSearchTag? = null
+    var mHistoryList: ArrayList<SearchHistoryBean> = ArrayList()
+
     override fun getContentViewLayoutId(): Int = R.layout.act_search
 
     override fun getLoadingMultipleStatusView(): MultipleStatusView? = null
@@ -64,7 +71,22 @@ class ACT_Search : BaseActivity<SearchPresenter, SearchModel>(), SearchContract.
         mPresenter?.getHotList()
 //        mPresenter?.getSearchGoods("2", "", 0)
 
+        getLocalHistory()
         initListener()
+    }
+
+    private fun getLocalHistory() {
+        AppDatabaseHelper.getInstance(mContext).appDataBase.historyDao().getAllHistory()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ list ->
+                    val msg = "query succes, list is " + list?.size
+                    Log.e("TAG", msg)
+                    if (list != null) mHistoryList = list as ArrayList<SearchHistoryBean>
+
+                    Collections.reverse(mHistoryList)
+                    mHistoryAdapter?.update(mHistoryList, true)
+                }, { throwable -> Log.e("TAG", throwable.message.toString()) })
     }
 
     private fun initListener() {
@@ -85,7 +107,7 @@ class ACT_Search : BaseActivity<SearchPresenter, SearchModel>(), SearchContract.
                             .hideSoftInputFromWindow(currentFocus!!
                                     .windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
                 }
-                doSearch()
+                doSearch(et_search.text.toString().trim())
             }
             false
         })
@@ -93,33 +115,72 @@ class ACT_Search : BaseActivity<SearchPresenter, SearchModel>(), SearchContract.
             var history = SearchHistoryBean()
             history.searchKeyWords = mHotSearchAdapter!!.getItem(position)
             et_search.setText(history.searchKeyWords)
-            ARouter.getInstance().build(ARouterConfig.ACT_GoodsFilter)
-                    .withString(ARouterConstants.SEARCH_KEYWORDS, mHotSearchAdapter!!.getItem(position))
-                    .withString(ARouterConstants.TAGCATEGORY_ID, "")
-                    .navigation()
+
+            doSearch(mHotSearchAdapter!!.getItem(position))
             true
         }
 
         iv_deleteAll.setOnClickListener {
-            var allHistory = AppDataBaseHelper.getInstance(mContext).appDataBase.historyDao().getAllHistory()
-            ToastUtils.makeShortToast("total=" + allHistory?.size + "bean=" + allHistory[0])
+            //删除所有记录
+            RxJava2Helper.getFlowable {
+                AppDatabaseHelper.getInstance(mContext).appDataBase.historyDao().run {
+                    deleteAll(mHistoryAdapter?.dataList!!)
+                }
+            }.subscribe {
+                Log.e("TAG", "delete success delete_count=" + it)
+            }.isDisposed
         }
 
     }
 
     /**
-     * 搜索
+     * 搜索操作
      */
-    private fun doSearch() {
+    private fun doSearch(keywords: String) {
         if (TextUtils.isEmpty(et_search.text.toString().trim())) {
             ToastUtils.makeShortToast(BaseAppliction.context.getString(R.string.content_search_content_not_empty))
             return
         }
+        var bean = SearchHistoryBean()
+        bean.searchKeyWords = et_search.text.toString().trim()
 
+        saveLocalByRoom(bean)
+
+        //跳转到新页面进行搜索结果展示
         ARouter.getInstance().build(ARouterConfig.ACT_GoodsFilter)
-                .withString(ARouterConstants.SEARCH_KEYWORDS, et_search.text.toString().trim())
+                .withString(ARouterConstants.SEARCH_KEYWORDS, keywords)
                 .withString(ARouterConstants.TAGCATEGORY_ID, "")
                 .navigation()
+    }
+
+    /**
+     * 本地存储SearchHistoryBean
+     */
+    private fun saveLocalByRoom(bean: SearchHistoryBean) {
+        var isAlreadyExistBean: SearchHistoryBean? = null
+        //如果本地存在，先删除后插入存储
+        (0 until mHistoryList.size)
+                .filter { bean.searchKeyWords.equals(mHistoryList[it].searchKeyWords) }
+                .forEach { isAlreadyExistBean = mHistoryList[it] }
+        //删除一条记录
+        isAlreadyExistBean?.let {
+            RxJava2Helper.getFlowable {
+                AppDatabaseHelper.getInstance(mContext).appDataBase.historyDao().run {
+                    //it为isAlreadyExistBean
+                    deleteItem(it)
+                }
+            }.subscribe {
+                Log.e("TAG", "delete success delete_count=" + it)
+            }.isDisposed
+        }
+        //插入一条记录
+        RxJava2Helper.getFlowable {
+            AppDatabaseHelper.getInstance(mContext).appDataBase.historyDao().run {
+                insert(bean)
+            }
+        }.subscribe {
+            Log.e("TAG", "insert success index=" + it!!)
+        }.isDisposed
     }
 
     override fun getHotList(dataList: List<String>) {

@@ -15,6 +15,11 @@
         android:layout_height="wrap_content"
         android:onClick="queryItem"
         android:text="查询一条数据" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="updateItem"
+        android:text="更新一条数据" />
 
     <Button
         android:layout_width="match_parent"

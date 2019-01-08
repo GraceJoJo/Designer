@@ -69,6 +69,8 @@ dependencies {
     kapt rootProject.ext.dependencies["dagger-compiler"]
     //room
     kapt rootProject.ext.dependencies["room-compiler"]
+//    //添加Room的RxJava支持(必须在使用的module中添加上)
+    api rootProject.ext.dependencies["room-support-rxjava2"]
 }
 
 repositories {

@@ -16,6 +16,6 @@ class ADA_SearchHistory constructor(context: Context) : CommonAdapter<SearchHist
     override fun itemLayoutId(): Int = R.layout.item_search_history
 
     override fun convert(holder: ViewHolder, bean: SearchHistoryBean, position: Int) {
-
+        holder.setText(R.id.tv_keyword, bean.searchKeyWords)
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_menu_special"
+        android:icon="@drawable/main_tab_zhuanti_selector"
+        android:title="专题" />
+    <item
+        android:id="@+id/tab_menu_designer"
+        android:icon="@drawable/main_tab_designer_selector"
+        android:title="发现" />
+    <item
+        android:id="@+id/tab_menu_shopping"
+        android:icon="@drawable/main_tab_guang_selector"
+        android:title="逛" />
+    <item
+        android:id="@+id/tab_menu_discovery"
+        android:icon="@drawable/main_tab_mine_selector"
+        android:title="发现" />
+
+</menu>

@@ -17,6 +17,8 @@ import com.jojo.design.common_base.utils.ToastUtils
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_mall.R
 import com.jojo.design.module_mall.adapter.ADA_SearchHistory
+import com.jojo.design.module_mall.bean.CategoryBean
+import com.jojo.design.module_mall.bean.FilterBean
 import com.jojo.design.module_mall.bean.RecordsEntity
 import com.jojo.design.module_mall.db.bean.SearchHistoryBean
 import com.jojo.design.module_mall.dagger2.DaggerMallComponent
@@ -191,5 +193,11 @@ class ACT_Search : BaseActivity<SearchPresenter, SearchModel>(), SearchContract.
 
     override fun getSearchGoods(dataBean: RecordsEntity) {
         Log.e("TAG", "dataBean=" + dataBean.size)
+    }
+
+    override fun getCategoryList(dataList: List<CategoryBean>) {
+    }
+
+    override fun getFilterData(dataBean: FilterBean) {
     }
 }

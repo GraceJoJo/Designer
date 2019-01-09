@@ -45,7 +45,7 @@
             android:layout_centerHorizontal="true"
             android:background="@color/transparent"
             android:button="@null"
-            android:drawableRight="@drawable/icn_expand"
+            android:drawableRight="@drawable/bg_selector_filter_down_arrow"
             android:text="选择分类"
             android:textColor="@color/bg_textcolor_selector_filter"
             android:textSize="14sp" />

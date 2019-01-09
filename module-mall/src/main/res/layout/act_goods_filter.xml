@@ -23,4 +23,12 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_filter"></com.jojo.design.common_ui.lrecyclerview.recyclerview.LRecyclerView>
+
+    <View
+        android:id="@+id/bg_popup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/color_bg_popup"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/ll_filter"></View>
 </android.support.constraint.ConstraintLayout>

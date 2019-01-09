@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f0f0f0">
+
+    <TextView
+        android:id="@+id/tv_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="重置"
+        android:textColor="@color/color_212121"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="筛选"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_reset"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_reset" />
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="确定"
+        android:textColor="@color/color_212121"
+        android:textSize="15sp"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_choose_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:drawableRight="@drawable/ic_arrow_right_grey"
+        android:paddingBottom="12dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="12dp"
+        android:text="选择分类"
+        android:textColor="@color/color_858585"
+        android:textSize="13sp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_confirm" />
+
+    <com.jojo.design.common_ui.view.IOSScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_choose_all">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="折扣和服务"
+                android:textColor="@color/color_858585"
+                android:textSize="13sp" />
+
+            <com.jojo.design.common_ui.view.NoScrollGridView
+                android:id="@+id/gv_discount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="10dp"
+                android:listSelector="@color/transparent"
+                android:numColumns="2"
+                android:verticalSpacing="10dp"></com.jojo.design.common_ui.view.NoScrollGridView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="15dp"
+                android:text="价格区间(推荐价位段)"
+                android:textColor="@color/color_858585"
+                android:textSize="13sp" />
+
+            <com.jojo.design.common_ui.view.NoScrollGridView
+                android:id="@+id/gv_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="10dp"
+                android:listSelector="@color/transparent"
+                android:numColumns="3"
+                android:verticalSpacing="10dp">
+
+            </com.jojo.design.common_ui.view.NoScrollGridView>
+        </LinearLayout>
+
+    </com.jojo.design.common_ui.view.IOSScrollView>
+</android.support.constraint.ConstraintLayout>

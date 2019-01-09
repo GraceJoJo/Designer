@@ -5,4 +5,6 @@
     <color name="color_777777">#777777</color>
     <color name="color_858585">#858585</color>
     <color name="color_dddddd">#dddddd</color>
+    <color name="color_bg_popup">#8f000000</color>
+    <color name="color_f0f0f0">#f0f0f0</color>
 </resources>

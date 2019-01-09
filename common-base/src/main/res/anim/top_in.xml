@@ -3,20 +3,20 @@
     android:fillAfter="true"
     android:fillEnabled="true" >
 
-    <!--<scale-->
-        <!--android:duration="200"-->
-        <!--android:fromXScale="1.0"-->
-        <!--android:fromYScale="0.0"-->
-        <!--android:interpolator="@android:anim/accelerate_decelerate_interpolator"-->
-        <!--android:pivotX="50%"-->
-        <!--android:pivotY="0%"-->
-        <!--android:toXScale="1.0"-->
-        <!--android:toYScale="1.0" >-->
-    <!--</scale>-->
+    <scale
+        android:duration="200"
+        android:fromXScale="1.0"
+        android:fromYScale="0.0"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:pivotX="50%"
+        android:pivotY="0%"
+        android:toXScale="1.0"
+        android:toYScale="1.0" >
+    </scale>
 
-    <alpha
-        android:duration="100"
-        android:fromAlpha="0.0"
-        android:toAlpha="1.0" />
+    <!--<alpha-->
+    <!--android:duration="100"-->
+    <!--android:fromAlpha="0.0"-->
+    <!--android:toAlpha="1.0" />-->
 
 </set>

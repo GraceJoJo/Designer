@@ -47,4 +47,12 @@ class DIA_Filter constructor(context: Activity) {
         mDialog?.setCanceledOnTouchOutside(cancelable)
         return mDialog!!
     }
+
+    fun show() {
+        getDialog().show()
+    }
+
+    fun dismiss() {
+        mDialog?.dismiss()
+    }
 }

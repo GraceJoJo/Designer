@@ -7,6 +7,7 @@ import com.smart.novel.net.BaseHttpResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 
 /**
@@ -23,7 +24,7 @@ interface ApiMallService {
 
     //点击分类标签搜索商品  key=05bddc6fa2cc21c57ea1ae11de699bcd&outCategoryId=2&page=0&sort=0&t=1546073569203&tagid=0&version=2.3.04
     @GET("search/list")
-    fun getSearchGoods(@Query("outCategoryId") outCategoryId: String, @Query("keyword") keyword: String, @Query("page") page: Int): Observable<BaseHttpResponse<RecordsEntity>>
+    fun getSearchGoods(@Query("outCategoryId") outCategoryId: String, @Query("keyword") keyword: String, @Query("page") page: Int, @Query("sort") sort: Int, @QueryMap queryParams: Map<String, String>): Observable<BaseHttpResponse<RecordsEntity>>
 
     //点击筛选栏->选择分类  key=4de264770bd2568b938c832f96f345c1&outCategoryId=1&t=1547004222303&version=2.3.04
     @GET("search/list/filtrate/category")

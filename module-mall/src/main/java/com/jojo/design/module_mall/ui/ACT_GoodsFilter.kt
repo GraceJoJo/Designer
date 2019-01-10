@@ -1,11 +1,14 @@
 package com.jojo.design.module_mall.ui
 
 import android.graphics.Rect
+import android.os.Handler
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ImageView
+import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.adapter.rv.MultiItemTypeAdapter
@@ -54,11 +57,19 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
     var mDiaFilter: DIA_Filter? = null
     var gvDiscount: NoScrollGridView? = null
     var gvPrice: NoScrollGridView? = null
+    var tvConfirmFilter: TextView? = null
     var mAdapterfilterService: ADA_FilterService? = null
     var mAdapterfilterPrice: ADA_FilterPrice? = null
+    var selectFilterPrice: String? = null
     //    @BindView(R.id.iv_search) lateinit var ivSearch: ImageView //单模块下开发OK，组件化开发会报编译错误
     private val ivSearch by bindView<ImageView>(R.id.iv_search) //Kotlin下组件化开发时只能使用此种方式，否则会报编译错误。
+    var outCategoryId: String? = null
+    var keyword: String? = null
+    var sort: Int = 0 //最新、最热、推荐
 
+    var isClick = false
+    var preBean: CategoryBean? = null
+    var preBeanRec: CategoryBean? = null
     override fun getContentViewLayoutId(): Int = R.layout.act_goods_filter
 
     override fun getLoadingMultipleStatusView(): MultipleStatusView? = null
@@ -69,11 +80,62 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
 
     override fun startEvents() {
         ivSearch.visibility = View.VISIBLE
-        var outCategoryId = intent.extras.getString(ARouterConstants.TAGCATEGORY_ID)
-        val keyword = intent.extras.getString(ARouterConstants.SEARCH_KEYWORDS)
-        setHeaderTitle(keyword)
+        outCategoryId = intent.extras.getString(ARouterConstants.TAGCATEGORY_ID)
+        keyword = intent.extras.getString(ARouterConstants.SEARCH_KEYWORDS)
+        setHeaderTitle(keyword!!)
 
 
+        initGoodsRecyclerview()
+
+        mAdapterCategory = ADA_ChooseCategory(mContext)
+        mAdapterRecommend = ADA_ChooseCategory(mContext)
+        //选择分类弹窗
+        mCategoryPupWindow = PopupFilter.initPopupWindow(this, mAdapterCategory!!, true)
+        //推荐弹窗
+        mRecommendPupWindow = PopupFilter.initPopupWindow(this, mAdapterRecommend!!, true)
+
+        //推荐弹窗数据
+        mRecommendList.add(CategoryBean(1, "最新", false)) //id对应着筛选时的sort
+        mRecommendList.add(CategoryBean(2, "最热", false))
+        mRecommendList.add(CategoryBean(0, "推荐", true))
+        preBeanRec = mRecommendList[2]
+        mAdapterRecommend?.update(mRecommendList, true)
+
+        //筛选弹窗
+        mDiaFilter = DIA_Filter(this)
+        gvDiscount = mDiaFilter?.mContentView?.findViewById<NoScrollGridView>(R.id.gv_discount)
+        gvPrice = mDiaFilter?.mContentView?.findViewById<NoScrollGridView>(R.id.gv_price)
+        tvConfirmFilter = mDiaFilter?.mContentView?.findViewById<TextView>(R.id.tv_confirm)
+
+        mAdapterfilterService = ADA_FilterService(mContext)
+        gvDiscount?.adapter = mAdapterfilterService
+
+        mAdapterfilterPrice = ADA_FilterPrice(mContext)
+        gvPrice?.adapter = mAdapterfilterPrice
+
+
+        requestNet()
+
+        initListener()
+    }
+
+    /**
+     * 网络请求
+     */
+    private fun requestNet() {
+        //传了分类ID，就不传关键字匹配
+        var paramsMap = HashMap<String, String>()
+        requestGoodList(paramsMap)
+        //请求选择分类和筛选弹窗的数据
+        //传了分类ID，就不传关键字匹配
+        if (!TextUtils.isEmpty(outCategoryId)) mPresenter?.getCategoryList(outCategoryId!!, "") else mPresenter?.getCategoryList(outCategoryId!!, keyword!!)
+        mPresenter?.getFilterData(outCategoryId!!)
+    }
+
+    /**
+     * 初始化商品列表
+     */
+    private fun initGoodsRecyclerview() {
         mAdapter = ADA_SearchGoods(mContext)
         RecyclerviewHelper.initLayoutManagerRecyclerView(lrecyclerview, mAdapter!!, GridLayoutManager(mContext, 2), mContext)
         // //设置item之间的间距
@@ -91,47 +153,10 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
             }
         })
         lrecyclerview.setOnRefreshListener {
-            android.os.Handler().postDelayed({ lrecyclerview.refreshComplete(1) }, 2000)
+            Handler().postDelayed({ lrecyclerview.refreshComplete(1) }, 2000)
         }
-
-        //传了分类ID，就不传关键字匹配
-        if (!TextUtils.isEmpty(outCategoryId)) mPresenter?.getSearchGoods(outCategoryId, "", 0)
-        else mPresenter?.getSearchGoods(outCategoryId, keyword, 0)
-
-
-        mAdapterCategory = ADA_ChooseCategory(mContext)
-        mAdapterRecommend = ADA_ChooseCategory(mContext)
-        //选择分类弹窗
-        mCategoryPupWindow = PopupFilter.initPopupWindow(this, mAdapterCategory!!, true)
-        //推荐弹窗
-        mRecommendPupWindow = PopupFilter.initPopupWindow(this, mAdapterRecommend!!, true)
-
-        //推荐弹窗数据
-        mRecommendList.add(CategoryBean(1, "最新", false))
-        mRecommendList.add(CategoryBean(2, "最热", false))
-        mRecommendList.add(CategoryBean(3, "推荐", false))
-        mAdapterRecommend?.update(mRecommendList, true)
-        //选择分类和筛选弹窗的数据
-        mPresenter?.getCategoryList(outCategoryId, keyword)
-        mPresenter?.getFilterData(outCategoryId)
-
-        //筛选弹窗
-        mDiaFilter = DIA_Filter(this)
-        gvDiscount = mDiaFilter?.mContentView?.findViewById<NoScrollGridView>(R.id.gv_discount)
-        gvPrice = mDiaFilter?.mContentView?.findViewById<NoScrollGridView>(R.id.gv_price)
-
-        mAdapterfilterService = ADA_FilterService(mContext)
-        gvDiscount?.adapter = mAdapterfilterService
-
-        mAdapterfilterPrice = ADA_FilterPrice(mContext)
-        gvPrice?.adapter = mAdapterfilterPrice
-
-        initListener()
     }
 
-    var isClick = false
-    var preBean: CategoryBean? = null
-    var preBeanRec: CategoryBean? = null
     private fun initListener() {
         //推荐
         rb_recommend.setOnClickListener {
@@ -151,12 +176,13 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
         }
         //筛选
         rb_filter.setOnClickListener {
-            mDiaFilter?.getDialog()?.show()
+            mDiaFilter?.show()
         }
-
+        //选择分类筛选操作
         mAdapterCategory?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
                 var bean = mAdapterCategory!!.dataList[position]
+
                 if (bean == preBean) {
                     bean.isCheck = bean.isCheck
                 } else {
@@ -172,6 +198,14 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
 
                 //隐藏选择分类弹窗
                 hideCategoryPopup()
+
+                var paramsMap = HashMap<String, String>()
+                //传了分类ID，就不传关键字匹配
+                outCategoryId = bean.id.toString()
+                if (bean.id == 0) outCategoryId = intent.extras.getString(ARouterConstants.TAGCATEGORY_ID)
+                requestGoodList(paramsMap)
+
+                rb_category.text = bean.name
             }
 
             override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {
@@ -179,6 +213,7 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
             }
 
         })
+        //推荐筛选操作
         mAdapterRecommend?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
                 var bean = mAdapterRecommend!!.dataList[position]
@@ -195,6 +230,12 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
                 preBeanRec = bean
                 mAdapterRecommend?.notifyDataSetChanged()
                 hideRecommendPopup()
+
+                var paramsMap = HashMap<String, String>()
+                sort = bean.id
+                requestGoodList(paramsMap)
+
+                rb_recommend.text = bean.name
             }
 
             override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {
@@ -202,6 +243,44 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
             }
 
         })
+        //筛选弹窗内折扣选择(多选)
+        gvDiscount?.onItemClickListener = AdapterView.OnItemClickListener { p0, p1, position, p3 ->
+            var bean = mAdapterfilterService!!.dataList[position]
+            bean.isCheck = !bean.isCheck
+            mAdapterfilterService?.notifyDataSetChanged()
+        }
+        //筛选弹窗内价格筛选选择(单选)
+        gvPrice?.onItemClickListener = AdapterView.OnItemClickListener { p0, p1, position, p3 ->
+            selectFilterPrice = mAdapterfilterPrice!!.dataList[position]
+            mAdapterfilterPrice?.mSelectPos = position
+            mAdapterfilterPrice?.notifyDataSetChanged()
+        }
+        //筛选操作
+        tvConfirmFilter?.setOnClickListener {
+            mDiaFilter?.dismiss()
+            var paramsMap = HashMap<String, String>()
+            for (i in 0 until mAdapterfilterService?.dataList?.size!!) {
+                var promotionTagBean = mAdapterfilterService!!.dataList[i]
+                if (promotionTagBean.isCheck) {
+                    paramsMap.put("promotionTags[$i]", promotionTagBean.key)
+                }
+            }
+            if (!TextUtils.isEmpty(selectFilterPrice)) {
+                val splitArray = selectFilterPrice?.split("-")
+                paramsMap.put("minPrice", splitArray!![0])
+                paramsMap.put("maxPrice", splitArray!![1])
+            }
+
+            requestGoodList(paramsMap)
+        }
+    }
+
+    /**
+     * 请求商品列表：传了分类ID，就不传关键字匹配
+     */
+    private fun requestGoodList(paramsMap: HashMap<String, String>) {
+        if (!TextUtils.isEmpty(outCategoryId)) mPresenter?.getSearchGoods(outCategoryId!!, "", 0, sort, paramsMap)
+        else mPresenter?.getSearchGoods(outCategoryId!!, keyword!!, 0, sort, paramsMap)
     }
 
     /**
@@ -244,6 +323,13 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
         mRecommendPupWindow?.showAsDropDown(ll_filter)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        //防止内存泄漏
+        mRecommendPupWindow?.dismiss()
+        mCategoryPupWindow?.dismiss()
+    }
+
     override fun getHotList(dataList: List<String>) {
     }
 
@@ -251,13 +337,18 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
     override fun getSearchGoods(dataBean: RecordsEntity) {
         if (dataBean?.records == null || dataBean.records.isEmpty()) {
             ToastUtils.makeShortToast(BaseAppliction.context.getString(R.string.content_search_content_not_empty))
+            mAdapter?.update(ArrayList<RecordsEntity.RecordsBean>(), true)
             return
         }
         mAdapter?.update(dataBean.records, true)
     }
 
     override fun getCategoryList(dataList: List<CategoryBean>) {
-        mAdapterCategory?.update(dataList, true)
+        val showList = dataList as ArrayList<CategoryBean>
+        var firstBean = CategoryBean(0, "全部显示", true)
+        preBean = firstBean
+        showList.add(0, firstBean)
+        mAdapterCategory?.update(showList, true)
     }
 
     override fun getFilterData(dataBean: FilterBean) {

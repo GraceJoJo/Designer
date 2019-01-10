@@ -26,9 +26,9 @@ class SearchPresenter @Inject constructor() : BasePresenter<SearchContract.View,
         }))
     }
 
-    override fun getSearchGoods(outCategoryId: String, keyword: String, page: Int) {
+    override fun getSearchGoods(outCategoryId: String, keyword: String, page: Int, sort: Int, queryParams: Map<String, String>) {
         mView?.showDialogLoading("")
-        rxManager?.addObserver(RetrofitManager.doCommonRequest(mModel!!.getSearchGoods(outCategoryId, keyword, page), object : RxObserverListener<RecordsEntity>(mView) {
+        rxManager?.addObserver(RetrofitManager.doCommonRequest(mModel!!.getSearchGoods(outCategoryId, keyword, page, sort, queryParams), object : RxObserverListener<RecordsEntity>(mView) {
             override fun onSuccess(result: RecordsEntity?) {
                 mView?.getSearchGoods(result!!)
                 mView?.dismissDialogLoading()
@@ -38,7 +38,7 @@ class SearchPresenter @Inject constructor() : BasePresenter<SearchContract.View,
 
     override fun getCategoryList(outCategoryId: String, keyword: String) {
         mView?.showDialogLoading("")
-        rxManager?.addObserver(RetrofitManager.doCommonRequest(mModel!!.getCategoryList(outCategoryId,keyword), object : RxObserverListener<List<CategoryBean>>(mView) {
+        rxManager?.addObserver(RetrofitManager.doCommonRequest(mModel!!.getCategoryList(outCategoryId, keyword), object : RxObserverListener<List<CategoryBean>>(mView) {
             override fun onSuccess(result: List<CategoryBean>?) {
                 mView?.getCategoryList(result!!)
                 mView?.dismissDialogLoading()

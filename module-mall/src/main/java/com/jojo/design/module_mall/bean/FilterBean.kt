@@ -7,5 +7,5 @@ package com.jojo.design.module_mall.bean
  *    desc   :
  */
 data class FilterBean(var promotionTags: List<PromotionTagBean>, var stageRange: List<String>) {
-    data class PromotionTagBean(var value: String)
+    data class PromotionTagBean(var key: String, var value: String, var isCheck: Boolean)
 }

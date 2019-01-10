@@ -23,14 +23,14 @@ interface SearchContract {
 
     interface Presenter : BaseContract.BasePresenter {
         fun getHotList()
-        fun getSearchGoods(outCategoryId: String, keyword: String, page: Int)
+        fun getSearchGoods(outCategoryId: String, keyword: String, page: Int, sort: Int, queryParams: Map<String, String>)
         fun getCategoryList(outCategoryId: String, keyword: String)
         fun getFilterData(outCategoryId: String)
     }
 
     interface Model : BaseContract.BaseModel {
         fun getHotList(): Observable<BaseHttpResponse<List<String>>>
-        fun getSearchGoods(outCategoryId: String, keyword: String, page: Int): Observable<BaseHttpResponse<RecordsEntity>>
+        fun getSearchGoods(outCategoryId: String, keyword: String, page: Int, sort: Int, queryParams: Map<String, String>): Observable<BaseHttpResponse<RecordsEntity>>
         fun getCategoryList(outCategoryId: String, keyword: String): Observable<BaseHttpResponse<List<CategoryBean>>>
         fun getFilterData(outCategoryId: String): Observable<BaseHttpResponse<FilterBean>>
     }

@@ -7,6 +7,7 @@ import com.jojo.design.module_mall.mvp.SearchContract
 import com.jojo.design.module_mall.net.NetMallProvider
 import com.smart.novel.net.BaseHttpResponse
 import io.reactivex.Observable
+import retrofit2.http.QueryMap
 import javax.inject.Inject
 
 /**
@@ -18,7 +19,7 @@ import javax.inject.Inject
 class SearchModel @Inject constructor() : SearchContract.Model {
     override fun getHotList(): Observable<BaseHttpResponse<List<String>>> = NetMallProvider.requestService.getHotList()
 
-    override fun getSearchGoods(outCategoryId: String, keyword: String, page: Int): Observable<BaseHttpResponse<RecordsEntity>> = NetMallProvider.requestService.getSearchGoods(outCategoryId, keyword, page)
+    override fun getSearchGoods(outCategoryId: String, keyword: String, page: Int, sort: Int, queryParams: Map<String, String>): Observable<BaseHttpResponse<RecordsEntity>> = NetMallProvider.requestService.getSearchGoods(outCategoryId, keyword, page, sort, queryParams)
 
     override fun getCategoryList(outCategoryId: String, keyword: String): Observable<BaseHttpResponse<List<CategoryBean>>> = NetMallProvider.requestService.getCategoryList(outCategoryId, keyword)
 

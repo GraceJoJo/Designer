@@ -13,6 +13,7 @@ class ARouterConfig {
         const val ACT_DESIGNERLIST = "/designer/act_designerlist"
         const val ACT_SEARCH = "/mall/act_search"
         const val ACT_GoodsFilter= "/mall/act_goodsfilter"
+        const val ACT_GoodsDetail= "/mall/act_goodsdetail"
     }
 
 }

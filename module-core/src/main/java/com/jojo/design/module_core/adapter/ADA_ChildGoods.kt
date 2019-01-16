@@ -1,14 +1,11 @@
 package com.jojo.design.module_core.adapter
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
 import com.jojo.design.common_base.adapter.rv.CommonAdapter
 import com.jojo.design.common_base.adapter.rv.ViewHolder
-import com.jojo.design.common_base.utils.GlideUtils
+import com.jojo.design.common_base.utils.glide.GlideUtils
 import com.jojo.design.module_core.R
-import com.jojo.design.module_core.R.id.rv
 import com.jojo.design.module_core.bean.GoodsEntity
 
 /**

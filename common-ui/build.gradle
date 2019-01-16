@@ -62,6 +62,7 @@ dependencies {
     api rootProject.ext.dependencies["Smarttablayout-utils"]
     //Recyclerview
     api rootProject.ext.dependencies["recyclerview-v7"]
+    api rootProject.ext.dependencies["banner"]
 }
 repositories {
     mavenCentral()

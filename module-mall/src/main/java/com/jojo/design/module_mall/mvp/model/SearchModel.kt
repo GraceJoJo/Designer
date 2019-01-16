@@ -1,13 +1,12 @@
-package com.jojo.design.module_mall.mvp.presenter
+package com.jojo.design.module_mall.mvp.model
 
 import com.jojo.design.module_mall.bean.CategoryBean
 import com.jojo.design.module_mall.bean.FilterBean
 import com.jojo.design.module_mall.bean.RecordsEntity
-import com.jojo.design.module_mall.mvp.SearchContract
+import com.jojo.design.module_mall.mvp.contract.SearchContract
 import com.jojo.design.module_mall.net.NetMallProvider
 import com.smart.novel.net.BaseHttpResponse
 import io.reactivex.Observable
-import retrofit2.http.QueryMap
 import javax.inject.Inject
 
 /**

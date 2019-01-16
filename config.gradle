@@ -78,6 +78,7 @@ ext {
             "FlycoTabLayout"          : "com.flyco.tablayout:FlycoTabLayout_Lib:2.0.8@aar",
             "Smarttablayout"          : "com.ogaclejapan.smarttablayout:library:1.6.1@aar",
             "Smarttablayout-utils"    : "com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar",
+            "banner"    : "com.bigkoo:convenientbanner:2.0.5",
 
             //tools
             "multidex"                : "com.android.support:multidex:1.0.2",

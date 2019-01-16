@@ -46,8 +46,11 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.11'
     implementation project(":common-base")
     implementation project(":common-ui")
-//    implementation project(":module-core")
-//    implementation project(":module-mall")
+    if (!Boolean.valueOf(rootProject.ext.isBuildModule)) {
+        implementation project(":module-core")
+        implementation project(":module-mall")
+    }
+
 }
 repositories {
     mavenCentral()

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jojo.design.common_ui.view.ItemScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="相似推荐"
+            android:textColor="@color/color_212121"
+            android:textSize="16sp" />
+
+        <com.jojo.design.common_ui.view.NoScrollListView
+            android:id="@+id/lv_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.jojo.design.common_ui.view.NoScrollListView>
+
+        <TextView
+            android:id="@+id/tv_comment_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="所有5条评论"
+            android:textColor="@color/color_858585"
+            android:textSize="14sp" />
+
+        <com.jojo.design.common_ui.view.NoScrollGridView
+            android:id="@+id/gv_recomment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:horizontalSpacing="8dp"
+            android:numColumns="3"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:verticalSpacing="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv"></com.jojo.design.common_ui.view.NoScrollGridView>
+    </LinearLayout>
+
+</com.jojo.design.common_ui.view.ItemScrollView>

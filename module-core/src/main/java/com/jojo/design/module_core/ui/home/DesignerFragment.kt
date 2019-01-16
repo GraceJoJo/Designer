@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.View
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
-import com.jojo.design.common_base.utils.GlideUtils
+import com.jojo.design.common_base.utils.glide.GlideUtils
 import com.jojo.design.common_base.utils.StatusBarHelper
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R

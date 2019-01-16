@@ -1,4 +1,4 @@
-package com.jojo.design.module_mall.mvp
+package com.jojo.design.module_mall.mvp.contract
 
 import com.jojo.design.common_base.dagger.mvp.BaseContract
 import com.jojo.design.module_mall.bean.CategoryBean

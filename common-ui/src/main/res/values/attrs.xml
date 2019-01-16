@@ -45,4 +45,16 @@
             <enum name="right" value="1" />
         </attr>
     </declare-styleable>
+    <!--SlideDetailsLayout-->
+    <declare-styleable name="DragSlideLayout">
+        <!-- float value for indicate the moment of switch panel-->
+        <attr name="percent" format="float"/>
+        <!-- how long the animation keep-->
+        <attr name="duration" format="integer"/>
+        <!-- default panel to show after init-->
+        <attr name="default_panel" format="enum">
+            <enum name="front" value="0"/>
+            <enum name="behind" value="1"/>
+        </attr>
+    </declare-styleable>
 </resources>

@@ -50,7 +50,8 @@ dependencies {
     api rootProject.ext.dependencies["test-runner"]
     api rootProject.ext.dependencies["espresso-core"]
     implementation project(":common-ui")
-
+    //布局适配
+    api rootProject.ext.dependencies["autolayout"]
     //net request
     api rootProject.ext.dependencies["retrofit"]
     api rootProject.ext.dependencies["retrofit-converter-gson"]

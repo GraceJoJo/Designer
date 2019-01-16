@@ -1,8 +1,6 @@
 package com.jojo.design.module_mall.net
 
-import com.jojo.design.module_mall.bean.CategoryBean
-import com.jojo.design.module_mall.bean.FilterBean
-import com.jojo.design.module_mall.bean.RecordsEntity
+import com.jojo.design.module_mall.bean.*
 import com.smart.novel.net.BaseHttpResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -33,4 +31,23 @@ interface ApiMallService {
     //点击筛选栏->右侧筛选  key=3dfe6888b9b99ce6648d0c4f59575e02&outCategoryId=1&t=1547004464740&version=2.3.04
     @GET("search/list/filtrate/others")
     fun getFilterData(@Query("outCategoryId") outCategoryId: String): Observable<BaseHttpResponse<FilterBean>>
+
+    /**
+     * 商品详情页
+     */
+    //商品详情内容
+    @GET("product/content")
+    fun getGoodsContent(@Query("productId") productId: String): Observable<BaseHttpResponse<GoodsContentBean>>
+
+    //商品详情-商品描述
+    @GET("product/chips")
+    fun getGoodsDescription(@Query("productId") productId: String): Observable<BaseHttpResponse<List<GoodsDesBean>>>
+
+    //商品详情-用户评论列表
+    @GET("action/comment/list")
+    fun getGoodsCommentList(@Query("objectId") productId: String, @Query("type") type: Int): Observable<BaseHttpResponse<List<CommentBean>>>
+
+    //商品详情-底部相似推荐
+    @GET("ouer/product/revelentList")
+    fun getRevelentGoodsList(@Query("productId") productId: String): Observable<BaseHttpResponse<RevelentBean>>
 }

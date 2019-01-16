@@ -12,6 +12,7 @@
 
         <activity android:name="com.jojo.design.module_mall.ui.ACT_Search" />
         <activity android:name=".ui.ACT_GoodsFilter"></activity>
+        <activity android:name=".ui.ACT_GoodsDetail"></activity>
     </application>
 
 

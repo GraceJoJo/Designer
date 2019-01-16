@@ -15,6 +15,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.ACT_GoodsFilter"></activity>
+        <activity android:name=".ui.ACT_GoodsDetail"></activity>
     </application>
 
 </manifest>

@@ -1,14 +1,17 @@
 package com.jojo.design.module_mall.ui
 
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import cn.foretree.db.star.RxJava2Helper
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.BaseAppliction
+import com.jojo.design.common_base.adapter.rv.MultiItemTypeAdapter
 import com.jojo.design.common_base.config.arouter.ARouterConfig
 import com.jojo.design.common_base.config.arouter.ARouterConstants
 import com.jojo.design.common_base.dagger.mvp.BaseActivity
@@ -23,13 +26,12 @@ import com.jojo.design.module_mall.bean.RecordsEntity
 import com.jojo.design.module_mall.db.bean.SearchHistoryBean
 import com.jojo.design.module_mall.dagger2.DaggerMallComponent
 import com.jojo.design.module_mall.db.AppDatabaseHelper
-import com.jojo.design.module_mall.mvp.SearchContract
-import com.jojo.design.module_mall.mvp.presenter.SearchModel
+import com.jojo.design.module_mall.mvp.contract.SearchContract
+import com.jojo.design.module_mall.mvp.model.SearchModel
 import com.jojo.design.module_mall.mvp.presenter.SearchPresenter
 import com.smart.novel.adapter.ADA_HotSearchTag
 import com.will.weiyuekotlin.component.ApplicationComponent
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.act_search.*
 import kotlinx.android.synthetic.main.layout_search.*
@@ -121,6 +123,17 @@ class ACT_Search : BaseActivity<SearchPresenter, SearchModel>(), SearchContract.
             doSearch(mHotSearchAdapter!!.getItem(position))
             true
         }
+        mHistoryAdapter?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
+            override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
+                val bean = mHistoryAdapter!!.dataList[position]
+                doSearch(bean?.searchKeyWords!!)
+            }
+
+            override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {
+                return false
+            }
+
+        })
 
         iv_deleteAll.setOnClickListener {
             //删除所有记录
@@ -139,12 +152,12 @@ class ACT_Search : BaseActivity<SearchPresenter, SearchModel>(), SearchContract.
      * 搜索操作
      */
     private fun doSearch(keywords: String) {
-        if (TextUtils.isEmpty(et_search.text.toString().trim())) {
+        if (TextUtils.isEmpty(keywords.trim())) {
             ToastUtils.makeShortToast(BaseAppliction.context.getString(R.string.content_search_content_not_empty))
             return
         }
         var bean = SearchHistoryBean()
-        bean.searchKeyWords = et_search.text.toString().trim()
+        bean.searchKeyWords = keywords.trim()
 
         saveLocalByRoom(bean)
 

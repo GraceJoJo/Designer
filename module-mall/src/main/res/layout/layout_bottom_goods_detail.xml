@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/sus_title"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"></View>
+
+    <View
+        android:id="@+id/line_one"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_dddddd"
+        app:layout_constraintTop_toBottomOf="@+id/sus_title"></View>
+
+    <TextView
+        android:id="@+id/tv_product_des"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="商品描述"
+        android:textColor="@color/custom_text_color_selector"
+        android:textSize="13sp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_comment"
+        app:layout_constraintTop_toBottomOf="@+id/sus_title" />
+
+
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="评论"
+        android:textColor="@color/custom_text_color_selector"
+        android:textSize="13sp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/tv_product_des"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sus_title" />
+
+    <View
+        android:id="@+id/line_two"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_dddddd"
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_des"></View>
+
+    <View
+        android:id="@+id/line_bottom_one"
+        android:layout_width="70dp"
+        android:layout_height="2dp"
+        android:background="@color/color_app_yellow"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_product_des"
+        app:layout_constraintRight_toRightOf="@+id/tv_product_des"
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_des"></View>
+
+    <View
+        android:id="@+id/line_bottom_two"
+        android:layout_width="70dp"
+        android:layout_height="2dp"
+        android:background="@color/color_app_yellow"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_comment"
+        app:layout_constraintRight_toRightOf="@+id/tv_comment"
+        app:layout_constraintTop_toBottomOf="@+id/tv_comment"></View>
+
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_bottom_two"></FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

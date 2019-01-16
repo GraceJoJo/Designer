@@ -5,15 +5,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
 import com.alibaba.android.arouter.launcher.ARouter
-import com.jojo.design.common_base.adapter.lv.CommonAdapterListView
-import com.jojo.design.common_base.adapter.lv.ViewHolderListView
 import com.jojo.design.common_base.adapter.rv.CommonAdapter
 import com.jojo.design.common_base.adapter.rv.ViewHolder
 import com.jojo.design.common_base.config.arouter.ARouterConfig
 import com.jojo.design.common_base.config.arouter.ARouterConstants
-import com.jojo.design.common_base.utils.GlideUtils
+import com.jojo.design.common_base.utils.glide.GlideUtils
 import com.jojo.design.module_core.R
-import com.jojo.design.module_core.bean.CategoryEntity
 import com.jojo.design.module_core.bean.GoodsEntity
 
 /**

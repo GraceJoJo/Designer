@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.adapter.rv.MultiItemTypeAdapter
 import com.jojo.design.common_base.config.arouter.ARouterConfig
@@ -21,7 +22,6 @@ import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.common_ui.view.MyPopupWindow
 import com.jojo.design.common_ui.view.NoScrollGridView
 import com.jojo.design.module_mall.R
-import com.jojo.design.module_mall.R.id.*
 import com.jojo.design.module_mall.adapter.ADA_ChooseCategory
 import com.jojo.design.module_mall.adapter.ADA_FilterPrice
 import com.jojo.design.module_mall.adapter.ADA_FilterService
@@ -32,8 +32,8 @@ import com.jojo.design.module_mall.bean.RecordsEntity
 import com.jojo.design.module_mall.dagger2.DaggerMallComponent
 import com.jojo.design.module_mall.dialog.DIA_Filter
 import com.jojo.design.module_mall.helper.PopupFilter
-import com.jojo.design.module_mall.mvp.SearchContract
-import com.jojo.design.module_mall.mvp.presenter.SearchModel
+import com.jojo.design.module_mall.mvp.contract.SearchContract
+import com.jojo.design.module_mall.mvp.model.SearchModel
 import com.jojo.design.module_mall.mvp.presenter.SearchPresenter
 import com.smart.novel.util.bindView
 import com.will.weiyuekotlin.component.ApplicationComponent
@@ -273,6 +273,21 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
 
             requestGoodList(paramsMap)
         }
+        mAdapter?.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener {
+            override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
+                var realPps = position - 1
+                var recordsBean = mAdapter!!.dataList[realPps]
+                //跳转到新页面进行搜索结果展示
+                ARouter.getInstance().build(ARouterConfig.ACT_GoodsDetail)
+                        .withString(ARouterConstants.PRODUCT_ID, recordsBean.productId)
+                        .navigation()
+            }
+
+            override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {
+                return false
+            }
+
+        })
     }
 
     /**

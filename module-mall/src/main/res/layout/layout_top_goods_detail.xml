@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jojo.design.common_ui.view.MyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/scrollView"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.bigkoo.convenientbanner.ConvenientBanner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/app_icon" />
+
+        <TextView
+            android:id="@+id/tv_goods_title"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="商品名称描述商品名称描述"
+            android:textColor="@color/color_373737"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/banner" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="￥139.5"
+            android:textColor="@color/color_app_yellow"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_goods_title" />
+
+        <TextView
+            android:id="@+id/tv_favNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:drawableTop="@drawable/icn_like_small"
+            android:gravity="center"
+            android:text="29"
+            android:textSize="15sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_goods_title" />
+
+        <TextView
+            android:id="@+id/tv_postage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="邮费：8元"
+            android:textColor="@color/color_858585"
+            android:textSize="13sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+
+        <TextView
+            android:id="@+id/tv_productDiscountTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="登录后，分享该商品即可获得1张满减券"
+            android:textColor="@color/color_555555"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_postage" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_f0f0f0"
+            app:layout_constraintTop_toBottomOf="@+id/tv_productDiscountTxt"></View>
+
+        <com.jojo.design.common_ui.view.NoScrollListView
+            android:id="@+id/gv_guarantees"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/view_line"></com.jojo.design.common_ui.view.NoScrollListView>
+
+        <View
+            android:id="@+id/view_wide_line"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_f0f0f0"
+            app:layout_constraintTop_toBottomOf="@+id/gv_guarantees"></View>
+
+        <ImageView
+            android:id="@+id/iv_productUser"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/app_icon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_wide_line" />
+
+        <TextView
+            android:id="@+id/tv_productUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="主理人"
+            android:textColor="@color/color_858585"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_productUser"
+            app:layout_constraintLeft_toRightOf="@+id/iv_productUser"
+            app:layout_constraintTop_toTopOf="@+id/iv_productUser" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="15dp"
+            android:src="@drawable/ic_arrow_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_productUser"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_productUser" />
+
+        <View
+            android:id="@+id/view_line_two"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="5dp"
+            android:background="@color/color_f0f0f0"
+            app:layout_constraintTop_toBottomOf="@+id/iv_productUser"></View>
+
+
+        <ImageView
+            android:id="@+id/iv_brand"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/app_icon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_line_two" />
+
+        <TextView
+            android:id="@+id/tv_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="品牌"
+            android:textColor="@color/color_858585"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_brand"
+            app:layout_constraintLeft_toRightOf="@+id/iv_brand"
+            app:layout_constraintTop_toTopOf="@+id/iv_brand" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="15dp"
+            android:src="@drawable/ic_arrow_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_brand"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_brand" />
+
+        <com.jojo.design.common_ui.view.OverTextView
+            android:id="@+id/tv_brandStory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:lines="3"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/color_858585"
+            android:textSize="13sp"
+            app:layout_constraintTop_toBottomOf="@+id/iv_brand" />
+
+        <View
+            android:id="@+id/view_wide_line_two"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_f0f0f0"
+            app:layout_constraintTop_toBottomOf="@+id/tv_brandStory"></View>
+
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icn_wechat"
+            android:drawablePadding="7dp"
+            android:padding="15dp"
+            android:text="加想去君微信：是你的来华盛顿阿斯达拍婚纱带的话"
+            android:textColor="@color/color_858585"
+            android:textSize="13sp"
+            app:layout_constraintTop_toBottomOf="@+id/view_wide_line_two" />
+
+        <View
+            android:id="@+id/view_wide_line_three"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/color_f0f0f0"
+            app:layout_constraintTop_toBottomOf="@+id/tv_desc"></View>
+
+        <TextView
+            android:id="@+id/tv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:text="喜欢55"
+            android:textColor="@color/color_212121"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/view_wide_line_three" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_f0f0f0"
+            android:gravity="center"
+            android:text="继续拖动，查看商品描述"
+            android:textColor="@color/color_212121"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_like" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</com.jojo.design.common_ui.view.MyScrollView>

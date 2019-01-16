@@ -6,7 +6,7 @@ import com.jojo.design.common_base.net.RxObserverListener
 import com.jojo.design.module_mall.bean.CategoryBean
 import com.jojo.design.module_mall.bean.FilterBean
 import com.jojo.design.module_mall.bean.RecordsEntity
-import com.jojo.design.module_mall.mvp.SearchContract
+import com.jojo.design.module_mall.mvp.contract.SearchContract
 import javax.inject.Inject
 
 /**

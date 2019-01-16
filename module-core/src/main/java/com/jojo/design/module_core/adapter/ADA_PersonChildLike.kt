@@ -4,7 +4,7 @@ import android.content.Context
 import android.widget.ImageView
 import com.jojo.design.common_base.adapter.lv.CommonAdapterListView
 import com.jojo.design.common_base.adapter.lv.ViewHolderListView
-import com.jojo.design.common_base.utils.GlideUtils
+import com.jojo.design.common_base.utils.glide.GlideUtils
 import com.jojo.design.module_core.R
 import com.jojo.design.module_core.bean.AllfaverEntity
 

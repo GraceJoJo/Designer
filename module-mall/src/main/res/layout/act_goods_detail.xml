@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff">
+
+
+    <com.jojo.design.common_ui.view.DragSlideLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/layout_top_goods_detail"></include>
+
+        <include layout="@layout/layout_bottom_goods_detail"></include>
+
+    </com.jojo.design.common_ui.view.DragSlideLayout>
+
+    <include
+        android:id="@+id/layout_title_root"
+        layout="@layout/layout_title_goods_detail"></include>
+
+</android.support.constraint.ConstraintLayout>

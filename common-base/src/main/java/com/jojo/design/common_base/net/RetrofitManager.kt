@@ -135,8 +135,10 @@ object RetrofitManager {
         override fun intercept(chain: Interceptor.Chain): Response {
             val request = chain.request()
             val url = request.url().newBuilder()
-                    .addQueryParameter("key", "ecce8a3ef508f54cc1905af133f5b3a5")
-                    .addQueryParameter("t", "1543210514862")
+//                    .addQueryParameter("key", "ecce8a3ef508f54cc1905af133f5b3a5")
+//                    .addQueryParameter("t", "1543210514862")
+                    .addQueryParameter("key", "21ec3bb026f41191f371ace01c2b1b1e")
+                    .addQueryParameter("t", "1547618501190")
                     .build()
             return chain.proceed(request.newBuilder().url(url).build())
         }

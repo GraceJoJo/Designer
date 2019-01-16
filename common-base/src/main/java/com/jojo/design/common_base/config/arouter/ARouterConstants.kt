@@ -14,6 +14,7 @@ interface ARouterConstants {
         val TAG_ID = "tag_id"
         val TAG_NAME: String = "tag_name"
         val SEARCH_KEYWORDS: String = "search_keywords"
+        val PRODUCT_ID: String = "product_id"
     }
 
 }

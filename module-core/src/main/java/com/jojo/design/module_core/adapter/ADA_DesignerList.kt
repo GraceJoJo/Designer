@@ -20,6 +20,11 @@ class ADA_DesignerList constructor(context: Context) : CommonAdapter<DesignerEnt
         holder.setText(R.id.tv_userNick, bean.userNick)
         holder.setText(R.id.tv_opTag, bean.opTag)
         holder.setText(R.id.tv_productNum, bean.productNum.toString() + "个作品")
+        when {
+            bean.tags.size == 1 -> holder.setText(R.id.tv_tags, bean.tags[0].name)
+            bean.tags.size == 2 -> holder.setText(R.id.tv_tags, bean.tags[0].name + "  " + bean.tags[1].name)
+            bean.tags.size == 3 -> holder.setText(R.id.tv_tags, bean.tags[0].name + "  " + bean.tags[1].name + "  " + bean.tags[2].name)
+        }
     }
 
     override fun itemLayoutId(): Int = R.layout.item_designer_list

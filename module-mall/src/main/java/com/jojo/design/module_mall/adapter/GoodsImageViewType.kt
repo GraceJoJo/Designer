@@ -1,15 +1,8 @@
 package com.jojo.design.module_mall.adapter
 
-import android.widget.ImageView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.Priority
-import com.bumptech.glide.request.RequestOptions
-import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.adapter.rv.ItemViewDelegate
 import com.jojo.design.common_base.adapter.rv.ViewHolder
-import com.jojo.design.common_base.net.API
 import com.jojo.design.common_base.utils.glide.GlideUtils
-import com.jojo.design.common_base.utils.glide.transform.CornerOriginSizeTransform
 import com.jojo.design.module_mall.R
 import com.jojo.design.module_mall.bean.GoodsDesBean
 

@@ -22,6 +22,7 @@ interface CoreComponent {
     fun inject(fragment: DesignerFragment)
     fun inject(fragment: ShoppingFragmentOld)
     fun inject(fragment: ShoppingFragment)
+    fun inject(fragment: TopicFragment)
     fun inject(fragment: HandpickedFragment)
     fun inject(fragment: AllFavorFragment)
     fun inject(activity: ACT_DesignerList)

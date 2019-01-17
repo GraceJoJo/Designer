@@ -13,7 +13,7 @@
         android:id="@+id/line_one"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/color_dddddd"
+        android:background="@color/color_f0f0f0"
         app:layout_constraintTop_toBottomOf="@+id/sus_title"></View>
 
     <TextView
@@ -49,7 +49,7 @@
         android:id="@+id/line_two"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/color_dddddd"
+        android:background="@color/color_f0f0f0"
         app:layout_constraintTop_toBottomOf="@+id/tv_product_des"></View>
 
     <View

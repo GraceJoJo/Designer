@@ -1,10 +1,12 @@
 package com.jojo.design.module_mall.ui
 
 import android.graphics.Color
+import android.os.Build
 import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.view.ViewTreeObserver
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bigkoo.convenientbanner.ConvenientBanner
 import com.jojo.design.common_base.BaseAppliction
@@ -15,7 +17,6 @@ import com.jojo.design.common_base.utils.StatusBarHelper
 import com.jojo.design.common_base.utils.glide.GlideUtils
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_mall.R
-import com.jojo.design.module_mall.R.id.sus_title
 import com.jojo.design.module_mall.bean.CommentBean
 import com.jojo.design.module_mall.bean.GoodsContentBean
 import com.jojo.design.module_mall.bean.GoodsDesBean
@@ -30,6 +31,7 @@ import kotlinx.android.synthetic.main.act_goods_detail.*
 import kotlinx.android.synthetic.main.layout_bottom_goods_detail.*
 import kotlinx.android.synthetic.main.layout_title_goods_detail.*
 import kotlinx.android.synthetic.main.layout_top_goods_detail.*
+import kotlinx.android.synthetic.main.layout_top_goods_detail.view.*
 import org.greenrobot.eventbus.EventBus
 
 /**
@@ -140,7 +142,8 @@ class ACT_GoodsDetail : BaseActivity<GoodsPresenter, GoodsModel>(), GoodsContrac
         tv_product_des.setOnClickListener { checkGoodsDes() }
         tv_comment.setOnClickListener { checkGoodsCom() }
 
-        tv_brandStory.setOnClickListener {
+        tv_watch_more.setOnClickListener {
+            tv_watch_more.visibility = View.INVISIBLE
             tv_brandStory.maxLines = Integer.MAX_VALUE
             tv_brandStory.requestLayout()
         }
@@ -206,6 +209,17 @@ class ACT_GoodsDetail : BaseActivity<GoodsPresenter, GoodsModel>(), GoodsContrac
         (dataBean.imgsUrlList as ArrayList<String>)?.add(0, dataBean?.image)
         //初始化商品图片轮播
         BannerHelper.setBanner(banner, dataBean.imgsUrlList)
+
+        tv_brandStory.viewTreeObserver.addOnPreDrawListener((object : ViewTreeObserver.OnPreDrawListener {
+            override fun onPreDraw(): Boolean {
+                //这个回调会调用多次，获取完行数记得注销监听
+                tv_brandStory.viewTreeObserver.removeOnPreDrawListener(this);
+                Log.e("TAG", "TextView 行数：" + tv_brandStory.lineCount)
+                if (tv_brandStory.lineCount < 3) tv_watch_more.visibility = View.INVISIBLE else tv_watch_more.visibility = View.VISIBLE
+                return false
+            }
+
+        }))
     }
 
     override fun getGoodsDescription(dataList: List<GoodsDesBean>) {

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff">
+
+    <View
+        android:layout_width="60dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:background="@color/color_bababa"
+        app:layout_constraintBottom_toBottomOf="@+id/tv"
+        app:layout_constraintRight_toLeftOf="@+id/tv"
+        app:layout_constraintTop_toTopOf="@+id/tv" />
+
+    <View
+        android:layout_width="60dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:background="@color/color_bababa"
+        app:layout_constraintBottom_toBottomOf="@+id/tv"
+        app:layout_constraintLeft_toRightOf="@+id/tv"
+        app:layout_constraintTop_toTopOf="@+id/tv" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:text="专题"
+        android:textColor="@color/color_484848"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="38dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"></android.support.v4.view.ViewPager>
+</android.support.constraint.ConstraintLayout>

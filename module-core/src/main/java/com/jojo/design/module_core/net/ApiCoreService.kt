@@ -23,6 +23,16 @@ interface ApiCoreService {
     @POST("upload/")
     fun uploadFile(@Body requestBody: RequestBody): Observable<String>
 
+
+    /**
+     * 专题:http://api.xiangqu.com/ios/topic?t=1543210514862&id=131&key=ecce8a3ef508f54cc1905af133f5b3a5
+     */
+    @GET("ios/topic")
+    fun getTopics(@Query("id") id: String): Observable<BaseHttpResponse<List<TopicBean>>>
+
+    @GET("android/magezine")
+    fun getTopicDetail(@Query("id") id: String): Observable<BaseHttpResponse<TopicDetailEntity>>
+
     /**
      * 设计师
      */

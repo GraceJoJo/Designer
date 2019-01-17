@@ -28,7 +28,7 @@ class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel
     private val mIconSelectIds = intArrayOf(R.drawable.icn_zhuanti_highlight, R.drawable.icn_designer_highlight, R.drawable.icn_guang_highlight, R.drawable.icn_mycenter_highlight)
     //默认tab索引
     private var mIndex = 2
-    private var mSpecialFragment: SpecialFragment? = null
+    private var mTopicFragment: TopicFragment? = null
     open var mDesignerFragment: DesignerFragment? = null
     open var mShoppingFragment: ShoppingFragment? = null
     private var mDiscorverFragment: DiscoveryFragment? = null
@@ -82,11 +82,11 @@ class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel
         when (position) {
             0 //专题
             -> {
-                if (mSpecialFragment == null) {
-                    mSpecialFragment = SpecialFragment.getInstance(mTitles[position])
-                    transaction.add(R.id.fl_container, mSpecialFragment, "special")
+                if (mTopicFragment == null) {
+                    mTopicFragment = TopicFragment.getInstance(mTitles[position])
+                    transaction.add(R.id.fl_container, mTopicFragment, "special")
                 } else {
-                    transaction.show(mSpecialFragment)
+                    transaction.show(mTopicFragment)
                 }
                 StatusBarHelper.setStatusTextColor(true, this)
             }
@@ -133,8 +133,8 @@ class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel
      * @param transaction transaction
      */
     private fun hideFragments(transaction: FragmentTransaction) {
-        if (null != mSpecialFragment) {
-            transaction.hide(mSpecialFragment)
+        if (null != mTopicFragment) {
+            transaction.hide(mTopicFragment)
         }
         if (null != mDesignerFragment) {
             transaction.hide(mDesignerFragment)

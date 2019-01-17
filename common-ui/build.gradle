@@ -63,6 +63,7 @@ dependencies {
     //Recyclerview
     api rootProject.ext.dependencies["recyclerview-v7"]
     api rootProject.ext.dependencies["banner"]
+    api rootProject.ext.dependencies["cardview-v7"]
 }
 repositories {
     mavenCentral()

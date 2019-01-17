@@ -65,9 +65,7 @@ class FRA_GoodsComment : BaseFragment<GoodsPresenter, GoodsModel>(), GoodsContra
     }
 
     override fun getRevelentGoodsList(dataBean: RevelentBean) {
-        mAdapter?.update(dataBean?.revelentList, false)
-        mAdapter?.update(dataBean?.revelentList, false)
-        mAdapter?.update(dataBean?.revelentList, false)
+        mAdapter?.update(dataBean?.revelentList, true)
     }
 
     override fun getGoodsContent(dataBean: GoodsContentBean) {

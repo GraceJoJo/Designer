@@ -8,6 +8,9 @@ package com.jojo.design.common_base.net
  */
 class API {
     companion object {
-        val BASE_SERVER_IP = "http://api.xiangqu.com/"
+        //想去app
+        val BASE_XIANGQU_SERVER_IP = "http://api.xiangqu.com/"
+        //开眼app
+        val BASE_KAIYAN_SERVER_IP = "http://baobab.kaiyanapp.com/api/v4/"
     }
 }

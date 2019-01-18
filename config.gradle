@@ -4,7 +4,7 @@ ext {
      * isBuildModule=true
      * 修改之后需要Sync方可生效
      */
-    isBuildModule = true
+    isBuildModule = false
 
     android = [
             compileSdkVersion: 26,
@@ -78,7 +78,9 @@ ext {
             "FlycoTabLayout"          : "com.flyco.tablayout:FlycoTabLayout_Lib:2.0.8@aar",
             "Smarttablayout"          : "com.ogaclejapan.smarttablayout:library:1.6.1@aar",
             "Smarttablayout-utils"    : "com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar",
-            "banner"    : "com.bigkoo:convenientbanner:2.0.5",
+            "banner"                  : "com.bigkoo:convenientbanner:2.0.5",
+            //ios 列表弹性效果
+            "ios-scroll"              : "me.everything:overscroll-decor-android:1.0.4",
 
             //tools
             "multidex"                : "com.android.support:multidex:1.0.2",
@@ -92,7 +94,7 @@ ext {
             "room"                    : "android.arch.persistence.room:runtime:1.0.0",
             "room-compiler"           : "android.arch.persistence.room:compiler:1.0.0",
             //添加Room的RxJava支持(必须在使用的module中添加上)
-            "room-support-rxjava2"             : "android.arch.persistence.room:rxjava2:1.0.0",
+            "room-support-rxjava2"    : "android.arch.persistence.room:rxjava2:1.0.0",
     ]
 
 

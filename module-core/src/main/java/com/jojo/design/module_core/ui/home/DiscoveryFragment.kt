@@ -1,17 +1,21 @@
 package com.jojo.design.module_core.ui.home
 
 import android.os.Bundle
+import com.alibaba.android.arouter.launcher.ARouter
+import com.jojo.design.common_base.config.arouter.ARouterConfig
+import com.jojo.design.common_base.config.arouter.ARouterConstants
 import com.jojo.design.common_base.dagger.mvp.BaseContract
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R
 import com.will.weiyuekotlin.component.ApplicationComponent
+import kotlinx.android.synthetic.main.fra_discorvery.*
 
 /**
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2018/12/7 11:34 AM
- *    desc   : 我的（shoping）
+ *    desc   : 发现
  */
 class DiscoveryFragment : BaseFragment<BaseContract.BasePresenter, BaseContract.BaseModel>() {
     private var mTitle: String? = null
@@ -46,6 +50,9 @@ class DiscoveryFragment : BaseFragment<BaseContract.BasePresenter, BaseContract.
     }
 
     override fun startFragmentEvents() {
-
+        tv.setOnClickListener {
+            ARouter.getInstance().build(ARouterConfig.ACT_Category)
+                    .navigation()
+        }
     }
 }

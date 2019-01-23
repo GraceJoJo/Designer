@@ -3,6 +3,7 @@ package com.jojo.design.module_core.mvp.contract
 import com.jojo.design.common_base.dagger.mvp.BaseContract
 import com.jojo.design.module_discover.bean.CategoryBean
 import com.jojo.design.module_discover.bean.ItemEntity
+import com.jojo.design.module_discover.bean.TabEntity
 import io.reactivex.Observable
 
 /**
@@ -13,17 +14,20 @@ import io.reactivex.Observable
  */
 interface CategoryContract {
     interface View : BaseContract.BaseView {
+        fun getCategoryTabs(dataBean: TabEntity)
         fun getCategories(dataList: List<CategoryBean>)
         fun getCategorieDetail(dataBean: ItemEntity)
     }
 
     interface Presenter : BaseContract.BasePresenter {
+        fun getCategoryTabs(id: String)
         fun getCategories()
-        fun getCategorieDetail(id:String)
+        fun getCategorieDetail(id: String)
     }
 
     interface Model : BaseContract.BaseModel {
+        fun getCategoryTabs(id: String): Observable<TabEntity>
         fun getCategories(): Observable<List<CategoryBean>>
-        fun getCategorieDetail(id:String):Observable<ItemEntity>
+        fun getCategorieDetail(id: String): Observable<ItemEntity>
     }
 }

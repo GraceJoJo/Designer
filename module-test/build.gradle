@@ -26,6 +26,7 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -47,6 +48,8 @@ dependencies {
     kapt rootProject.ext.dependencies["room-compiler"]
     //添加Room的RxJava支持(必须在使用的module中添加上)
     api rootProject.ext.dependencies["room-support-rxjava2"]
+    compile 'io.jsonwebtoken:jjwt:0.9.1'
+    compile 'com.auth0.android:jwtdecode:1.1.1'
 }
 repositories {
     mavenCentral()

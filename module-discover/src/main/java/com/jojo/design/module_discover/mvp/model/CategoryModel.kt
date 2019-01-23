@@ -4,6 +4,7 @@ import com.jojo.design.module_core.mvp.contract.CategoryContract
 import com.jojo.design.module_core.net.NetFoundProvider
 import com.jojo.design.module_discover.bean.CategoryBean
 import com.jojo.design.module_discover.bean.ItemEntity
+import com.jojo.design.module_discover.bean.TabEntity
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -14,7 +15,9 @@ import javax.inject.Inject
  *    desc   : 分类
  */
 class CategoryModel @Inject constructor() : CategoryContract.Model {
-    override fun getCategories(): Observable<List<CategoryBean>> =NetFoundProvider.requestService.getCategories()
+    override fun getCategoryTabs(id: String): Observable<TabEntity> = NetFoundProvider.requestService.getCategoryTabs(id)
+
+    override fun getCategories(): Observable<List<CategoryBean>> = NetFoundProvider.requestService.getCategories()
 
     override fun getCategorieDetail(id: String): Observable<ItemEntity> = NetFoundProvider.requestService.getCategorieDetail(id)
 }

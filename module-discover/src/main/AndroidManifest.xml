@@ -3,8 +3,8 @@
     package="com.jojo.design.module_discover">
 
     <application>
-
         <activity android:name=".ui.ACT_Category" />
+        <activity android:name=".ui.ACT_CategoryDetail"></activity>
     </application>
 
 

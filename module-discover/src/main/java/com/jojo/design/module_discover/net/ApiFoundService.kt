@@ -2,6 +2,7 @@ package com.jojo.design.module_core.net
 
 import com.jojo.design.module_discover.bean.CategoryBean
 import com.jojo.design.module_discover.bean.ItemEntity
+import com.jojo.design.module_discover.bean.TabEntity
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -15,7 +16,12 @@ import retrofit2.http.Query
  */
 interface ApiFoundService {
     //公共查询参数：vc=230&deviceModel=MI
-    //分类
+    //所有分类
+    @Headers("base_url:kaiyan")
+    @GET("categories/detail/tab?vc=230&deviceModel=MI")
+    fun getCategoryTabs(@Query("id") id: String): Observable<TabEntity>
+
+    //所有分类
     @Headers("base_url:kaiyan")
     @GET("categories")
     fun getCategories(): Observable<List<CategoryBean>>

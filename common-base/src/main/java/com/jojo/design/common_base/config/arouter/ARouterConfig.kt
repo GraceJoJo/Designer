@@ -15,6 +15,7 @@ class ARouterConfig {
         const val ACT_GoodsFilter= "/mall/act_goodsfilter"
         const val ACT_GoodsDetail= "/mall/act_goodsdetail"
         const val ACT_Category= "/found/act_category"
+        const val ACT_CategoryDetail= "/found/act_categorydetail"
     }
 
 }

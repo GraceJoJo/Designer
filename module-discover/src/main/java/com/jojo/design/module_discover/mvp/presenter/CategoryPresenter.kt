@@ -7,6 +7,7 @@ import com.jojo.design.common_base.net.RxObserverListener
 import com.jojo.design.module_core.mvp.contract.CategoryContract
 import com.jojo.design.module_discover.bean.CategoryBean
 import com.jojo.design.module_discover.bean.ItemEntity
+import com.jojo.design.module_discover.bean.TabEntity
 import javax.inject.Inject
 
 /**
@@ -16,6 +17,17 @@ import javax.inject.Inject
  *    desc   : 分类
  */
 class CategoryPresenter @Inject constructor() : BasePresenter<CategoryContract.View, CategoryContract.Model>(), CategoryContract.Presenter {
+    override fun getCategoryTabs(id: String) {
+        mView?.showDialogLoading("")
+        rxManager?.addObserver(RetrofitManager.doRequest(mModel!!.getCategoryTabs(id), object : RxObserverListener<TabEntity>(mView) {
+            override fun onSuccess(result: TabEntity?) {
+                mView?.getCategoryTabs(result!!)
+                mView?.dismissDialogLoading()
+            }
+
+        }))
+    }
+
     override fun getCategories() {
         mView?.showDialogLoading("")
         rxManager?.addObserver(RetrofitManager.doRequest(mModel!!.getCategories(), object : RxObserverListener<List<CategoryBean>>(mView) {

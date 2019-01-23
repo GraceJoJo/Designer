@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff">
+    <!--    android:fitsSystemWindows="true" 时，非沉浸式状态栏-->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/color_ffffff"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:statusBarScrim="@android:color/transparent"
+            app:titleEnabled="false">
+
+
+            <ImageView
+                android:id="@+id/iv_headImg"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:scaleType="fitXY" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_above="@+id/tab_layout"
+                android:minHeight="?attr/actionBarSize"
+                android:paddingTop="12dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:titleTextColor="@color/transparent">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:textColor="@color/color_212121"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </android.support.v7.widget.Toolbar>
+
+            <!--在tab和toorbar之间的分割线-->
+            <!--<View-->
+            <!--android:id="@+id/view_title_divider"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2px"-->
+            <!--android:layout_marginTop="68dp"-->
+            <!--android:background="@color/color_eeeeee"-->
+            <!--app:layout_collapseMode="pin"></View>-->
+        </android.support.design.widget.CollapsingToolbarLayout>
+        <!--tablayout-->
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_ffffff">
+
+            <View
+                android:id="@+id/view_divier_one"
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/color_eeeeee"></View>
+
+            <com.ogaclejapan.smarttablayout.SmartTabLayout
+                android:id="@+id/tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:stl_customTabTextLayoutId="@layout/custom_tab"
+                app:stl_customTabTextViewId="@+id/custom_text"
+                app:stl_distributeEvenly="true"
+                app:stl_dividerColor="#00FFFFFF"
+                app:stl_indicatorColor="@color/color_212121"
+                app:stl_indicatorInterpolation="linear"
+                app:stl_indicatorThickness="3dp"
+                app:stl_indicatorWidth="10dp"
+                app:stl_titleOffset="auto_center"
+                app:stl_underlineThickness="0dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/color_eeeeee"
+                app:layout_constraintBottom_toBottomOf="parent"></View>
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</android.support.design.widget.CoordinatorLayout>
+

@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme">
-        <activity android:name=".room.TestRoomActivity">
+        <activity android:name=".ACT_TestJwt">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

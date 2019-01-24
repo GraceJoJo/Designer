@@ -5,6 +5,7 @@
     <application>
         <activity android:name=".ui.ACT_Category" />
         <activity android:name=".ui.ACT_CategoryDetail"></activity>
+        <activity android:name=".ui.ACT_PlayVideo"></activity>
     </application>
 
 

@@ -3,8 +3,11 @@ package com.jojo.design.module_discover.adapter
 import android.content.Context
 import android.util.Log
 import android.widget.ImageView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.adapter.rv.ItemViewDelegate
 import com.jojo.design.common_base.adapter.rv.ViewHolder
+import com.jojo.design.common_base.config.arouter.ARouterConfig
+import com.jojo.design.common_base.config.arouter.ARouterConstants
 import com.jojo.design.common_base.utils.DataFormatUtils
 import com.jojo.design.common_base.utils.glide.GlideUtils
 import com.jojo.design.module_discover.R
@@ -32,6 +35,12 @@ class VideoViewType constructor(context: Context) : ItemViewDelegate<ItemEntity.
             holder.setText(R.id.tv_description, "发布：" + bean?.data?.author?.description)
         }
         holder.setText(R.id.tv_des, bean?.data?.description)
+        holder.setOnClickListener(R.id.iv_card,{
+            ARouter.getInstance().build(ARouterConfig.ACT_PlayVideo)
+                    .withString(ARouterConstants.PLAY_URL, bean.data.playUrl)
+                    .withString(ARouterConstants.PLAY_TITLE, bean.data.title)
+                    .navigation()
+        })
     }
 
 }

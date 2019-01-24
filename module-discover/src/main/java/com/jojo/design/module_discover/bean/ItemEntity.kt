@@ -1,27 +1,29 @@
 package com.jojo.design.module_discover.bean
 
+import java.io.Serializable
+
 /**
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2019/1/18 2:38 PM
  *    desc   : 分类详情页数据实体
  */
-data class ItemEntity(var itemList: List<ItemDataEntity>, var type: String) {
+data class ItemEntity(var itemList: List<ItemDataEntity>, var type: String) : Serializable {
     data class ItemDataEntity(var type: String, var data: DataEntity, var tag: String, var id: Int, var adIndex: Int) {
 
         data class DataEntity(var dataType: String, var text: String, var header: HeadBean, var itemList: List<ItemBean>, var id: String, var title: String, var description: String, var library: String,
-                              var category: String, var playUrl: String, var playInfo: List<ItemBean.DataItemBean.PlayInfoBean>, var cover: ItemBean.DataItemBean.CoverBean, var author: ItemBean.DataItemBean.AuthorBean) {
-            data class HeadBean(var id: String, var title: String, var description: String)
+                              var category: String, var playUrl: String, var playInfo: List<ItemBean.DataItemBean.PlayInfoBean>, var cover: ItemBean.DataItemBean.CoverBean, var author: ItemBean.DataItemBean.AuthorBean) : Serializable {
+            data class HeadBean(var id: String, var title: String, var description: String) : Serializable
 
-            data class ItemBean(var type: String, var data: DataItemBean) {
+            data class ItemBean(var type: String, var data: DataItemBean) : Serializable {
                 data class DataItemBean(var dataType: String, var id: String, var title: String, var description: String, var library: String,
-                                        var category: String, var playUrl: String, var playInfo: List<PlayInfoBean>, var cover: CoverBean, var author: AuthorBean) {
-                    data class CoverBean(var detail: String, var blurred: String)
-                    data class PlayInfoBean(var urlList: List<UrlListBean>) {
-                        data class UrlListBean(var name: String, var url: String, var size: Long)
+                                        var category: String, var playUrl: String, var playInfo: List<PlayInfoBean>, var cover: CoverBean, var author: AuthorBean) : Serializable {
+                    data class CoverBean(var detail: String, var blurred: String) : Serializable
+                    data class PlayInfoBean(var urlList: List<UrlListBean>) : Serializable {
+                        data class UrlListBean(var name: String, var url: String, var size: Long) : Serializable
                     }
 
-                    data class AuthorBean(var name: String, var description: String, var icon: String)
+                    data class AuthorBean(var name: String, var description: String, var icon: String) : Serializable
                 }
             }
 //            ItemBean

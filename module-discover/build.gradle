@@ -60,6 +60,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":common-base")
     implementation project(":common-ui")
+//    implementation project(":gsyvideo-lib")
+    //video
+    compile 'com.shuyu:GSYVideoPlayer:2.1.3'
     //ARouter
     kapt rootProject.ext.dependencies["arouter-compiler"]
     //解决Kotlin和DataBinding冲突

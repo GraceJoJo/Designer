@@ -31,6 +31,9 @@ class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), Cat
     override fun getContentViewLayoutId(): Int = R.layout.fra_category_detail
 
     override fun onFirstUserVisible() {
+        var type = arguments?.getInt("type")
+        //懒加载：第一次进来时请求数据，后续切换tab不再请求
+        mPresenter?.getCategorieDetail((activity as ACT_CategoryDetail).categoryId, type!!)
     }
 
     override fun onFirstUserInvisible() {
@@ -59,8 +62,8 @@ class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), Cat
         rv.setPullRefreshEnabled(false)
         RecyclerviewHelper.initLayoutManagerRecyclerView(rv, mAdapter!!, LinearLayoutManager(mContext), mContext)
 
-        //请求分类详情
-        mPresenter?.getCategorieDetail((activity as ACT_CategoryDetail).categoryId, type!!)
+//        //请求分类详情
+//        mPresenter?.getCategorieDetail((activity as ACT_CategoryDetail).categoryId, type!!)
     }
 
     /**

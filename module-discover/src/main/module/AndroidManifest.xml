@@ -15,6 +15,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.ACT_CategoryDetail"></activity>
+        <activity android:name=".ui.ACT_PlayVideo"></activity>
     </application>
 
 </manifest>

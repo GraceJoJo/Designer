@@ -24,6 +24,7 @@ interface ARouterConstants {
         val CATEGORY_ID: String = "category_id"
         val CATEGORY_HEAD_IMAGE: String = "category_head_image"
         val CATEGORY_NAME: String = "category_name"
+        val CATEGORY_BEAN: String = "category_bean"
     }
 
 }

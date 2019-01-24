@@ -13,6 +13,7 @@ import com.jojo.design.module_core.mvp.model.CategoryModel
 import com.jojo.design.module_core.mvp.presenter.CategoryPresenter
 import com.jojo.design.module_discover.R
 import com.jojo.design.module_discover.adapter.ADA_Category
+import com.jojo.design.module_discover.adapter.ADA_CategoryDetail
 import com.jojo.design.module_discover.bean.CategoryBean
 import com.jojo.design.module_discover.bean.ItemEntity
 import com.jojo.design.module_discover.bean.TabEntity
@@ -26,6 +27,7 @@ import kotlinx.android.synthetic.main.fra_category_detail.*
  *    desc   :
  */
 class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), CategoryContract.View {
+    var mAdapter: ADA_CategoryDetail? = null
     override fun getContentViewLayoutId(): Int = R.layout.fra_category_detail
 
     override fun onFirstUserVisible() {
@@ -52,20 +54,30 @@ class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), Cat
     override fun startFragmentEvents() {
         val type = arguments?.getInt("type")
         Log.d("tab", "type=" + type)
-        rv.layoutManager = LinearLayoutManager(mContext)
-        val mAdapter = ADA_Category(mContext)
-        rv.adapter = mAdapter
+//        initTestData(type)
+        mAdapter = ADA_CategoryDetail(activity!!)
+        rv.setPullRefreshEnabled(false)
+        RecyclerviewHelper.initLayoutManagerRecyclerView(rv, mAdapter!!, LinearLayoutManager(mContext), mContext)
 
-//        RecyclerviewHelper.initLayoutManagerRecyclerView(rv, mAdapter, LinearLayoutManager(mContext), mContext)
+        //请求分类详情
+        mPresenter?.getCategorieDetail((activity as ACT_CategoryDetail).categoryId, type!!)
+    }
+
+    /**
+     * 模拟数据
+     */
+    private fun initTestData(type: Int?) {
+        rv.layoutManager = LinearLayoutManager(mContext)
+        val adapter = ADA_Category(mContext)
+        rv.adapter = adapter
+
 
         var dataList = ArrayList<CategoryBean>()
         for (i in 0..40) {
             var bean = CategoryBean(i.toString(), type.toString(), "", "http://img.kaiyanapp.com/7c46ad04ff913b87915615c78d226a40.jpeg?imageMogr2/quality/60/format/jpg", "")
             dataList.add(bean)
         }
-        mAdapter.update(dataList, true)
-
-        mPresenter?.getCategorieDetail((activity as ACT_CategoryDetail).categoryId)
+        adapter.update(dataList, true)
     }
 
     override fun getCategoryTabs(dataBean: TabEntity) {
@@ -75,7 +87,14 @@ class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), Cat
     }
 
     override fun getCategorieDetail(dataBean: ItemEntity) {
-        dataBean.count
+        mAdapter?.update(dataBean?.itemList, true)
+        for (i in 0 until dataBean.itemList.size) {
+            if (!dataBean?.itemList[i]?.type.equals("video")) {
+                Log.e("TAG", "datatype=" + dataBean?.itemList[i].data.dataType)
+            } else {
+                Log.e("TAG", "title=" + dataBean?.itemList[i].data.title)
+            }
+        }
     }
 
 

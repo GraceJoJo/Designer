@@ -1,6 +1,7 @@
 package com.jojo.design.module_discover.ui
 
 import android.graphics.Rect
+import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -12,6 +13,7 @@ import com.jojo.design.common_base.adapter.rv.MultiItemTypeAdapter
 import com.jojo.design.common_base.config.arouter.ARouterConfig
 import com.jojo.design.common_base.config.arouter.ARouterConstants
 import com.jojo.design.common_base.dagger.mvp.BaseActivity
+import com.jojo.design.common_base.utils.StatusBarHelper
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.dagger2.DaggerFoundComponent
 import com.jojo.design.module_core.mvp.contract.CategoryContract
@@ -41,6 +43,7 @@ class ACT_Category : BaseActivity<CategoryPresenter, CategoryModel>(), CategoryC
     }
 
     override fun startEvents() {
+        StatusBarHelper.setStatusTextColor(true, this)
         setHeaderTitle("全部分类")
         mPresenter?.getCategories()
 
@@ -69,6 +72,7 @@ class ACT_Category : BaseActivity<CategoryPresenter, CategoryModel>(), CategoryC
                         .withString(ARouterConstants.CATEGORY_HEAD_IMAGE, bean.headerImage)
                         .withString(ARouterConstants.CATEGORY_ID, bean.id)
                         .withString(ARouterConstants.CATEGORY_NAME, bean.name)
+                        .withSerializable(ARouterConstants.CATEGORY_BEAN, bean)
                         .navigation()
             }
 
@@ -78,8 +82,10 @@ class ACT_Category : BaseActivity<CategoryPresenter, CategoryModel>(), CategoryC
 
         })
     }
+
     override fun getCategoryTabs(dataBean: TabEntity) {
     }
+
     override fun getCategories(dataList: List<CategoryBean>) {
         Log.e("TAG", "dataList=" + dataList.size)
         mAdapter?.update(dataList, true)

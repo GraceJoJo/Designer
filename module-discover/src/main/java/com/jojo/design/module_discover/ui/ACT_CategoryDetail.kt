@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.v4.view.ViewPager
 import android.view.View
+import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.config.arouter.ARouterConfig
@@ -36,6 +37,7 @@ import kotlinx.android.synthetic.main.act_category_detail.*
 @Route(path = ARouterConfig.ACT_CategoryDetail)
 class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), CategoryContract.View {
     var categoryId = ""
+    var categoryBean: CategoryBean? = null
 
     private enum class AppBarState {
         EXPANDED,
@@ -53,7 +55,11 @@ class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), Cat
 
     override fun startEvents() {
         categoryId = intent.extras.getString(ARouterConstants.CATEGORY_ID)
+        categoryBean = intent.extras.getSerializable(ARouterConstants.CATEGORY_BEAN) as CategoryBean?
         GlideUtils.loadNormalImage(intent.extras.getString(ARouterConstants.CATEGORY_HEAD_IMAGE), iv_headImg, 0)
+        tv_name.text = categoryBean?.name
+        tv_des.spacing = 10f
+        tv_des.setText(categoryBean?.description!!, TextView.BufferType.SPANNABLE)
         mPresenter?.getCategoryTabs(categoryId)
 
         initToorbar()
@@ -101,6 +107,7 @@ class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), Cat
      */
     private fun initToorbar() {
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(R.drawable.ic_back_arrow_white)
         toolbar.setNavigationOnClickListener { onBackPressed() }
         tv_title.text = intent.extras.getString(ARouterConstants.CATEGORY_NAME)

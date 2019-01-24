@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/title"
-        layout="@layout/common_title"></include>
+        layout="@layout/common_title_light"></include>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_category"

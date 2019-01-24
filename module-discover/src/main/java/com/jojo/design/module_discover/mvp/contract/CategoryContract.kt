@@ -22,12 +22,13 @@ interface CategoryContract {
     interface Presenter : BaseContract.BasePresenter {
         fun getCategoryTabs(id: String)
         fun getCategories()
-        fun getCategorieDetail(id: String)
+        //tabType为滑动的tab类型
+        fun getCategorieDetail(id: String, tabType: Int)
     }
 
     interface Model : BaseContract.BaseModel {
         fun getCategoryTabs(id: String): Observable<TabEntity>
         fun getCategories(): Observable<List<CategoryBean>>
-        fun getCategorieDetail(id: String): Observable<ItemEntity>
+        fun getCategorieDetail(id: String, tabType: Int): Observable<ItemEntity>
     }
 }

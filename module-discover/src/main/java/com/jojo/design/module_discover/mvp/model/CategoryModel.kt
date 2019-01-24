@@ -19,5 +19,14 @@ class CategoryModel @Inject constructor() : CategoryContract.Model {
 
     override fun getCategories(): Observable<List<CategoryBean>> = NetFoundProvider.requestService.getCategories()
 
-    override fun getCategorieDetail(id: String): Observable<ItemEntity> = NetFoundProvider.requestService.getCategorieDetail(id)
+    override fun getCategorieDetail(id: String, tabType: Int): Observable<ItemEntity> {
+        var observable: Observable<ItemEntity>? = null
+        when (tabType) {
+            0, 1 -> observable = NetFoundProvider.requestService.getCategorieDetail(id)
+            2 -> observable = NetFoundProvider.requestService.getCategoryAuthor(id)
+            3 -> observable = NetFoundProvider.requestService.getCategoryPlaylist(id)
+
+        }
+        return observable!!
+    }
 }

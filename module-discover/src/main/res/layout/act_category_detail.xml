@@ -9,7 +9,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="270dp"
         android:theme="@style/AppTheme.AppBarOverlay">
 
 
@@ -22,12 +22,97 @@
             app:statusBarScrim="@android:color/transparent"
             app:titleEnabled="false">
 
-
-            <ImageView
-                android:id="@+id/iv_headImg"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
-                android:scaleType="fitXY" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_headImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:scaleType="fitXY"
+                    android:src="@color/color_212121" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="45dp"
+                    android:text="科技"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <com.jojo.design.common_ui.view.LetterSpaceTextView
+                    android:id="@+id/tv_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:paddingBottom="10dp"
+                    android:singleLine="true"
+                    android:text="这是描述这是描述"
+                    android:textColor="@color/color_dddddd"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+                <TextView
+                    android:id="@+id/tv_care"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="8dp"
+                    android:text="37382人关注"
+                    android:textColor="@color/color_dddddd"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_div"
+                    app:layout_constraintEnd_toStartOf="@+id/view_div"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_des"
+                    app:layout_constraintTop_toTopOf="@+id/view_div" />
+
+                <View
+                    android:id="@+id/view_div"
+                    android:layout_width="1px"
+                    android:layout_height="14dp"
+                    android:background="@color/color_ffffff"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_des"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="58925人看过"
+                    android:textColor="@color/color_dddddd"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_div"
+                    app:layout_constraintStart_toEndOf="@+id/view_div"
+                    app:layout_constraintTop_toTopOf="@+id/view_div" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_shape_ffffff_10"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="4dp"
+                    android:text="+关注"
+                    android:textColor="@color/color_333333"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_div" />
+
+            </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

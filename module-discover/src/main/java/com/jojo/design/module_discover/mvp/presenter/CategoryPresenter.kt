@@ -39,9 +39,9 @@ class CategoryPresenter @Inject constructor() : BasePresenter<CategoryContract.V
         }))
     }
 
-    override fun getCategorieDetail(id: String) {
+    override fun getCategorieDetail(id: String, tabType: Int) {
         mView?.showDialogLoading("")
-        rxManager?.addObserver(RetrofitManager.doRequest(mModel!!.getCategorieDetail(id), object : RxObserverListener<ItemEntity>(mView) {
+        rxManager?.addObserver(RetrofitManager.doRequest(mModel!!.getCategorieDetail(id, tabType), object : RxObserverListener<ItemEntity>(mView) {
             override fun onSuccess(result: ItemEntity?) {
                 mView?.getCategorieDetail(result!!)
                 mView?.dismissDialogLoading()

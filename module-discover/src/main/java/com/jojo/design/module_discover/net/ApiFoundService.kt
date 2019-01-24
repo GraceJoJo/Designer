@@ -28,6 +28,16 @@ interface ApiFoundService {
 
     //分类详情
     @Headers("base_url:kaiyan")
-    @GET("categories/detail/index?vc=230&deviceModel=MI")
+    @GET("categories/detail/index")
     fun getCategorieDetail(@Query("id") id: String): Observable<ItemEntity>
+
+    //分类详情tab-(作者)
+    @Headers("base_url:kaiyan")
+    @GET("categories/detail/pgcs")
+    fun getCategoryAuthor(@Query("id") id: String): Observable<ItemEntity>
+
+    //分类详情tab-(专辑)
+    @Headers("base_url:kaiyan")
+    @GET("categories/detail/playlist")
+    fun getCategoryPlaylist(@Query("id") id: String): Observable<ItemEntity>
 }

@@ -7,7 +7,6 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.jojo.design.common_base.BaseAppliction
-import com.jojo.design.common_base.R
 import com.jojo.design.common_base.utils.glide.transform.CornerOriginSizeTransform
 
 /**
@@ -93,6 +92,26 @@ object GlideUtils {
                 .transform(CircleCrop())
         Glide.with(BaseAppliction.context)
                 .load(image + ".png")
+                .apply(requestOptions)
+                .transition(DrawableTransitionOptions().crossFade())
+                .into(targetView)
+    }
+
+    /**
+     * 圆形图片
+     *
+     * @param imageUrl   图片地址
+     * @param defaultImg 加载异常图
+     * @param targetView 目标ImageView
+     */
+    fun loadNormalCircleImage(imageUrl: String, targetView: ImageView, defaultImg: Int) {
+        val requestOptions = RequestOptions()
+                .placeholder(defaultImg)
+                .error(defaultImg)
+                .priority(Priority.HIGH)
+                .transform(CircleCrop())
+        Glide.with(BaseAppliction.context)
+                .load(imageUrl)
                 .apply(requestOptions)
                 .transition(DrawableTransitionOptions().crossFade())
                 .into(targetView)

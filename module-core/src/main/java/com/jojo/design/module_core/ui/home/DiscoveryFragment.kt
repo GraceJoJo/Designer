@@ -1,13 +1,12 @@
 package com.jojo.design.module_core.ui.home
 
 import android.os.Bundle
-import com.alibaba.android.arouter.launcher.ARouter
-import com.jojo.design.common_base.config.arouter.ARouterConfig
-import com.jojo.design.common_base.config.arouter.ARouterConstants
+import android.support.v4.content.ContextCompat
 import com.jojo.design.common_base.dagger.mvp.BaseContract
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.R
+import com.jojo.design.module_core.adapter.TextTagsAdapter
 import com.will.weiyuekotlin.component.ApplicationComponent
 import kotlinx.android.synthetic.main.fra_discorvery.*
 
@@ -15,10 +14,11 @@ import kotlinx.android.synthetic.main.fra_discorvery.*
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2018/12/7 11:34 AM
- *    desc   : 发现
+ *    desc   : 发现(供拓展的学习模块)
  */
 class DiscoveryFragment : BaseFragment<BaseContract.BasePresenter, BaseContract.BaseModel>() {
     private var mTitle: String? = null
+
     companion object {
         fun getInstance(title: String): DiscoveryFragment {
             var fragment = DiscoveryFragment()
@@ -50,9 +50,16 @@ class DiscoveryFragment : BaseFragment<BaseContract.BasePresenter, BaseContract.
     }
 
     override fun startFragmentEvents() {
-        tv.setOnClickListener {
-            ARouter.getInstance().build(ARouterConfig.ACT_Category)
-                    .navigation()
-        }
+
+        initCloudView()
+
     }
+
+    private fun initCloudView() {
+        tag_cloud.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_ffffff));
+        var data = arrayListOf<String>("进入开眼视频", "Kotlin", "coder", "开眼视频", "好好学习", "进入开眼视频", "有趣的内容", "组件化", "快乐", "开眼视频", "探索", "发现", "开眼视频", "写代码", "烟火里的尘埃", "进入开眼视频", "猪年快乐", "加油努力", "进入开眼视频", "猪事顺利", "懂音乐的码虫")
+        var tagsAdapter = TextTagsAdapter(data)//new String[20]-*arrayOfNulls(20)
+        tag_cloud.setAdapter(tagsAdapter)
+    }
+
 }

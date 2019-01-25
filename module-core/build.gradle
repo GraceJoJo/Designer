@@ -70,6 +70,7 @@ dependencies {
     api(rootProject.ext.dependencies["design"]) {
         exclude group: 'com.android.support'
     }
+    compile 'com.moxun:tagcloudlib:1.1.0'
 }
 
 repositories {

@@ -4,7 +4,7 @@ ext {
      * isBuildModule=true
      * 修改之后需要Sync方可生效
      */
-    isBuildModule = true
+    isBuildModule = false
 
     android = [
             compileSdkVersion: 26,
@@ -82,8 +82,7 @@ ext {
             //ios 列表弹性效果
             "ios-scroll"              : "me.everything:overscroll-decor-android:1.0.4",
             //video
-            "gsyvideo-player"              : "com.shuyu:GSYVideoPlayer:2.1.3",
-
+            "gsyvideo-player"         : "com.shuyu:GSYVideoPlayer:2.1.3",
 
             //tools
             "multidex"                : "com.android.support:multidex:1.0.2",

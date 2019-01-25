@@ -115,10 +115,9 @@ class ACT_PlayVideo : BaseActivity<BaseContract.BasePresenter, BaseContract.Base
             }
 
             //点击播放按钮
-            override fun onClickStartIcon(url: String?, vararg objects: Any?) {
+            override fun onClickStartIcon(url: String, vararg objects: Any) {
                 super.onClickStartIcon(url, *objects)
             }
-
             override fun onAutoComplete(url: String, vararg objects: Any) {
                 super.onAutoComplete(url, objects)
             }

@@ -119,7 +119,7 @@ class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel
                 } else {
                     transaction.show(mDiscorverFragment)
                 }
-                StatusBarHelper.setStatusTextColor(false, this)
+                StatusBarHelper.setStatusTextColor(true, this)
             }
         }
         mIndex = position

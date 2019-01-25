@@ -28,6 +28,8 @@ interface ARouterConstants {
         val PLAY_VIDEO_BEAN: String = "play_video_bean"
         val PLAY_URL: String="play_url"
         val PLAY_TITLE: String="play_title"
+        val COVER_IMG: String = "cover_img"
+        val VIDEO_BG_IMG: String="video_bg_img"
     }
 
 }

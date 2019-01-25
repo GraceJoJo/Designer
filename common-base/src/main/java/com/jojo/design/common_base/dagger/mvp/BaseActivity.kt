@@ -205,7 +205,7 @@ abstract class BaseActivity<P : BaseContract.BasePresenter, M : BaseContract.Bas
         }
         mPresenter?.detachView()
         mPresenter?.onDestroy()
-
+        mLoadingDialog.dismiss()
     }
 
     override fun showLoading() {

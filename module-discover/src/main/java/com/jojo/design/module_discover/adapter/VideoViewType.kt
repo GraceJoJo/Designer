@@ -35,10 +35,12 @@ class VideoViewType constructor(context: Context) : ItemViewDelegate<ItemEntity.
             holder.setText(R.id.tv_description, "发布：" + bean?.data?.author?.description)
         }
         holder.setText(R.id.tv_des, bean?.data?.description)
-        holder.setOnClickListener(R.id.iv_card,{
+        holder.setOnClickListener(R.id.iv_card, {
             ARouter.getInstance().build(ARouterConfig.ACT_PlayVideo)
                     .withString(ARouterConstants.PLAY_URL, bean.data.playUrl)
                     .withString(ARouterConstants.PLAY_TITLE, bean.data.title)
+                    .withString(ARouterConstants.COVER_IMG, bean.data.cover.detail)
+                    .withString(ARouterConstants.VIDEO_BG_IMG, bean.data.cover.blurred)
                     .navigation()
         })
     }

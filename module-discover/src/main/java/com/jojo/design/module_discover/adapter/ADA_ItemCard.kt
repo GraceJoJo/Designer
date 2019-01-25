@@ -33,6 +33,8 @@ class ADA_ItemCard constructor(context: Context) : CommonAdapter<ItemEntity.Item
 //                    .withSerializable(ARouterConstants.PLAY_VIDEO_BEAN, bean)
                     .withString(ARouterConstants.PLAY_URL, bean.data.playUrl)
                     .withString(ARouterConstants.PLAY_TITLE, bean.data.title)
+                    .withString(ARouterConstants.COVER_IMG, bean.data.cover.detail)
+                    .withString(ARouterConstants.VIDEO_BG_IMG, bean.data.cover.blurred)
                     .navigation()
         }
     }

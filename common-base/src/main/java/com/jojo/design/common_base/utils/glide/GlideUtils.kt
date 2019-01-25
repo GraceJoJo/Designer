@@ -1,11 +1,18 @@
 package com.jojo.design.common_base.utils.glide
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.os.Build
+import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.utils.glide.transform.CornerOriginSizeTransform
 
@@ -115,5 +122,19 @@ object GlideUtils {
                 .apply(requestOptions)
                 .transition(DrawableTransitionOptions().crossFade())
                 .into(targetView)
+    }
+
+    /**
+     * 使用Glide加载RelativeLayout、LinearLayout等背景图片
+     */
+    fun loadBackgroudView(context: Context, imageUrl: String, targetView: View) {
+        Glide.with(context).asBitmap().load(imageUrl).into(object : SimpleTarget<Bitmap>(200, 200) {
+            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                var drawable = BitmapDrawable(resource)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    targetView.background = drawable;//设置背景
+                }
+            }
+        })
     }
 }

@@ -7,15 +7,24 @@
         android:name="com.jojo.design.common_base.BaseAppliction"
         android:label="@string/app_name"
         android:theme="@style/BaseAppTheme">
-        <activity android:name="com.jojo.design.module_discover.ui.ACT_Category">
+        <activity
+            android:name="com.jojo.design.module_discover.ui.ACT_Category"
+            android:configChanges="keyboardHidden|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ACT_CategoryDetail"></activity>
-        <activity android:name=".ui.ACT_PlayVideo"></activity>
+        <!--给所有在ACT_PlayVideo上面的Activity指定android:configChanges="keyboardHidden|orientation"，
+        防止ACT_PlayVideo切换横竖屏时声明周期重建，频繁请求网络刷新页面-->
+        <activity
+            android:name=".ui.ACT_CategoryDetail"
+            android:configChanges="keyboardHidden|orientation"></activity>
+        <activity
+            android:name=".ui.video.ACT_PlayVideo"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

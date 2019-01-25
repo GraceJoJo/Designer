@@ -44,7 +44,7 @@ class LoadingDialog constructor(context: Context) {
     }
 
     fun show() {
-        if (!isShow){
+        if (!isShow) {
             val view = View.inflate(context, R.layout.dialog_loading, null)
             // 获取整个布局
             val layout = view.findViewById<LinearLayout>(R.id.dialog_view)
@@ -63,8 +63,10 @@ class LoadingDialog constructor(context: Context) {
             mLoadingDialog!!.setContentView(layout, LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.MATCH_PARENT))
-            mLoadingDialog!!.show()
-            isShow = true
+            if (context != null) {
+                mLoadingDialog!!.show()
+                isShow = true
+            }
         }
     }
 

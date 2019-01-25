@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.fra_category_detail.*
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2019/1/23 5:55 PM
- *    desc   :
+ *    desc   : 分类详情四个Tab页面
  */
 class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), CategoryContract.View {
     var mAdapter: ADA_CategoryDetail? = null
@@ -91,13 +91,13 @@ class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), Cat
 
     override fun getCategorieDetail(dataBean: ItemEntity) {
         mAdapter?.update(dataBean?.itemList, true)
-        for (i in 0 until dataBean.itemList.size) {
-            if (!dataBean?.itemList[i]?.type.equals("video")) {
-                Log.e("TAG", "datatype=" + dataBean?.itemList[i].data.dataType)
-            } else {
-                Log.e("TAG", "title=" + dataBean?.itemList[i].data.title)
-            }
-        }
+//        for (i in 0 until dataBean.itemList.size) {
+//            if (!dataBean?.itemList[i]?.type.equals("video")) {
+//                Log.e("TAG", "datatype=" + dataBean?.itemList[i].data.dataType)
+//            } else {
+//                Log.e("TAG", "title=" + dataBean?.itemList[i].data.title)
+//            }
+//        }
     }
 
 

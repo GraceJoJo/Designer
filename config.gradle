@@ -81,6 +81,9 @@ ext {
             "banner"                  : "com.bigkoo:convenientbanner:2.0.5",
             //ios 列表弹性效果
             "ios-scroll"              : "me.everything:overscroll-decor-android:1.0.4",
+            //video
+            "gsyvideo-player"              : "com.shuyu:GSYVideoPlayer:2.1.3",
+
 
             //tools
             "multidex"                : "com.android.support:multidex:1.0.2",

@@ -12,7 +12,7 @@ import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.config.arouter.ARouterConfig
 import com.jojo.design.common_base.utils.ToastUtils
 import com.jojo.design.module_core.R
-import com.moxun.tagcloudlib.view.TagsAdapter
+import com.jojo.design.module_core.widgets.tagcloud.TagsAdapter
 
 import java.util.ArrayList
 import java.util.Collections
@@ -25,7 +25,6 @@ import java.util.Random
  * desc   : 3D标签云效果适配器
  */
 class TextTagsAdapter(data: List<String>) : TagsAdapter() {
-
     private var mData = ArrayList<String>()
 
     init {
@@ -64,7 +63,7 @@ class TextTagsAdapter(data: List<String>) : TagsAdapter() {
         return position % 7
     }
 
-    override fun onThemeColorChanged(view: View, themeColor: Int) {
+    override fun onThemeColorChanged(view: View?, themeColor: Int, alpha: Float) {
         (view as TextView).setTextColor(themeColor)
     }
 }

@@ -7,5 +7,19 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <declare-styleable name="TagCloudView">
+        <attr name="autoScrollMode">
+            <enum name="disable" value="0"/>
+            <enum name="decelerate" value="1"/>
+            <enum name="uniform" value="2"/>
+        </attr>
+        <attr name="manualScroll" format="boolean"/>
+        <attr name="radiusPercent" format="float"/>
+        <attr name="scrollSpeed" format="float"/>
+        <attr name="lightColor" format="color"/>
+        <attr name="darkColor" format="color"/>
+        <attr name="startAngleX" format="float"/>
+        <attr name="startAngleY" format="float"/>
+    </declare-styleable>
 
 </resources>

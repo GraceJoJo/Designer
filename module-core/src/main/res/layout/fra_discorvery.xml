@@ -9,7 +9,7 @@
         <!--layout="@layout/common_title"></include>-->
 
 
-    <com.moxun.tagcloudlib.view.TagCloudView
+    <com.jojo.design.module_core.widgets.tagcloud.TagCloudView
         android:id="@+id/tag_cloud"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

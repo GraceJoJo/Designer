@@ -2,8 +2,11 @@ package com.jojo.design.module_core.adapter
 
 import android.content.Context
 import android.widget.ImageView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.adapter.rv.CommonAdapter
 import com.jojo.design.common_base.adapter.rv.ViewHolder
+import com.jojo.design.common_base.config.arouter.ARouterConfig
+import com.jojo.design.common_base.config.arouter.ARouterConstants
 import com.jojo.design.common_base.utils.glide.GlideUtils
 import com.jojo.design.module_core.R
 import com.jojo.design.module_core.bean.GoodsEntity
@@ -20,6 +23,12 @@ class ADA_ChildGoods constructor(context: Context) : CommonAdapter<GoodsEntity.I
         holder.setText(R.id.tv_branch_name, bean.brandName)
         holder.setText(R.id.tv_keyword, bean.keyword)
         holder.setText(R.id.tv_price, "￥" + bean.price)
+
+        holder.setOnClickListener(R.id.iv_image, {
+            ARouter.getInstance().build(ARouterConfig.ACT_GoodsDetail)
+                    .withString(ARouterConstants.PRODUCT_ID, bean.id)
+                    .navigation()
+        })
     }
 
     override fun itemLayoutId(): Int = R.layout.item_child_goods

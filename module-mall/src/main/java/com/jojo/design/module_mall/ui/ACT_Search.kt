@@ -99,7 +99,8 @@ class ACT_Search : BaseActivity<SearchPresenter, SearchModel>(), SearchContract.
             (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager)
                     .hideSoftInputFromWindow(currentFocus!!
                             .windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-            et_search.setText("")
+            if (!TextUtils.isEmpty(et_search.text)) et_search.setText("") else finish()
+
         }
         //键盘搜索
         et_search.setOnKeyListener({ v, keyCode, event ->

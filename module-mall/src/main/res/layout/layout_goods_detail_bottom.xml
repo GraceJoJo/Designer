@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="@color/color_ffffff">
+
+    <View
+        android:id="@+id/view_div"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_dddddd">
+
+    </View>
+
+    <TextView
+        android:id="@+id/tv_contact_seller"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:drawablePadding="3dp"
+        android:drawableTop="@drawable/ic_contact_seller"
+        android:gravity="center"
+        android:text="联系买家"
+        android:textColor="@color/color_black"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/view_div"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_add_cart"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:background="#969da3"
+        android:gravity="center"
+        android:text="加入购物车"
+        android:textColor="@color/color_ffffff"
+        android:textSize="17sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_contact_seller"
+        app:layout_constraintRight_toLeftOf="@+id/tv_buy"
+        app:layout_constraintTop_toBottomOf="@+id/view_div" />
+
+    <TextView
+        android:id="@+id/tv_buy"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:background="#2e2e2e"
+        android:gravity="center"
+        android:text="立即购买"
+        android:textColor="@color/color_ffffff"
+        android:textSize="17sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_add_cart"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_div" />
+</android.support.constraint.ConstraintLayout>

@@ -8,9 +8,9 @@ import java.io.Serializable
  *    date   : 2018/12/21 12:05 PM
  *    desc   : search/list实体类
  */
-data class RecordsEntity(var page: Int, var size: Int, var records: List<RecordsBean>): Serializable {
-    data class RecordsBean(var avaPath: String, var brand: String, var favNum: Int, var description: String,
+data class RecordsEntity(var page: Int, var size: Int, var records: List<RecordsBean>) : Serializable {
+    data class RecordsBean(var id: String, var avaPath: String, var brand: String, var favNum: Int, var description: String,
                            var image: String, var nickName: String, var productDescription: String,
-                           var time: String, var price: String): Serializable {
+                           var time: String, var price: String) : Serializable {
     }
 }

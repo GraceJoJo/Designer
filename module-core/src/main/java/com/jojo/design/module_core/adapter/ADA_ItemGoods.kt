@@ -17,7 +17,7 @@ import com.jojo.design.module_core.bean.GoodsEntity
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2018/12/13 6:14 PM
- *    desc   :
+ *    desc   : 逛-（图片+子列表）适配器
  */
 class ADA_ItemGoods constructor(context: Context) : CommonAdapter<GoodsEntity>(context) {
     override fun convert(holder: ViewHolder, bean: GoodsEntity, position: Int) {

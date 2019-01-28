@@ -43,7 +43,7 @@
 # 写在结尾：
 [Designer](https://github.com/GraceJoJo/Designer)项目可以说得上是倾注了我蛮多心血了，每个页面和功能都当成是上线的App来做，力求做到精致和完善，其中还包括了很多自己项目开发中的经验汇总和对新技术的探索和整合，希望对各位读者有所帮助，欢迎点个star，follow，或者给个小心心，嘻嘻😝也可以分享给你更多的朋友一起学习，您的支持是我不断前进的动力。如果有任何问题，欢迎在GitHub上给我提issue或者留言。
 
-[下载Apk体验]()
+[下载Apk体验](https://fir.im/q2je)
 
 # 致谢：
 [MVPArms官方快速组件化方案开源,来自5K star的信赖](https://www.jianshu.com/p/f671dd76868f)<p>

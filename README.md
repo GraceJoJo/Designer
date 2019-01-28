@@ -25,20 +25,20 @@
 
 # 2、项目涉及的技术要点：
 
-1、组件化+Kotlin结合开发，如何管理第三方依赖
-2、BaseActivity和BaseFragment等基类及通用布局的封装
-3、MVP+Dagger 2+Retrofit+Rxjava（包括了多个BaseUrl请求的场景处理）
-4、组件化开发下ARouter的运用
-5、EventBus的使用
-6、Google原生数据库Room的使用
-7、Glide的使用（封装加载图片工具类GlideUtils，圆形、圆角图片、背景图片加载等）
-8、Kotlin下使用ButterKnife
-9、CommonAdapter万能适配器（包括多类型布局的运用—首页的逛模块和视频分类详情都有运用）
-10、GSYVideoPlayer实现视频播放（包括全屏切换功能）
-11、5.0新特性CoordinatorLayout +AppBarLayout效果实现（视频分类详情）
-12、沉浸式状态栏（Activity和在Fragment中的使用及不同手机的适配）
-13、DataBinding的使用
-14、约束布局ConstraintLayout的使用
+1、组件化+Kotlin结合开发，如何管理第三方依赖<p>
+2、BaseActivity和BaseFragment等基类及通用布局的封装<p>
+3、MVP+Dagger 2+Retrofit+Rxjava（包括了多个BaseUrl请求的场景处理）<p>
+4、组件化开发下ARouter的运用<p>
+5、EventBus的使用<p>
+6、Google原生数据库Room的使用<p>
+7、Glide的使用（封装加载图片工具类GlideUtils，圆形、圆角图片、背景图片加载等）<p>
+8、Kotlin下使用ButterKnife<p>
+9、CommonAdapter万能适配器（包括多类型布局的运用—首页的逛模块和视频分类详情都有运用）<p>
+10、GSYVideoPlayer实现视频播放（包括全屏切换功能）<p>
+11、5.0新特性CoordinatorLayout +AppBarLayout效果实现（视频分类详情）<p>
+12、沉浸式状态栏（Activity和在Fragment中的使用及不同手机的适配）<p>
+13、DataBinding的使用<p>
+14、约束布局ConstraintLayout的使用<p>
 
 # 写在结尾：
 [Designer](https://github.com/GraceJoJo/Designer)项目可以说得上是倾注了我蛮多心血了，每个页面和功能都当成是上线的App来做，力求做到精致和完善，其中还包括了很多自己项目开发中的经验汇总和对新技术的探索和整合，希望对各位读者有所帮助，欢迎点个star，follow，或者给个小心心，嘻嘻😝也可以分享给你更多的朋友一起学习，您的支持是我不断前进的动力。如果有任何问题，欢迎在GitHub上给我提issue或者留言。
@@ -46,11 +46,11 @@
 [下载Apk体验]()
 
 # 致谢：
-[MVPArms官方快速组件化方案开源,来自5K star的信赖](https://www.jianshu.com/p/f671dd76868f)
-[RxJava](https://github.com/ReactiveX/RxJava)
-[Retrofit](https://github.com/square/retrofit)
-[GSYVideoPlayer](https://github.com/CarGuo/GSYVideoPlayer)
-[ARouter](https://github.com/alibaba/ARouter)
+[MVPArms官方快速组件化方案开源,来自5K star的信赖](https://www.jianshu.com/p/f671dd76868f)<p>
+[RxJava](https://github.com/ReactiveX/RxJava)<p>
+[Retrofit](https://github.com/square/retrofit)<p>
+[GSYVideoPlayer](https://github.com/CarGuo/GSYVideoPlayer)<p>
+[ARouter](https://github.com/alibaba/ARouter)<p>
 [Kotlin中使用Room](https://github.com/xieyangxuejun/sample-android-room)
 
 # 声明

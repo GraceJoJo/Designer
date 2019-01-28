@@ -27,16 +27,42 @@ android {
             abiFilters 'armeabi', 'armeabi-v7a'
         }
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
     //支持DataBinding
     dataBinding {
         enabled = true
     }
+    //  签名文件信息配置
+    signingConfigs {
+        config {
+            storeFile file(KEY_PATH)
+            storePassword KEY_PASS
+            keyAlias ALIAS_NAME
+            keyPassword ALIAS_PASS
+        }
+    }
+//    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+//    }
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            //开启代码混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+
 }
 
 dependencies {

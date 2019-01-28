@@ -39,6 +39,7 @@ import com.smart.novel.util.bindView
 import com.will.weiyuekotlin.component.ApplicationComponent
 import kotlinx.android.synthetic.main.act_goods_filter.*
 import kotlinx.android.synthetic.main.common_filter_layout.*
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 
 /**
  *    author : JOJO
@@ -138,6 +139,8 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
     private fun initGoodsRecyclerview() {
         mAdapter = ADA_SearchGoods(mContext)
         RecyclerviewHelper.initLayoutManagerRecyclerView(lrecyclerview, mAdapter!!, GridLayoutManager(mContext, 2), mContext)
+        lrecyclerview.setPullRefreshEnabled(false)
+        OverScrollDecoratorHelper.setUpOverScroll(lrecyclerview, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
         // //设置item之间的间距
         lrecyclerview.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView?) {

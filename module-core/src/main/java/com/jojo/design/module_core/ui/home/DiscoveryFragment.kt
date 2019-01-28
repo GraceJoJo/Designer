@@ -57,7 +57,7 @@ class DiscoveryFragment : BaseFragment<BaseContract.BasePresenter, BaseContract.
 
     private fun initCloudView() {
         tag_cloud.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_ffffff));
-        var data = arrayListOf<String>("进入开眼视频", "Kotlin", "coder", "开眼视频", "好好学习", "进入开眼视频", "有趣的内容", "组件化", "快乐", "开眼视频", "探索", "发现", "开眼视频", "写代码", "烟火里的尘埃", "进入开眼视频", "猪年快乐", "加油努力", "进入开眼视频", "猪事顺利", "懂音乐的码虫")
+        var data = arrayListOf<String>("开眼视频", "Kotlin", "组件化", "MVP", "Retrofit", "Rxjava", "开眼视频", "好好学习", "进入开眼视频", "有趣的内容", "组件化", "Kotlin", "Dagger2", "开眼视频", "Room数据库", "Retrofit", "开眼视频", "沉浸式状态栏", "5.0新特性", "Rxjava", "烟火里的尘埃", "进入开眼视频", "猪年快乐", "加油努力", "进入开眼视频", "猪事顺利", "ARouter")
         var tagsAdapter = TextTagsAdapter(data)//new String[20]-*arrayOfNulls(20)
         tag_cloud.setAdapter(tagsAdapter)
     }

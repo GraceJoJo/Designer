@@ -2,8 +2,11 @@
     package="com.jojo.design.module_core">
 
     <application>
-
-        <activity android:name=".ui.home.ACT_Home">
+        <!--给所有在ACT_PlayVideo上面的Activity指定android:configChanges="keyboardHidden|orientation"，
+              防止ACT_PlayVideo切换横竖屏时声明周期重建，频繁请求网络刷新页面-->
+        <activity
+            android:name=".ui.home.ACT_Home"
+            android:configChanges="keyboardHidden|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

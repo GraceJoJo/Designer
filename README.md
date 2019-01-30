@@ -51,7 +51,9 @@
 [Retrofit](https://github.com/square/retrofit)<p>
 [GSYVideoPlayer](https://github.com/CarGuo/GSYVideoPlayer)<p>
 [ARouter](https://github.com/alibaba/ARouter)<p>
-[Kotlin中使用Room](https://github.com/xieyangxuejun/sample-android-room)
+[Kotlin中使用Room](https://github.com/xieyangxuejun/sample-android-room)<p>
+[baseAdapter](https://github.com/hongyangAndroid/baseAdapter)<p>
+[ConstraintLayout 完全解析 快来优化你的布局吧](https://blog.csdn.net/lmj623565791/article/details/78011599)
 
 # 声明
 感谢[想去App](http://www.xiangqu.com/)和开眼App提供参考,个人使用了抓包的方式使用了其中的API，并非攻击，如构成侵权，请及时通知我删除或者修改。

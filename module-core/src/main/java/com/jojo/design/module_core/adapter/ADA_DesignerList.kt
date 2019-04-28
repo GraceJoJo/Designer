@@ -16,7 +16,9 @@ import com.jojo.design.module_core.bean.DesignerEntity
  */
 class ADA_DesignerList constructor(context: Context) : CommonAdapter<DesignerEntity>(context) {
     override fun convert(holder: ViewHolder, bean: DesignerEntity, position: Int) {
-        GlideUtils.loadCircleImage(bean.userAvatar, holder.getView<ImageView>(R.id.iv_userAvatar), 0)
+        if (bean.userAvatar != null) {
+            GlideUtils.loadCircleImage(bean.userAvatar, holder.getView<ImageView>(R.id.iv_userAvatar), 0)
+        }
         holder.setText(R.id.tv_userNick, bean.userNick)
         holder.setText(R.id.tv_opTag, bean.opTag)
         holder.setText(R.id.tv_productNum, bean.productNum.toString() + "个作品")

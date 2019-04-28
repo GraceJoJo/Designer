@@ -43,7 +43,7 @@
 # 写在结尾：
 [Designer](https://github.com/GraceJoJo/Designer)项目可以说得上是倾注了我蛮多心血了，每个页面和功能都当成是上线的App来做，力求做到精致和完善，其中还包括了很多自己项目开发中的经验汇总和对新技术的探索和整合，希望对各位读者有所帮助，欢迎点个star，follow，或者给个小心心，嘻嘻😝也可以分享给你更多的朋友一起学习，您的支持是我不断前进的动力。如果有任何问题，欢迎在GitHub上给我提issue或者留言。
 
-[下载Apk体验]()
+[下载Apk体验](https://fir.im/q2je)
 
 # 致谢：
 [MVPArms官方快速组件化方案开源,来自5K star的信赖](https://www.jianshu.com/p/f671dd76868f)<p>
@@ -51,7 +51,9 @@
 [Retrofit](https://github.com/square/retrofit)<p>
 [GSYVideoPlayer](https://github.com/CarGuo/GSYVideoPlayer)<p>
 [ARouter](https://github.com/alibaba/ARouter)<p>
-[Kotlin中使用Room](https://github.com/xieyangxuejun/sample-android-room)
+[Kotlin中使用Room](https://github.com/xieyangxuejun/sample-android-room)<p>
+[baseAdapter](https://github.com/hongyangAndroid/baseAdapter)<p>
+[ConstraintLayout 完全解析 快来优化你的布局吧](https://blog.csdn.net/lmj623565791/article/details/78011599)
 
 # 声明
 感谢[想去App](http://www.xiangqu.com/)和开眼App提供参考,个人使用了抓包的方式使用了其中的API，并非攻击，如构成侵权，请及时通知我删除或者修改。

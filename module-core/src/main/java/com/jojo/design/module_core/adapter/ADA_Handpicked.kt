@@ -28,7 +28,7 @@ class ADA_Handpicked constructor(context: Context) : CommonAdapter<RecordsEntity
 
         holder.setOnClickListener(R.id.iv_image, {
             ARouter.getInstance().build(ARouterConfig.ACT_GoodsDetail)
-                    .withString(ARouterConstants.PRODUCT_ID, bean.id)
+                    .withString(ARouterConstants.PRODUCT_ID, bean.productId)
                     .navigation()
         })
     }

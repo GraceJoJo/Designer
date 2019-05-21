@@ -8,7 +8,7 @@ package com.jojo.design.module_core.bean
  */
 data class AllfaverEntity(var time: String, var list: List<FaverBean>, var date: String) {
     data class FaverBean(var avatarPath: String, var feeds: List<FeedBean>, var nickName: String, var time: String, var feedsSize: Int) {
-        data class FeedBean(var id: String, var favNum: Int, var image: String) {
+        data class FeedBean(var productId: String, var id: String, var favNum: Int, var image: String) {
         }
     }
 }

@@ -225,13 +225,16 @@ object StatusBarHelper {
     fun isMIUI(): Boolean {
         try {
             val prop = BuildProperties.newInstance()
-            return (prop.getProperty(KEY_MIUI_VERSION_CODE, null) != null
-                    || prop.getProperty(KEY_MIUI_VERSION_NAME, null) != null
-                    || prop.getProperty(KEY_MIUI_INTERNAL_STORAGE, null) != null)
+            if (prop != null) {
+                return (prop.getProperty(KEY_MIUI_VERSION_CODE, "") != ""
+                        || prop.getProperty(KEY_MIUI_VERSION_NAME, "") != ""
+                        || prop.getProperty(KEY_MIUI_INTERNAL_STORAGE, "") != "")
+            }
+
         } catch (e: IOException) {
             return false
         }
-
+        return false
     }
 
     /**

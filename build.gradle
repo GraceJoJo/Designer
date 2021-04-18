@@ -25,6 +25,9 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        //新加，解决运行项目时Received close_notify during handshake报错
+        mavenCentral()
+        mavenLocal()
     }
 }
 

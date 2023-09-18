@@ -28,7 +28,7 @@ class DIA_Filter constructor(context: Activity) {
         mContext = context
         mDialog = Dialog(context, R.style.style_custom_dialog)
         mContentView = LayoutInflater.from(context).inflate(R.layout.dia_filter, null)
-        mDialog?.setContentView(mContentView)
+        mDialog?.setContentView(mContentView!!)
     }
 
 

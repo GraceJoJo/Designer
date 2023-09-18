@@ -22,10 +22,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
             <!--TabLayout+ViewPager-->
             <RelativeLayout
                 android:id="@+id/rl_tablayout"
@@ -51,7 +51,7 @@
                     app:stl_underlineThickness="0dp" />
             </RelativeLayout>
 
-            <android.support.v4.view.ViewPager
+            <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vp_shoping"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

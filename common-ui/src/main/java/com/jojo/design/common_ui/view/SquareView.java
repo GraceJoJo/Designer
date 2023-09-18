@@ -1,18 +1,14 @@
 package com.jojo.design.common_ui.view;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PathMeasure;
-import android.graphics.RectF;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-import android.widget.ImageView;
 
 /**
  * author : JOJO

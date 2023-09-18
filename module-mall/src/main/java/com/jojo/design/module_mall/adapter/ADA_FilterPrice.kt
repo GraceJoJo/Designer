@@ -1,7 +1,7 @@
 package com.jojo.design.module_mall.adapter
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.jojo.design.common_base.adapter.lv.CommonAdapterListView
 import com.jojo.design.common_base.adapter.lv.ViewHolderListView
 import com.jojo.design.module_mall.R

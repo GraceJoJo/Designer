@@ -1,8 +1,8 @@
 package com.jojo.design.module_discover.ui
 
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.v4.view.ViewPager
+import com.google.android.material.appbar.AppBarLayout
+import androidx.viewpager.widget.ViewPager
 import android.view.View
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -54,9 +54,10 @@ class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), Cat
     }
 
     override fun startEvents() {
-        categoryId = intent.extras.getString(ARouterConstants.CATEGORY_ID)
-        categoryBean = intent.extras.getSerializable(ARouterConstants.CATEGORY_BEAN) as CategoryBean?
-        GlideUtils.loadNormalImage(intent.extras.getString(ARouterConstants.CATEGORY_HEAD_IMAGE), iv_headImg, 0)
+        categoryId = intent.extras?.getString(ARouterConstants.CATEGORY_ID).toString()
+        categoryBean = intent.extras?.getSerializable(ARouterConstants.CATEGORY_BEAN) as CategoryBean?
+        intent.extras?.getString(ARouterConstants.CATEGORY_HEAD_IMAGE)
+            ?.let { GlideUtils.loadNormalImage(it, iv_headImg, 0) }
         tv_name.text = categoryBean?.name
         tv_des.spacing = 10f
         tv_des.setText(categoryBean?.description!!, TextView.BufferType.SPANNABLE)
@@ -110,7 +111,7 @@ class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), Cat
         supportActionBar?.setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(R.drawable.ic_back_arrow_white)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        tv_title.text = intent.extras.getString(ARouterConstants.CATEGORY_NAME)
+        tv_title.text = intent.extras?.getString(ARouterConstants.CATEGORY_NAME)
     }
 
 
@@ -142,7 +143,7 @@ class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), Cat
         //设置预加载Fragment的数量为tabList.size（首次进入时，viewpgaer的每个Fragment都会走startFragmentEvents，然后每次滑动切换都走onUserVisible）
         viewpager.offscreenPageLimit = tabList.size
         val adapter = FragmentPagerItemAdapter(supportFragmentManager, pages)
-        viewpager.adapter = adapter!!
+        viewpager.adapter = adapter
         tablayout.setViewPager(viewpager)
     }
 }

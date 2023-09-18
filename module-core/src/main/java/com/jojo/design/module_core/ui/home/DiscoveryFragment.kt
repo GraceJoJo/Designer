@@ -1,7 +1,7 @@
 package com.jojo.design.module_core.ui.home
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.jojo.design.common_base.dagger.mvp.BaseContract
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_ui.view.MultipleStatusView

@@ -4,29 +4,29 @@ ext {
      * isBuildModule=true
      * 修改之后需要Sync方可生效
      */
-    isBuildModule = false
+    isBuildModule = true
 
     android = [
-            compileSdkVersion: 26,
-            buildToolsVersion: "26.0.2",
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.3",
             minSdkVersion    : 16,
-            targetSdkVersion : 26,
+            targetSdkVersion : 29,
             versionCode      : 1,
             versionName      : "1.0"
     ]
 
 
     version = [
-            androidSupportSdkVersion: "27.1.1",
+            androidSupportSdkVersion: "28.0.0",
             retrofitSdkVersion      : "2.4.0",
             glideSdkVersion         : "4.6.1",
-            butterknifeSdkVersion   : "8.8.1",
+            butterknifeSdkVersion   : "10.0.0",
             eventbusVersion         : "3.0.0",
             espressoSdkVersion      : "3.0.2",
             rxlifecycle2SdkVersion  : "2.2.1"
     ]
     dependencies = [
-            //support
+            //
             "appcompat-v7"            : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
             "design"                  : "com.android.support:design:${version["androidSupportSdkVersion"]}",
             "constraint-layout"       : "com.android.support.constraint:constraint-layout:1.1.3",
@@ -35,7 +35,7 @@ ext {
 
             //test
             "junit"                   : "junit:junit:4.12",
-            "androidJUnitRunner"      : "android.support.test.runner.AndroidJUnitRunner",
+            "androidJUnitRunner"      : 'androidx.test.runner.AndroidJUnitRunner',
             "test-runner"             : "com.android.support.test:runner:1.0.2",
             "espresso-core"           : "com.android.support.test.espresso:espresso-core:${version["espressoSdkVersion"]}",
 

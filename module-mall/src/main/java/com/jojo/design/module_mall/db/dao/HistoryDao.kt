@@ -1,6 +1,6 @@
 package com.jojo.design.module_mall.db.dao
 
-import android.arch.persistence.room.*
+import androidx.room.*
 
 import com.jojo.design.module_mall.db.bean.SearchHistoryBean
 import io.reactivex.Flowable

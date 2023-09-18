@@ -1,7 +1,7 @@
 package com.jojo.design.module_core.ui.home
 
 import android.os.Bundle
-import android.support.v4.app.FragmentTransaction
+import androidx.fragment.app.FragmentTransaction
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.jojo.design.common_base.dagger.mvp.BaseActivity
@@ -84,9 +84,9 @@ class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel
             -> {
                 if (mTopicFragment == null) {
                     mTopicFragment = TopicFragment.getInstance(mTitles[position])
-                    transaction.add(R.id.fl_container, mTopicFragment, "special")
+                    transaction.add(R.id.fl_container, mTopicFragment!!, "special")
                 } else {
-                    transaction.show(mTopicFragment)
+                    transaction.show(mTopicFragment!!)
                 }
                 StatusBarHelper.setStatusTextColor(true, this)
             }
@@ -94,9 +94,9 @@ class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel
             -> {
                 if (mDesignerFragment == null) {
                     mDesignerFragment = DesignerFragment.getInstance(mTitles[position])
-                    transaction.add(R.id.fl_container, mDesignerFragment, "designer")
+                    transaction.add(R.id.fl_container, mDesignerFragment!!, "designer")
                 } else {
-                    transaction.show(mDesignerFragment)
+                    transaction.show(mDesignerFragment!!)
                 }
                 StatusBarHelper.setStatusTextColor(false, this)
             }
@@ -104,9 +104,9 @@ class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel
             -> {
                 if (mShoppingFragment == null) {
                     mShoppingFragment = ShoppingFragment.getInstance(mTitles[position])
-                    transaction.add(R.id.fl_container, mShoppingFragment, "mall")
+                    transaction.add(R.id.fl_container, mShoppingFragment!!, "mall")
                 } else {
-                    transaction.show(mShoppingFragment)
+                    transaction.show(mShoppingFragment!!)
                 }
                 StatusBarHelper.setStatusTextColor(false, this)
             }
@@ -115,9 +115,9 @@ class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel
             -> {
                 if (mDiscorverFragment == null) {
                     mDiscorverFragment = DiscoveryFragment.getInstance(mTitles[position])
-                    transaction.add(R.id.fl_container, mDiscorverFragment, "discovery")
+                    transaction.add(R.id.fl_container, mDiscorverFragment!!, "discovery")
                 } else {
-                    transaction.show(mDiscorverFragment)
+                    transaction.show(mDiscorverFragment!!)
                 }
                 StatusBarHelper.setStatusTextColor(true, this)
             }
@@ -134,16 +134,16 @@ class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel
      */
     private fun hideFragments(transaction: FragmentTransaction) {
         if (null != mTopicFragment) {
-            transaction.hide(mTopicFragment)
+            transaction.hide(mTopicFragment!!)
         }
         if (null != mDesignerFragment) {
-            transaction.hide(mDesignerFragment)
+            transaction.hide(mDesignerFragment!!)
         }
         if (null != mShoppingFragment) {
-            transaction.hide(mShoppingFragment)
+            transaction.hide(mShoppingFragment!!)
         }
         if (null != mDiscorverFragment) {
-            transaction.hide(mDiscorverFragment)
+            transaction.hide(mDiscorverFragment!!)
         }
 
     }

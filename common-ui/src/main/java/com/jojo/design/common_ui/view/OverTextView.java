@@ -4,7 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.text.Layout;
 import android.text.Selection;
 import android.text.Spannable;
@@ -30,7 +30,7 @@ import com.jojo.design.common_ui.R;
  * description: 查看更多的TextView
  */
 
-public class OverTextView extends android.support.v7.widget.AppCompatTextView {
+public class OverTextView extends androidx.appcompat.widget.AppCompatTextView {
     private Context mContext;
     /**
      * 文字超出时的提示信息

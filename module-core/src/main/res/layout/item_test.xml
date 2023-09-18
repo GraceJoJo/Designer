@@ -8,7 +8,7 @@
             type="com.jojo.design.common_base.bean.ErrorBean"></variable>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -20,5 +20,5 @@
             android:text="嘻嘻嘻嘻嘻"
             android:textColor="@color/color_212121"
             android:textSize="20sp" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,7 +1,7 @@
 package com.jojo.design.common_base.dagger.mvp
 
-import android.databinding.ViewDataBinding
-import android.support.annotation.Nullable
+import androidx.databinding.ViewDataBinding
+import androidx.annotation.Nullable
 import com.jojo.design.common_base.BaseAppliction
 import javax.inject.Inject
 

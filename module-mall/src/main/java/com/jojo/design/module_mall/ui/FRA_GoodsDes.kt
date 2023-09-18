@@ -1,6 +1,6 @@
 package com.jojo.design.module_mall.ui
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import com.jojo.design.common_base.dagger.mvp.BaseContract
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
@@ -51,7 +51,8 @@ class FRA_GoodsDes : BaseFragment<BaseContract.BasePresenter, BaseContract.BaseM
 
     override fun startFragmentEvents() {
         mAdapter = ADA_GoodsDes(mContext)
-        lv_content.layoutManager = LinearLayoutManager(mContext)
+        lv_content.layoutManager =
+            LinearLayoutManager(mContext)
         lv_content.adapter = mAdapter
 
     }

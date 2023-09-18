@@ -2,8 +2,8 @@ package com.jojo.design.module_core.ui.home
 
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
@@ -75,7 +75,8 @@ class ShoppingFragmentOld : BaseFragment<ShoppingPresenter, ShoppingModel>(), Sh
         //设置外层列表Adapter
         lrecyclerview.adapter = mLRecyclerViewAdapter
         lrecyclerview.setHasFixedSize(true)
-        lrecyclerview.layoutManager = LinearLayoutManager(mContext)
+        lrecyclerview.layoutManager =
+            LinearLayoutManager(mContext)
         lrecyclerview.setRefreshProgressStyle(ProgressStyle.SysProgress)
         lrecyclerview.setLoadingMoreProgressStyle(ProgressStyle.SysProgress)
         //设置头部文字颜色
@@ -90,7 +91,8 @@ class ShoppingFragmentOld : BaseFragment<ShoppingPresenter, ShoppingModel>(), Sh
 //        mAdapter.update(data, true)
         var mAdapter2 = ADA_TestFragment(mContext)
         recyclerview.adapter = mAdapter2
-        recyclerview.layoutManager = LinearLayoutManager(mContext)
+        recyclerview.layoutManager =
+            LinearLayoutManager(mContext)
         mAdapter2.update(data.subList(0, 5), true)
 
         //获取商品分类

@@ -1,7 +1,7 @@
 package com.jojo.design.module_core.ui.test
 
 import android.os.Handler
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.TextView
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
@@ -59,7 +59,8 @@ class TestFragment : BaseFragment<TestPresenter, TestModel>(), TestContract.View
 
         mMultipleStatusView?.showLoading()
         mPresenter?.getData("presenter init successful Fragment-MVP-测试")
-        recyclerview.layoutManager = LinearLayoutManager(mContext)
+        recyclerview.layoutManager =
+            LinearLayoutManager(mContext)
         var mAdapter = ADA_TestFragment(mContext)
         recyclerview.adapter = mAdapter
         var data = ArrayList<String>()

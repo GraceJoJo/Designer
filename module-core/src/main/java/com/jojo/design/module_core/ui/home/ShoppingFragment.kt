@@ -2,10 +2,10 @@ package com.jojo.design.module_core.ui.home
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
-import android.support.v4.view.ViewPager
-import android.support.v4.widget.NestedScrollView
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager.widget.ViewPager
+import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.alibaba.android.arouter.launcher.ARouter

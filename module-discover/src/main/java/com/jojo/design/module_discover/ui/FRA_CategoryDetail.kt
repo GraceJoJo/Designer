@@ -1,6 +1,6 @@
 package com.jojo.design.module_discover.ui
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.config.arouter.ARouterConstants
@@ -60,7 +60,8 @@ class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), Cat
 //        initTestData(type)
         mAdapter = ADA_CategoryDetail(activity!!)
         rv.setPullRefreshEnabled(false)
-        RecyclerviewHelper.initLayoutManagerRecyclerView(rv, mAdapter!!, LinearLayoutManager(mContext), mContext)
+        RecyclerviewHelper.initLayoutManagerRecyclerView(rv, mAdapter!!,
+            LinearLayoutManager(mContext), mContext)
 
 //        //请求分类详情
 //        mPresenter?.getCategorieDetail((activity as ACT_CategoryDetail).categoryId, type!!)
@@ -70,7 +71,8 @@ class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), Cat
      * 模拟数据
      */
     private fun initTestData(type: Int?) {
-        rv.layoutManager = LinearLayoutManager(mContext)
+        rv.layoutManager =
+            LinearLayoutManager(mContext)
         val adapter = ADA_Category(mContext)
         rv.adapter = adapter
 

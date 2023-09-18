@@ -110,7 +110,7 @@ class IOSLoadingView @JvmOverloads constructor(context: Context, attrs: Attribut
 
             mPaint!!.alpha = (i + 1 + control) % 12 * 255 / 12
 
-            canvas.drawLine(mCenterX.toFloat(), (mCenterY - mSegmentLength).toFloat(), mCenterX.toFloat(), (mCenterY - mSegmentLength * 2).toFloat(), mPaint)
+            canvas.drawLine(mCenterX.toFloat(), (mCenterY - mSegmentLength).toFloat(), mCenterX.toFloat(), (mCenterY - mSegmentLength * 2).toFloat(), mPaint!!)
 
             canvas.rotate(30F, mCenterX.toFloat(), mCenterY.toFloat())
 

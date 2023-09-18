@@ -1,6 +1,6 @@
 package com.jojo.design.common_base.adapter.rv;
 
-import android.support.v4.util.SparseArrayCompat;
+import androidx.collection.SparseArrayCompat;
 
 
 /**
@@ -67,6 +67,7 @@ public class ItemViewDelegateManager<T>
         return this;
     }
 
+    //列表的所有卡片种类 = delegates.size
     public int getItemViewType(T item, int position)
     {
         int delegatesCount = delegates.size();

@@ -1,6 +1,6 @@
 package com.jojo.design.common_ui.lrecyclerview.recyclerview;
 
-import android.support.design.widget.AppBarLayout;
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * 

@@ -2,9 +2,9 @@ package com.jojo.design.module_mall.helper
 
 import android.app.Activity
 import android.graphics.drawable.BitmapDrawable
-import android.support.constraint.ConstraintLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.PopupWindow
@@ -40,7 +40,9 @@ class PopupFilter {
             mPopWindow!!.isOutsideTouchable = false
             mPopWindow!!.isFocusable = false
             mPopWindow!!.setBackgroundDrawable(BitmapDrawable())
-            RecyclerviewHelper.initNormalRecyclerView(mContext, recyclerviewFilter!!, adapter!!, LinearLayoutManager(mContext))
+            RecyclerviewHelper.initNormalRecyclerView(mContext, recyclerviewFilter!!, adapter!!,
+                LinearLayoutManager(mContext)
+            )
 
             return mPopWindow as MyPopupWindow
         }

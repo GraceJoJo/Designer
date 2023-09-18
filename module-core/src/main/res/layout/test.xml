@@ -10,7 +10,7 @@
     </data>
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -38,7 +38,7 @@
                 android:textColor="@color/color_ffffff"
                 android:textSize="20sp" />
         </com.jojo.design.common_ui.view.MultipleStatusView>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

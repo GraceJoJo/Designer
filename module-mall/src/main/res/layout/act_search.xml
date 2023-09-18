@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:background="@color/color_ffffff">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/color_ffffff">
@@ -61,12 +61,12 @@
                 android:layout_marginRight="15dp"
                 android:src="@drawable/btn_trash" />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvHistory"
                 app:layout_constraintTop_toBottomOf="@+id/tv_recent_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-        </android.support.constraint.ConstraintLayout>
+                android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.jojo.design.common_ui.view.IOSScrollView>
 </LinearLayout>

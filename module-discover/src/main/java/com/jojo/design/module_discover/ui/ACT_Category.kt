@@ -2,8 +2,8 @@ package com.jojo.design.module_discover.ui
 
 import android.graphics.Rect
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -48,12 +48,13 @@ class ACT_Category : BaseActivity<CategoryPresenter, CategoryModel>(), CategoryC
         mPresenter?.getCategories()
 
         mAdapter = ADA_Category(mContext)
-        rv_category.layoutManager = GridLayoutManager(mContext, 2)
+        rv_category.layoutManager =
+            GridLayoutManager(mContext, 2)
         rv_category.adapter = mAdapter
 
         // //设置item之间的间距
         rv_category.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView?) {
+            override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
                 if (itemPosition > 1) outRect.top = 5
 
                 if ((itemPosition + 1) % 2 == 0) outRect.left = 5

@@ -55,7 +55,7 @@ class LoadingDialog constructor(context: Context) {
             // 显示文本
             loadingText.setText(msg)
             // 创建自定义样式的Dialog
-            mLoadingDialog = Dialog(context, R.style.LoadingDialog)
+            mLoadingDialog = Dialog(context!!, R.style.LoadingDialog)
             // 设置返回键无效
             mLoadingDialog!!.setCancelable(cancelable)
             mLoadingDialog!!.setCanceledOnTouchOutside(false)

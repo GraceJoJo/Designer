@@ -1,6 +1,6 @@
 package com.jojo.design.common_base.adapter.lv;
 
-import android.support.v4.util.SparseArrayCompat;
+import androidx.collection.SparseArrayCompat;
 
 
 /**

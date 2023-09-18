@@ -30,8 +30,8 @@ class ACT_CommonWebView : BaseActivity<BaseContract.BasePresenter, BaseContract.
     }
 
     override fun startEvents() {
-        setHeaderTitle(intent.extras.getString(ARouterConstants.WEB_TITLE))
-        webUrl = intent.extras.getString(ARouterConstants.WEB_URL)
+        intent.extras?.getString(ARouterConstants.WEB_TITLE)?.let { setHeaderTitle(it) }
+        webUrl = intent.extras?.getString(ARouterConstants.WEB_URL)
         initWebView()
     }
 

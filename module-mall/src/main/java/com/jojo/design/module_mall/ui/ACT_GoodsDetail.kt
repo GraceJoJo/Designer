@@ -2,7 +2,7 @@ package com.jojo.design.module_mall.ui
 
 import android.graphics.Color
 import android.os.Build
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -56,7 +56,7 @@ class ACT_GoodsDetail : BaseActivity<GoodsPresenter, GoodsModel>(), GoodsContrac
 
     override fun startEvents() {
         StatusBarHelper.setStatusTextColor(true, this)
-        productId = intent.extras.getString(ARouterConstants.PRODUCT_ID)
+        productId = intent.extras?.getString(ARouterConstants.PRODUCT_ID)
         mPresenter?.getGoodsContent(productId!!)
         mPresenter?.getGoodsDescription(productId!!)
         mPresenter?.getGoodsCommentList(productId!!, 0)
@@ -93,7 +93,7 @@ class ACT_GoodsDetail : BaseActivity<GoodsPresenter, GoodsModel>(), GoodsContrac
         if (!fragmentGoodsDes!!.isAdded) {
             currentFragment = fragmentGoodsDes
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.add(R.id.fl_content, fragmentGoodsDes)
+            transaction.add(R.id.fl_content, fragmentGoodsDes!!)
             transaction.commitAllowingStateLoss()
         }
     }

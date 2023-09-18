@@ -29,17 +29,20 @@ android {
             //APP的build.gradle设置支持的SO库架构
             abiFilters 'armeabi', 'armeabi-v7a'
         }
+        //支持DataBinding
+        dataBinding {
+            enabled = true
+        }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    //支持DataBinding
-    dataBinding {
-        enabled = true
     }
 
     //java插件引入了一个概念叫做SourceSets，通过修改SourceSets中的属性，可以指定哪些源文件
@@ -67,9 +70,10 @@ dependencies {
     //ARouter
     kapt rootProject.ext.dependencies["arouter-compiler"]
     //解决Kotlin和DataBinding冲突
-    kapt "com.android.databinding:compiler:$android_version"
+//    kapt 'androidx.databinding:databinding-compiler:1.0.0'
     //butterknife-compiler
-    kapt rootProject.ext.dependencies["butterknife-compiler"]
+    implementation rootProject.ext.dependencies["butterknife-compiler"]
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
     kapt rootProject.ext.dependencies["dagger-compiler"]
     //video
     api rootProject.ext.dependencies["gsyvideo-player"]

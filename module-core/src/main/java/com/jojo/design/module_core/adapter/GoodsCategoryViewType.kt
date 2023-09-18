@@ -1,8 +1,8 @@
 package com.jojo.design.module_core.adapter
 
 import android.content.Context
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.adapter.rv.ItemViewDelegate
 import com.jojo.design.common_base.adapter.rv.MultiItemTypeAdapter

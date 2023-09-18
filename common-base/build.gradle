@@ -21,6 +21,10 @@ android {
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
         //MultiDex分包方法
         multiDexEnabled true
+        //支持DataBinding
+        dataBinding {
+            enabled = true
+        }
     }
 
     buildTypes {
@@ -29,17 +33,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    //支持DataBinding
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     //MultiDex分包
     api rootProject.ext.dependencies["multidex"]
 
@@ -66,7 +65,7 @@ dependencies {
     api rootProject.ext.dependencies["dagger"]
     kapt rootProject.ext.dependencies["dagger-compiler"]
     //解决Kotlin和DataBinding冲突
-    kapt "com.android.databinding:compiler:$android_version"
+//    kapt 'androidx.databinding:databinding-compiler:1.0.0'
     //事件订阅
     api rootProject.ext.dependencies["eventbus"]
     //黄油刀

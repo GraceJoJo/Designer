@@ -9,8 +9,8 @@ package com.jojo.design.module_test;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -21,8 +21,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.jojo.design.common_base.utils.ScreenUtil;
 
 import java.util.ArrayList;
 

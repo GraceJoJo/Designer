@@ -2,8 +2,8 @@ package com.jojo.design.common_base.utils
 
 import android.app.Activity
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.text.TextUtils
 import android.view.View
 import com.jojo.design.common_base.R
@@ -23,7 +23,8 @@ class RecyclerviewHelper {
         fun initRecyclerView(mRecyclerView: LRecyclerView, mAdapter: MultiItemTypeAdapter<out Any>, mContext: Context) {
             val mLRecyclerViewAdapter = LRecyclerViewAdapter(mAdapter)
             //设置外层列表Adapter
-            mRecyclerView.layoutManager = LinearLayoutManager(mContext)
+            mRecyclerView.layoutManager =
+                LinearLayoutManager(mContext)
             mRecyclerView.adapter = mLRecyclerViewAdapter
             mRecyclerView.setHasFixedSize(true)
             mRecyclerView.setRefreshProgressStyle(ProgressStyle.SysProgress)
@@ -68,7 +69,8 @@ class RecyclerviewHelper {
             //设置外层列表Adapter
             mRecyclerView.adapter = mLRecyclerViewAdapter
             mRecyclerView.setHasFixedSize(true)
-            mRecyclerView.layoutManager = LinearLayoutManager(mContext)
+            mRecyclerView.layoutManager =
+                LinearLayoutManager(mContext)
             mRecyclerView.setRefreshProgressStyle(ProgressStyle.SysProgress)
             mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.SysProgress)
             //设置头部文字颜色

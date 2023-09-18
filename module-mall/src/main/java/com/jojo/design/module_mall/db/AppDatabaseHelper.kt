@@ -1,6 +1,6 @@
 package com.jojo.design.module_mall.db
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
 
 /**

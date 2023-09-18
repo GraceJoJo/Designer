@@ -23,7 +23,7 @@ class ADA_ItemCard constructor(context: Context) : CommonAdapter<ItemEntity.Item
 
     override fun convert(holder: ViewHolder, bean: ItemEntity.ItemDataEntity.DataEntity.ItemBean, position: Int) {
         var ivCard = holder.getView<ImageView>(R.id.iv_card)
-        GlideUtils.loadNormalImage(bean?.data?.cover?.detail, ivCard, 0)
+        bean?.data?.cover?.detail?.let { GlideUtils.loadNormalImage(it, ivCard, 0) }
         if (bean?.data != null && bean.data.playInfo != null && bean.data.playInfo.isNotEmpty()) {
             holder.setText(R.id.tv_size, DataFormatUtils.formatTime((bean?.data?.playInfo[0]?.urlList[0]?.size) / 100))
         }

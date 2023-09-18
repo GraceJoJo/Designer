@@ -1,8 +1,8 @@
 package com.jojo.design.module_core.adapter
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jojo.design.common_base.BaseAppliction.Companion.context
 import com.jojo.design.common_base.adapter.rv.ItemViewDelegate
 import com.jojo.design.common_base.adapter.rv.ViewHolder
@@ -31,7 +31,8 @@ class GoodsViewType constructor(context: Context) : ItemViewDelegate<ContentBean
     override fun convert(holder: ViewHolder, bean: ContentBean, position: Int) {
         var adapter = ADA_ItemGoods(mContext!!)
         var rv = holder.getView<RecyclerView>(R.id.rv)
-        rv.layoutManager = LinearLayoutManager(mContext)
+        rv.layoutManager =
+            LinearLayoutManager(mContext)
         rv.adapter = adapter
         adapter.update(bean.goods, true)
 

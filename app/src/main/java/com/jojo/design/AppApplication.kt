@@ -2,7 +2,7 @@ package com.jojo.design
 
 import android.app.Application
 import android.content.Context
-import android.support.multidex.MultiDex
+import androidx.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.BuildConfig

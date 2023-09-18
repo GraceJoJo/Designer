@@ -7,11 +7,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.annotation.Nullable
-import android.support.v4.app.Fragment
+import androidx.annotation.Nullable
+import androidx.fragment.app.Fragment
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -135,7 +135,7 @@ abstract class BaseLazyFragment : Fragment(), IBase, IBaseLazyFragment, BaseCont
     override fun onDetach() {
         super.onDetach()
         try {
-            val childFragmentManager = android.support.v4.app.Fragment::class.java.getDeclaredField("mChildFragmentManager")
+            val childFragmentManager = Fragment::class.java.getDeclaredField("mChildFragmentManager")
             childFragmentManager.isAccessible = true
             childFragmentManager.set(this, null)
 

@@ -20,6 +20,10 @@ android {
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
         //MultiDex分包方法
         multiDexEnabled true
+        //支持DataBinding
+        dataBinding {
+            enabled = true
+        }
     }
 
     buildTypes {
@@ -29,22 +33,18 @@ android {
         }
     }
 
-    //支持DataBinding
-    dataBinding {
-        enabled = true
-    }
-
     configurations.all {
-        resolutionStrategy.force "com.android.support:support-v4:27.1.1"
+        resolutionStrategy.force "com.android.support:support-v4:28.0.0"
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //noinspection GradleDependency
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     //解决Kotlin和DataBinding冲突
-    kapt "com.android.databinding:compiler:$android_version"
+//    kapt 'androidx.databinding:databinding-compiler:1.0.0'
     //MultiDex分包
     api rootProject.ext.dependencies["multidex"]
 
@@ -67,6 +67,19 @@ dependencies {
     //ios弹性效果
     api rootProject.ext.dependencies["ios-scroll"]
 }
-repositories {
-    mavenCentral()
+//repositories {
+//    mavenCentral()
+//    mavenLocal()
+//    maven { url 'https://maven.google.com' } // <-- add this!
+//    jcenter()
+//}
+allprojects {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://maven.google.com"
+        }
+        maven { url 'https://jitpack.io' }
+        jcenter()
+    }
 }

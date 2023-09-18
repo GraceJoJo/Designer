@@ -1,9 +1,9 @@
 package com.jojo.design.module_test
 
 import android.graphics.Color
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import com.jojo.design.common_base.dagger.mvp.BaseActivity
@@ -33,7 +33,8 @@ class ACT_TestLoadMore : BaseActivity<BaseContract.BasePresenter, BaseContract.B
 
     var isNoMore = false
     override fun startEvents() {
-        recyclerview.layoutManager = LinearLayoutManager(mContext)
+        recyclerview.layoutManager =
+            LinearLayoutManager(mContext)
         var data = ArrayList<String>()
         (1..30).mapTo(data) { "item=" + it }
         mAdapter = ADA_TestLoadMore(mContext, data)
@@ -41,7 +42,7 @@ class ACT_TestLoadMore : BaseActivity<BaseContract.BasePresenter, BaseContract.B
 
 
         recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 var layoutManager = recyclerView?.layoutManager
                 var itemCount = layoutManager?.itemCount
@@ -61,7 +62,7 @@ class ACT_TestLoadMore : BaseActivity<BaseContract.BasePresenter, BaseContract.B
 
             }
 
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 var layoutManager = recyclerView?.layoutManager
                 var lastVisibleItemPosition = findLastVisibleItemPosition(layoutManager!!)

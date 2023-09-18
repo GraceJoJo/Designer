@@ -26,10 +26,14 @@ android {
             //APP的build.gradle设置支持的SO库架构
             abiFilters 'armeabi', 'armeabi-v7a'
         }
+        //支持DataBinding
+        dataBinding {
+            enabled = true
+        }
     }
-    //支持DataBinding
-    dataBinding {
-        enabled = true
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     //  签名文件信息配置
     signingConfigs {
@@ -70,7 +74,7 @@ dependencies {
     //所有需要使用ARouter的组件（使用了@Route(path = "/test/test")注解的模块）都需要添加下面这句依赖，否则会找不到路由（there's no route matched）
     kapt rootProject.ext.dependencies["arouter-compiler"]
     //解决Kotlin和DataBinding冲突
-    kapt "com.android.databinding:compiler:$android_version"
+//    kapt 'androidx.databinding:databinding-compiler:1.0.0'
     //butterknife-compiler
     kapt rootProject.ext.dependencies["butterknife-compiler"]
     kapt 'com.google.dagger:dagger-compiler:2.11'

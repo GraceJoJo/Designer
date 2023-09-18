@@ -1,6 +1,6 @@
 package com.jojo.design.module_core.ui.home
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_ui.view.MultipleStatusView
@@ -45,7 +45,8 @@ class AllFavorFragment : BaseFragment<ShoppingPresenter, ShoppingModel>(), Shopp
         mPresenter?.getPersonLike()
 
         mAdapter = ADA_PersonLike(mContext)
-        recyclerview.layoutManager = LinearLayoutManager(mContext)
+        recyclerview.layoutManager =
+            LinearLayoutManager(mContext)
         recyclerview.adapter = mAdapter
     }
 

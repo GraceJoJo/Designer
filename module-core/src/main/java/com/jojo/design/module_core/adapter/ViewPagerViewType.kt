@@ -1,7 +1,7 @@
 package com.jojo.design.module_core.adapter
 
 import android.app.Activity
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import com.jojo.design.common_base.adapter.rv.ItemViewDelegate
 import com.jojo.design.common_base.adapter.rv.ViewHolder
 import com.jojo.design.common_ui.view.CustomViewPager

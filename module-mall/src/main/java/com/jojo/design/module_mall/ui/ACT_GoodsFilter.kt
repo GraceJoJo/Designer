@@ -2,8 +2,8 @@ package com.jojo.design.module_mall.ui
 
 import android.graphics.Rect
 import android.os.Handler
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.text.TextUtils
 import android.view.View
 import android.widget.AdapterView
@@ -81,8 +81,8 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
 
     override fun startEvents() {
         ivSearch.visibility = View.VISIBLE
-        outCategoryId = intent.extras.getString(ARouterConstants.TAGCATEGORY_ID)
-        keyword = intent.extras.getString(ARouterConstants.SEARCH_KEYWORDS)
+        outCategoryId = intent.extras?.getString(ARouterConstants.TAGCATEGORY_ID)
+        keyword = intent.extras?.getString(ARouterConstants.SEARCH_KEYWORDS)
         setHeaderTitle(keyword!!)
 
 
@@ -138,11 +138,12 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
      */
     private fun initGoodsRecyclerview() {
         mAdapter = ADA_SearchGoods(mContext)
-        RecyclerviewHelper.initLayoutManagerRecyclerView(lrecyclerview, mAdapter!!, GridLayoutManager(mContext, 2), mContext)
+        RecyclerviewHelper.initLayoutManagerRecyclerView(lrecyclerview, mAdapter!!,
+            GridLayoutManager(mContext, 2), mContext)
         lrecyclerview.setPullRefreshEnabled(false)
         // //设置item之间的间距
         lrecyclerview.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView?) {
+            override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
                 //设计图item之间的间距为40 (header占了一个位置，故从位置1开始显示实际的item)
                 if (itemPosition != 0) {
                     outRect.top = 40
@@ -204,7 +205,7 @@ class ACT_GoodsFilter : BaseActivity<SearchPresenter, SearchModel>(), SearchCont
                 var paramsMap = HashMap<String, String>()
                 //传了分类ID，就不传关键字匹配
                 outCategoryId = bean.id.toString()
-                if (bean.id == 0) outCategoryId = intent.extras.getString(ARouterConstants.TAGCATEGORY_ID)
+                if (bean.id == 0) outCategoryId = intent.extras?.getString(ARouterConstants.TAGCATEGORY_ID)
                 requestGoodList(paramsMap)
 
                 rb_category.text = bean.name

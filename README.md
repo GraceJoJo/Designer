@@ -57,3 +57,12 @@
 
 # 声明
 感谢[想去App](http://www.xiangqu.com/)和开眼App提供参考,个人使用了抓包的方式使用了其中的API，并非攻击，如构成侵权，请及时通知我删除或者修改。
+
+#工程无法运行fix
+迁移Androidx: https://www.pianshen.com/article/72141877627/
+更新Androidx的butterKnife的问题： https://blog.csdn.net/LeeYKKK/article/details/98209667
+Execution failed for task ':app:dataBindingMergeDependencyArtifactsDebug'. Data Binding annotation processor version needs to match the Android Gradle Plugin version. You can remove the kapt dependency com.android.databinding:compiler:3.0.1 and Android Gradle Plugin will inject the right version.https://www.jianshu.com/p/49bb7e6bc229  https://blog.csdn.net/CSDNno/article/details/79897667 
+Gradle插件版本、gradle版本、kotlin版本  https://blog.csdn.net/u012693479/article/details/106547206
+支持lambada需配置jDK8  https://blog.csdn.net/qq_37980878/article/details/116852571
+安装NDK： tools–>sdk manager–>Android sdk–>sdk tools–>show package detail–>找到NDK(side by side) 具体版本,完成下载并安装即可（fix : No version of NDK matched the request version 20.0.5594570.Version available locally:22.1.7171670...）
+

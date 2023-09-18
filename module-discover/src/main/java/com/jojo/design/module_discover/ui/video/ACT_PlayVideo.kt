@@ -47,10 +47,10 @@ class ACT_PlayVideo : BaseActivity<BaseContract.BasePresenter, BaseContract.Base
 
     override fun startEvents() {
 
-        playTitile = intent.extras.getString(ARouterConstants.PLAY_TITLE)
-        playUrl = intent.extras.getString(ARouterConstants.PLAY_URL)
-        coverImg = intent.extras.getString(ARouterConstants.COVER_IMG)
-        bgImg = intent.extras.getString(ARouterConstants.VIDEO_BG_IMG)
+        playTitile = intent.extras?.getString(ARouterConstants.PLAY_TITLE)
+        playUrl = intent.extras?.getString(ARouterConstants.PLAY_URL)
+        coverImg = intent.extras?.getString(ARouterConstants.COVER_IMG)
+        bgImg = intent.extras?.getString(ARouterConstants.VIDEO_BG_IMG)
         tv_title.text = playTitile
         //加载视频背景图片
 //        GlideUtils.loadBackgroudView(mContext, bgImg!!, layout_root)

@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@+id/title">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -112,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1800px"
                     app:layout_constraintTop_toBottomOf="@+id/tab"></com.jojo.design.common_ui.view.CustomViewPager>
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.jojo.design.common_ui.view.DropZoomScrollView>
 

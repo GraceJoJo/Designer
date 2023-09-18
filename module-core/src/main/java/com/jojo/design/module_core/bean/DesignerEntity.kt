@@ -6,7 +6,7 @@ package com.jojo.design.module_core.bean
  *    date   : 2018/12/7 3:31 PM
  *    desc   : 设计师实体
  */
-data class DesignerEntity(val id: String, var userAvatar: String, var productNum: Int, var tags: List<TagBean>, var userNick: String, val banner: String, val opTag: String, val shopName: String, val shopId: String) {
+data class DesignerEntity(val id: String, var userAvatar: String?, var productNum: Int, var tags: List<TagBean>, var userNick: String, val banner: String, val opTag: String, val shopName: String, val shopId: String) {
     data class TagBean(val name: String)
 //    {
 //        "banner": "http://xqtopic.xiangqu.com/FtgXpQe5x_0bL1TjboyspaxOxsN-?imageView2/2/w/640/q/90/format/jpg/960x645/",

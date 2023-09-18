@@ -1,6 +1,6 @@
 package com.jojo.design.module_core.ui.designer
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -39,13 +39,17 @@ class ACT_DesignerList : BaseActivity<DesignerPresenter, DesignerModel>(), Desig
     override fun getLoadingMultipleStatusView(): MultipleStatusView? = null
 
     override fun initDaggerInject(mApplicationComponent: ApplicationComponent) {
-        DaggerCoreComponent.builder().applicationComponent(BaseAppliction.mApplicationComponent).build().inject(this)
+        DaggerCoreComponent.builder().applicationComponent(BaseAppliction.mApplicationComponent)
+            .build().inject(this)
     }
 
     override fun startEvents() {
         val extras = intent.extras
-        setHeaderTitle(extras.getString(ARouterConstants.TAG_NAME))
-        mPresenter?.getDesinerList(extras.getString(ARouterConstants.TAGCATEGORY_ID), extras.getString(ARouterConstants.TAG_ID))
+        extras?.getString(ARouterConstants.TAG_NAME)?.let { setHeaderTitle(it) }
+        mPresenter?.getDesinerList(
+            extras?.getString(ARouterConstants.TAGCATEGORY_ID) ?: "",
+            extras?.getString(ARouterConstants.TAG_ID) ?: ""
+        )
         mAdapter = ADA_DesignerList(mContext)
         RecyclerviewHelper.initRecyclerView(lrecyclerview, mAdapter!!, mContext)
 
@@ -58,12 +62,19 @@ class ACT_DesignerList : BaseActivity<DesignerPresenter, DesignerModel>(), Desig
                 var realPos = position - 1
                 var bean = mAdapter!!.dataList[realPos]
                 ARouter.getInstance().build(ARouterConfig.ACT_WEBVIEW)
-                        .withString(ARouterConstants.WEB_URL, "http://www.xiangqu.com/designer2/index?id=" + bean.id)
-                        .withString(ARouterConstants.WEB_TITLE, bean.userNick)
-                        .navigation()
+                    .withString(
+                        ARouterConstants.WEB_URL,
+                        "http://www.xiangqu.com/designer2/index?id=" + bean.id
+                    )
+                    .withString(ARouterConstants.WEB_TITLE, bean.userNick)
+                    .navigation()
             }
 
-            override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {
+            override fun onItemLongClick(
+                view: View?,
+                holder: RecyclerView.ViewHolder?,
+                position: Int
+            ): Boolean {
                 return false
             }
 

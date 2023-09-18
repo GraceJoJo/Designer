@@ -16,16 +16,16 @@ import com.jojo.design.module_core.bean.DesignerEntity
  */
 class ADA_DesignerList constructor(context: Context) : CommonAdapter<DesignerEntity>(context) {
     override fun convert(holder: ViewHolder, bean: DesignerEntity, position: Int) {
-        if (bean.userAvatar != null) {
-            GlideUtils.loadCircleImage(bean.userAvatar, holder.getView<ImageView>(R.id.iv_userAvatar), 0)
+        bean.userAvatar?.let {
+            GlideUtils.loadCircleImage(it, holder.getView<ImageView>(R.id.iv_userAvatar), 0)
         }
         holder.setText(R.id.tv_userNick, bean.userNick)
         holder.setText(R.id.tv_opTag, bean.opTag)
         holder.setText(R.id.tv_productNum, bean.productNum.toString() + "个作品")
-        when {
-            bean.tags.size == 1 -> holder.setText(R.id.tv_tags, bean.tags[0].name)
-            bean.tags.size == 2 -> holder.setText(R.id.tv_tags, bean.tags[0].name + "  " + bean.tags[1].name)
-            bean.tags.size == 3 -> holder.setText(R.id.tv_tags, bean.tags[0].name + "  " + bean.tags[1].name + "  " + bean.tags[2].name)
+        when (bean.tags.size) {
+            1 -> holder.setText(R.id.tv_tags, bean.tags[0].name)
+            2 -> holder.setText(R.id.tv_tags, bean.tags[0].name + "  " + bean.tags[1].name)
+            3 -> holder.setText(R.id.tv_tags, bean.tags[0].name + "  " + bean.tags[1].name + "  " + bean.tags[2].name)
         }
     }
 

@@ -5,8 +5,8 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Environment
-import android.support.annotation.ColorInt
-import android.support.annotation.IntRange
+import androidx.annotation.ColorInt
+import androidx.annotation.IntRange
 import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewGroup

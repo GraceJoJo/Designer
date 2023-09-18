@@ -4,7 +4,7 @@
 
     <data></data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -47,5 +47,5 @@
             app:tl_textsize="10sp"
             app:tl_underline_color="#DDDDDD"
             app:tl_underline_height="1dp"></com.flyco.tablayout.CommonTabLayout>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -25,6 +25,15 @@ android {
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
         //MultiDex分包方法
         multiDexEnabled true
+        //支持DataBinding
+        dataBinding {
+            enabled = true
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -32,10 +41,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    //支持DataBinding
-    dataBinding {
-        enabled = true
     }
 
     //java插件引入了一个概念叫做SourceSets，通过修改SourceSets中的属性，可以指定哪些源文件
@@ -63,7 +68,7 @@ dependencies {
     //ARouter
     kapt rootProject.ext.dependencies["arouter-compiler"]
     //解决Kotlin和DataBinding冲突
-    kapt "com.android.databinding:compiler:$android_version"
+//    kapt 'androidx.databinding:databinding-compiler:1.0.0'
     //butterknife-compiler
     kapt rootProject.ext.dependencies["butterknife-compiler"]
     kapt rootProject.ext.dependencies["dagger-compiler"]

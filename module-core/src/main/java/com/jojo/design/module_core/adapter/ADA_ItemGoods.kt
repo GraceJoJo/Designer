@@ -1,8 +1,8 @@
 package com.jojo.design.module_core.adapter
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.widget.ImageView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.jojo.design.common_base.adapter.rv.CommonAdapter
@@ -27,7 +27,11 @@ class ADA_ItemGoods constructor(context: Context) : CommonAdapter<GoodsEntity>(c
         val rvGoods = holder.getView<RecyclerView>(R.id.rl_goods)
         var adapter = ADA_ChildGoods(mContext!!)
         var rv = holder.getView<RecyclerView>(R.id.rv)
-        rvGoods.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+        rvGoods.layoutManager = LinearLayoutManager(
+            mContext,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
         rvGoods.adapter = adapter
         adapter.update(bean.items, true)
 

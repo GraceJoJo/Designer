@@ -2,7 +2,7 @@ package com.jojo.design.module_core.widgets;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;

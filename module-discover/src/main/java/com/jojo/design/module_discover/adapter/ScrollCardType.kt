@@ -1,8 +1,8 @@
 package com.jojo.design.module_discover.adapter
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jojo.design.common_base.adapter.rv.ItemViewDelegate
 import com.jojo.design.common_base.adapter.rv.ViewHolder
 import com.jojo.design.module_discover.R
@@ -36,7 +36,11 @@ class ScrollCardType constructor(context: Context) : ItemViewDelegate<ItemEntity
         }
         holder.setText(R.id.tv_title, bean?.data?.header?.title)
         var rv_card = holder.getView<RecyclerView>(R.id.rv_card)
-        rv_card.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+        rv_card.layoutManager = LinearLayoutManager(
+            mContext,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
         var adapter = ADA_ItemCard(mContext!!)
         rv_card.adapter = adapter
         adapter.update(bean.data.itemList, true)

@@ -5,6 +5,10 @@ buildscript {
     ext.android_version = '3.6.1'
 
     repositories {
+//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+//        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        //使用本地gradle : https://blog.51cto.com/u_16213304/7096625(先离线下载：https://services.gradle.org/distributions/gradle-5.6.4-bin.zip)
+//        maven { url 'https://downloads.gradle-dn.com/distributions/' }
         google()
         jcenter()
     }
@@ -21,6 +25,7 @@ allprojects {
     repositories {
         maven {
             url "https://maven.google.com"
+//            url 'https://downloads.gradle-dn.com/distributions/'
         }
         google()
         jcenter()

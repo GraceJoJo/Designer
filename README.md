@@ -65,4 +65,4 @@ Execution failed for task ':app:dataBindingMergeDependencyArtifactsDebug'. Data 
 Gradle插件版本、gradle版本、kotlin版本  https://blog.csdn.net/u012693479/article/details/106547206
 支持lambada需配置jDK8  https://blog.csdn.net/qq_37980878/article/details/116852571
 安装NDK： tools–>sdk manager–>Android sdk–>sdk tools–>show package detail–>找到NDK(side by side) 具体版本,完成下载并安装即可（fix : No version of NDK matched the request version 20.0.5594570.Version available locally:22.1.7171670...）
-
+下载gradle慢，可配置本地gradle:  //使用本地gradle : https://blog.51cto.com/u_16213304/7096625(先离线下载：https://services.gradle.org/distributions/gradle-5.6.4-bin.zip)

@@ -48,8 +48,10 @@ class TextTagsAdapter(data: List<String>) : TagsAdapter() {
         tv.setOnClickListener {
             ToastUtils.makeShortToast(mData[randNum])
             if (mData[randNum].contains(BaseAppliction.context.getString(R.string.string_kaiyan))) {
-                ARouter.getInstance().build(ARouterConfig.ACT_Category)
-                        .navigation()
+//                ARouter.getInstance().build(ARouterConfig.ACT_Category)
+//                        .navigation()
+                ARouter.getInstance().build(ARouterConfig.ACT_CategoryDetail)
+                    .navigation()
             }
         }
         return tv

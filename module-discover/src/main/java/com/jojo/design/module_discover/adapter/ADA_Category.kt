@@ -19,6 +19,6 @@ class ADA_Category constructor(context: Context) : CommonAdapter<CategoryBean>(c
 
     override fun convert(holder: ViewHolder, bean: CategoryBean, position: Int) {
         GlideUtils.loadImage(bean.bgPicture, holder.getView<ImageView>(R.id.iv_bg_img), 0)
-        holder.setText(R.id.tv_name, "#" + bean.name)
+        holder.setText(R.id.tv_name, "item: ${position}" + bean.name)
     }
 }

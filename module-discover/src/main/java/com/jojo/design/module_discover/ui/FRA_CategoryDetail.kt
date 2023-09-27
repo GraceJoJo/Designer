@@ -1,11 +1,17 @@
 package com.jojo.design.module_discover.ui
 
+import android.os.Handler
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
+import android.view.LayoutInflater
+import androidx.recyclerview.widget.RecyclerView
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.config.arouter.ARouterConstants
 import com.jojo.design.common_base.dagger.mvp.BaseFragment
 import com.jojo.design.common_base.utils.RecyclerviewHelper
+import com.jojo.design.common_ui.lrecyclerview.interfaces.OnLoadMoreListener
+import com.jojo.design.common_ui.lrecyclerview.recyclerview.LRecyclerViewAdapter
+import com.jojo.design.common_ui.lrecyclerview.recyclerview.ProgressStyle
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.dagger2.DaggerFoundComponent
 import com.jojo.design.module_core.mvp.contract.CategoryContract
@@ -28,6 +34,7 @@ import kotlinx.android.synthetic.main.fra_category_detail.*
  */
 class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), CategoryContract.View {
     var mAdapter: ADA_CategoryDetail? = null
+    var mAdapter2: ADA_Category? = null
     override fun getContentViewLayoutId(): Int = R.layout.fra_category_detail
 
     override fun onFirstUserVisible() {
@@ -51,18 +58,19 @@ class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), Cat
     override fun getLoadingMultipleStatusView(): MultipleStatusView? = null
 
     override fun initDaggerInject(mApplicationComponent: ApplicationComponent) {
-        DaggerFoundComponent.builder().applicationComponent(BaseAppliction.mApplicationComponent).build().inject(this)
+        DaggerFoundComponent.builder().applicationComponent(BaseAppliction.mApplicationComponent)
+            .build().inject(this)
     }
 
     override fun startFragmentEvents() {
         val type = arguments?.getInt("type")
         Log.d("tab", "type=" + type)
-//        initTestData(type)
-        mAdapter = ADA_CategoryDetail(activity!!)
-        rv.setPullRefreshEnabled(false)
-        RecyclerviewHelper.initLayoutManagerRecyclerView(rv, mAdapter!!,
-            LinearLayoutManager(mContext), mContext)
+        initTestData(type)
 
+//        mAdapter = ADA_CategoryDetail(activity!!)
+//        rv.setPullRefreshEnabled(false)
+//        RecyclerviewHelper.initLayoutManagerRecyclerView(rv, mAdapter!!,
+//            LinearLayoutManager(mContext), mContext)
 //        //请求分类详情
 //        mPresenter?.getCategorieDetail((activity as ACT_CategoryDetail).categoryId, type!!)
     }
@@ -71,18 +79,58 @@ class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), Cat
      * 模拟数据
      */
     private fun initTestData(type: Int?) {
-        rv.layoutManager =
-            LinearLayoutManager(mContext)
-        val adapter = ADA_Category(mContext)
-        rv.adapter = adapter
+        mAdapter2 = ADA_Category(activity!!)
+        RecyclerviewHelper.initRecyclerView(rv, mAdapter2!!, activity!!)
 
 
         var dataList = ArrayList<CategoryBean>()
-        for (i in 0..40) {
-            var bean = CategoryBean(i.toString(), type.toString(), "", "http://img.kaiyanapp.com/7c46ad04ff913b87915615c78d226a40.jpeg?imageMogr2/quality/60/format/jpg", "")
+        for (i in 0..10) {
+            var bean = CategoryBean(
+                i.toString(),
+                type.toString(),
+                "",
+                "http://img.kaiyanapp.com/7c46ad04ff913b87915615c78d226a40.jpeg?imageMogr2/quality/60/format/jpg",
+                ""
+            )
             dataList.add(bean)
         }
-        adapter.update(dataList, true)
+        mAdapter2?.update(dataList, true)
+
+        rv.setOnRefreshListener {
+            Handler().postDelayed({
+                var dataList = ArrayList<CategoryBean>()
+                for (i in 0..10) {
+                    var bean = CategoryBean(
+                        i.toString(),
+                        type.toString(),
+                        "",
+                        "http://img.kaiyanapp.com/7c46ad04ff913b87915615c78d226a40.jpeg?imageMogr2/quality/60/format/jpg",
+                        ""
+                    )
+                    dataList.add(bean)
+                }
+                mAdapter2?.update(dataList, true)
+                rv.refreshComplete(1)
+            }, 2000)
+        }
+
+        rv.setOnLoadMoreListener {
+            Handler().postDelayed({
+                var dataList = ArrayList<CategoryBean>()
+                for (i in 0..10) {
+                    var bean = CategoryBean(
+                        i.toString(),
+                        type.toString(),
+                        "",
+                        "http://img.kaiyanapp.com/7c46ad04ff913b87915615c78d226a40.jpeg?imageMogr2/quality/60/format/jpg",
+                        ""
+                    )
+                    dataList.add(bean)
+                }
+                mAdapter2?.update(dataList, false)
+                rv.refreshComplete(1)
+            }, 2000)
+        }
     }
 
     override fun getCategoryTabs(dataBean: TabEntity) {

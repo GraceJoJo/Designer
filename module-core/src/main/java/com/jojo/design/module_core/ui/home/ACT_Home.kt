@@ -25,9 +25,15 @@ class ACT_Home : BaseActivity<BaseContract.BasePresenter, BaseContract.BaseModel
     // 未被选中的图标
     private val mIconUnSelectIds = intArrayOf(R.drawable.icn_zhuanti, R.drawable.icn_designer, R.drawable.icn_guang, R.drawable.icn_mycenter)
     // 被选中的图标
-    private val mIconSelectIds = intArrayOf(R.drawable.icn_zhuanti_highlight, R.drawable.icn_designer_highlight, R.drawable.icn_guang_highlight, R.drawable.icn_mycenter_highlight)
+    private val mIconSelectIds = intArrayOf(
+        R.drawable.icn_zhuanti_highlight,
+        R.drawable.icn_designer_highlight,
+        R.drawable.icn_guang_highlight,
+        R.drawable.icn_mycenter_highlight
+    )
+
     //默认tab索引
-    private var mIndex = 2
+    private var mIndex = 3
     private var mTopicFragment: TopicFragment? = null
     open var mDesignerFragment: DesignerFragment? = null
     open var mShoppingFragment: ShoppingFragment? = null

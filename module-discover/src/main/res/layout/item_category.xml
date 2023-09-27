@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@android:color/holo_red_light"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/iv_bg_img"
         android:layout_width="match_parent"
         android:layout_height="170dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/app_icon" />
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -17,9 +17,18 @@
         android:layout_height="wrap_content"
         android:textColor="@color/color_ffffff"
         android:textSize="16sp"
+        android:text="12345"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/iv_bg_img"
         app:layout_constraintLeft_toLeftOf="@+id/iv_bg_img"
         app:layout_constraintRight_toRightOf="@+id/iv_bg_img"
         app:layout_constraintTop_toTopOf="@+id/iv_bg_img" />
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bg_img"
+        android:layout_height="2dp"></View>
 </androidx.constraintlayout.widget.ConstraintLayout>

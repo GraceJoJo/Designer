@@ -25,6 +25,7 @@ allprojects {
     repositories {
         maven {
             url "https://maven.google.com"
+            maven { url "https://jitpack.io" }
 //            url 'https://downloads.gradle-dn.com/distributions/'
         }
         google()

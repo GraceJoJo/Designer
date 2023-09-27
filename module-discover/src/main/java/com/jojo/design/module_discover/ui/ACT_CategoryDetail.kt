@@ -50,22 +50,28 @@ class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), Cat
     override fun getLoadingMultipleStatusView(): MultipleStatusView? = null
 
     override fun initDaggerInject(mApplicationComponent: ApplicationComponent) {
-        DaggerFoundComponent.builder().applicationComponent(BaseAppliction.mApplicationComponent).build().inject(this)
+        DaggerFoundComponent.builder().applicationComponent(BaseAppliction.mApplicationComponent)
+            .build().inject(this)
     }
 
     override fun startEvents() {
         categoryId = intent.extras?.getString(ARouterConstants.CATEGORY_ID).toString()
-        categoryBean = intent.extras?.getSerializable(ARouterConstants.CATEGORY_BEAN) as CategoryBean?
+        categoryBean =
+            intent.extras?.getSerializable(ARouterConstants.CATEGORY_BEAN) as CategoryBean?
         intent.extras?.getString(ARouterConstants.CATEGORY_HEAD_IMAGE)
             ?.let { GlideUtils.loadNormalImage(it, iv_headImg, 0) }
-        tv_name.text = categoryBean?.name
+        tv_name.text = categoryBean?.name ?: "标题"
         tv_des.spacing = 10f
-        tv_des.setText(categoryBean?.description!!, TextView.BufferType.SPANNABLE)
+        tv_des.setText(
+            categoryBean?.description ?: "这是一个描述信息",
+            TextView.BufferType.SPANNABLE
+        )
         mPresenter?.getCategoryTabs(categoryId)
 
         initToorbar()
 
-//        createFragment(viewpager, tablayout)
+        //mock 数据
+        createFragment(listOf(), viewpager, tablayout)
         initListener()
     }
 
@@ -111,12 +117,12 @@ class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), Cat
         supportActionBar?.setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(R.drawable.ic_back_arrow_white)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        tv_title.text = intent.extras?.getString(ARouterConstants.CATEGORY_NAME)
+        tv_title.text = intent.extras?.getString(ARouterConstants.CATEGORY_NAME) ?: "Title"
     }
 
 
     override fun getCategoryTabs(dataBean: TabEntity) {
-        createFragment(dataBean?.tabInfo.tabList, viewpager, tablayout)
+        createFragment(dataBean.tabInfo.tabList, viewpager, tablayout)
     }
 
     override fun getCategories(dataList: List<CategoryBean>) {
@@ -128,20 +134,24 @@ class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), Cat
     /**
      * 创建Fragment,关联ViewPager和Fragment
      */
-    private fun createFragment(tabList: List<TabEntity.TabInfoEntity.TabBean>, viewpager: ViewPager, tablayout: SmartTabLayout) {
-//        var dataList = ArrayList<String>()
-//        dataList.add("首页")
-//        dataList.add("全部")
-//        dataList.add("作者")
-//        dataList.add("专辑")
+    private fun createFragment(
+        tabList: List<TabEntity.TabInfoEntity.TabBean>,
+        viewpager: ViewPager,
+        tablayout: SmartTabLayout
+    ) {
+        var dataList = ArrayList<String>()
+        dataList.add("首页")
+        dataList.add("全部")
+        dataList.add("作者")
+        dataList.add("专辑")
         val pages = FragmentPagerItems(this)
-        (0 until tabList.size).mapTo(pages) {
+        (0 until dataList.size).mapTo(pages) {
             val arguments = Bundle()
             arguments.putInt("type", it)
-            FragmentPagerItem.of(tabList[it].name, FRA_CategoryDetail::class.java!!, arguments)
+            FragmentPagerItem.of(dataList[it], FRA_CategoryDetail::class.java, arguments)
         }
         //设置预加载Fragment的数量为tabList.size（首次进入时，viewpgaer的每个Fragment都会走startFragmentEvents，然后每次滑动切换都走onUserVisible）
-        viewpager.offscreenPageLimit = tabList.size
+        viewpager.offscreenPageLimit = dataList.size
         val adapter = FragmentPagerItemAdapter(supportFragmentManager, pages)
         viewpager.adapter = adapter
         tablayout.setViewPager(viewpager)

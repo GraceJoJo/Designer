@@ -27,6 +27,10 @@ android {
             }
         }
         multiDexEnabled true
+        //后期加入
+        // 设置支持的 SO 库构架，注意这里要根据你的实际情况来设置
+        ndk { abiFilters 'armeabi-v7a','x86' }
+        //'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
     }
     //配置支持Lamada表达式 (fix java.lang.NoSuchMethodError: No static method metafactory(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite; in class Ljava/lang/invoke/LambdaMetafactory; or its super classes (declaration of 'java.lang.invoke.LambdaMetafactory' appears in /apex/com.android.runtime/javalib/core-oj.jar)
     compileOptions {

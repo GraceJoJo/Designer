@@ -20,25 +20,82 @@ import com.jojo.design.common_ui.lrecyclerview.recyclerview.ProgressStyle
  */
 class RecyclerviewHelper {
     companion object {
-        fun initRecyclerView(mRecyclerView: LRecyclerView, mAdapter: MultiItemTypeAdapter<out Any>, mContext: Context) {
+
+        fun initRecyclerView(
+            mRecyclerView: LRecyclerView,
+            layoutManager: RecyclerView.LayoutManager,
+            mAdapter: MultiItemTypeAdapter<out Any>,
+            mContext: Context
+        ) {
             val mLRecyclerViewAdapter = LRecyclerViewAdapter(mAdapter)
             //设置外层列表Adapter
-            mRecyclerView.layoutManager =
-                LinearLayoutManager(mContext)
+            mRecyclerView.layoutManager = layoutManager
             mRecyclerView.adapter = mLRecyclerViewAdapter
             mRecyclerView.setHasFixedSize(true)
             mRecyclerView.setRefreshProgressStyle(ProgressStyle.SysProgress)
             mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.SysProgress)
             //设置头部文字颜色
-            mRecyclerView.setHeaderViewColor(R.color.color_app_yellow, R.color.color_app_yellow, R.color.color_ffffff)
+            mRecyclerView.setHeaderViewColor(
+                R.color.color_app_yellow,
+                R.color.color_app_yellow,
+                R.color.color_ffffff
+            )
             //设置底部加载颜色-loading动画颜色,文字颜色,footer的背景颜色
-            mRecyclerView.setFooterViewColor(R.color.color_app_yellow, R.color.color_app_yellow, R.color.color_ffffff)
+            mRecyclerView.setFooterViewColor(
+                R.color.color_app_yellow,
+                R.color.color_app_yellow,
+                R.color.color_ffffff
+            )
             //设置底部加载文字提示
-            mRecyclerView.setFooterViewHint(mContext.resources.getString(R.string.list_footer_loading), mContext.resources.getString(R.string.list_footer_end), mContext.resources.getString(R.string.list_footer_network_error))
+            mRecyclerView.setFooterViewHint(
+                mContext.resources.getString(R.string.list_footer_loading),
+                mContext.resources.getString(R.string.list_footer_end),
+                mContext.resources.getString(R.string.list_footer_network_error)
+            )
 
         }
 
-        fun initLayoutManagerRecyclerView(mRecyclerView: LRecyclerView, mAdapter: MultiItemTypeAdapter<out Any>, layoutManager: RecyclerView.LayoutManager, mContext: Context) {
+        fun initRecyclerView(
+            mRecyclerView: LRecyclerView,
+            mAdapter: MultiItemTypeAdapter<out Any>,
+            mContext: Context
+        ) {
+            val mLRecyclerViewAdapter = LRecyclerViewAdapter(mAdapter)
+            val layoutManager = LinearLayoutManager(mContext)
+            //设置外层列表Adapter
+            mRecyclerView.layoutManager = layoutManager
+//            layoutManager.reverseLayout = true
+            mRecyclerView.adapter = mLRecyclerViewAdapter
+            mRecyclerView.setHasFixedSize(true)
+            mRecyclerView.setRefreshProgressStyle(ProgressStyle.SysProgress)
+            mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.SysProgress)
+            //设置头部文字颜色
+            mRecyclerView.setHeaderViewColor(
+                R.color.color_app_yellow,
+                R.color.color_app_yellow,
+                R.color.color_ffffff
+            )
+            //设置底部加载颜色-loading动画颜色,文字颜色,footer的背景颜色
+            mRecyclerView.setFooterViewColor(
+                R.color.color_app_yellow,
+                R.color.color_app_yellow,
+                R.color.color_ffffff
+            )
+            //设置底部加载文字提示
+            mRecyclerView.setFooterViewHint(
+                mContext.resources.getString(R.string.list_footer_loading),
+                mContext.resources.getString(R.string.list_footer_end),
+                mContext.resources.getString(R.string.list_footer_network_error)
+            )
+
+        }
+
+        fun initLayoutManagerRecyclerView(
+            mRecyclerView: LRecyclerView,
+            mAdapter: MultiItemTypeAdapter<out Any>,
+            layoutManager: RecyclerView.LayoutManager,
+            mContext: Context
+        ) {
             //设置外层列表Adapter
             val mLRecyclerViewAdapter = LRecyclerViewAdapter(mAdapter)
             //必须先设置布局管理器，否则LayoutManager为GridLayoutManager时，下拉刷新无法正常展示
@@ -48,11 +105,23 @@ class RecyclerviewHelper {
             mRecyclerView.setRefreshProgressStyle(ProgressStyle.SysProgress)
             mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.SysProgress)
             //设置头部文字颜色
-            mRecyclerView.setHeaderViewColor(R.color.color_app_yellow, R.color.color_app_yellow, R.color.color_ffffff)
+            mRecyclerView.setHeaderViewColor(
+                R.color.color_app_yellow,
+                R.color.color_app_yellow,
+                R.color.color_ffffff
+            )
             //设置底部加载颜色-loading动画颜色,文字颜色,footer的背景颜色
-            mRecyclerView.setFooterViewColor(R.color.color_app_yellow, R.color.color_app_yellow, R.color.color_ffffff)
+            mRecyclerView.setFooterViewColor(
+                R.color.color_app_yellow,
+                R.color.color_app_yellow,
+                R.color.color_ffffff
+            )
             //设置底部加载文字提示
-            mRecyclerView.setFooterViewHint(mContext.resources.getString(R.string.list_footer_loading), mContext.resources.getString(R.string.list_footer_end), mContext.resources.getString(R.string.list_footer_network_error))
+            mRecyclerView.setFooterViewHint(
+                mContext.resources.getString(R.string.list_footer_loading),
+                mContext.resources.getString(R.string.list_footer_end),
+                mContext.resources.getString(R.string.list_footer_network_error)
+            )
 
         }
 
@@ -64,7 +133,13 @@ class RecyclerviewHelper {
          * @param mLRecyclerViewAdapter
          * @param footer_note
          */
-        fun initHeaderRecyclerView(mContext: Context, headView: View, mRecyclerView: LRecyclerView, mLRecyclerViewAdapter: LRecyclerViewAdapter, footer_note: String) {
+        fun initHeaderRecyclerView(
+            mContext: Context,
+            headView: View,
+            mRecyclerView: LRecyclerView,
+            mLRecyclerViewAdapter: LRecyclerViewAdapter,
+            footer_note: String
+        ) {
             mLRecyclerViewAdapter.addHeaderView(headView)
             //设置外层列表Adapter
             mRecyclerView.adapter = mLRecyclerViewAdapter
@@ -74,24 +149,49 @@ class RecyclerviewHelper {
             mRecyclerView.setRefreshProgressStyle(ProgressStyle.SysProgress)
             mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.SysProgress)
             //设置头部文字颜色
-            mRecyclerView.setHeaderViewColor(R.color.color_app_yellow, R.color.color_app_yellow, R.color.color_ffffff)
+            mRecyclerView.setHeaderViewColor(
+                R.color.color_app_yellow,
+                R.color.color_app_yellow,
+                R.color.color_ffffff
+            )
             //设置底部加载颜色-loading动画颜色,文字颜色,footer的背景颜色
-            mRecyclerView.setFooterViewColor(R.color.color_app_yellow, R.color.color_app_yellow, R.color.color_ffffff)
+            mRecyclerView.setFooterViewColor(
+                R.color.color_app_yellow,
+                R.color.color_app_yellow,
+                R.color.color_ffffff
+            )
             //设置底部加载文字提示
             if (!TextUtils.isEmpty(footer_note)) {
-                mRecyclerView.setFooterViewHint(mContext.resources.getString(R.string.list_footer_loading), footer_note, mContext.resources.getString(R.string.list_footer_network_error))
+                mRecyclerView.setFooterViewHint(
+                    mContext.resources.getString(R.string.list_footer_loading),
+                    footer_note,
+                    mContext.resources.getString(R.string.list_footer_network_error)
+                )
             } else {
-                mRecyclerView.setFooterViewHint(mContext.resources.getString(R.string.list_footer_loading), mContext.resources.getString(R.string.list_footer_end), mContext.resources.getString(R.string.list_footer_network_error))
+                mRecyclerView.setFooterViewHint(
+                    mContext.resources.getString(R.string.list_footer_loading),
+                    mContext.resources.getString(R.string.list_footer_end),
+                    mContext.resources.getString(R.string.list_footer_network_error)
+                )
             }
         }
 
-        fun initNormalRecyclerView(mRecyclerView: RecyclerView, mAdapter: MultiItemTypeAdapter<out Any>, layoutManager: RecyclerView.LayoutManager) {
+        fun initNormalRecyclerView(
+            mRecyclerView: RecyclerView,
+            mAdapter: MultiItemTypeAdapter<out Any>,
+            layoutManager: RecyclerView.LayoutManager
+        ) {
             mRecyclerView.layoutManager = layoutManager
             mRecyclerView.adapter = mAdapter
         }
 
         //初始化RecyclerView
-        fun initNormalRecyclerView(context: Activity, mRecyclerView: RecyclerView, mAdapter: RecyclerView.Adapter<*>, layoutManager: RecyclerView.LayoutManager) {
+        fun initNormalRecyclerView(
+            context: Activity,
+            mRecyclerView: RecyclerView,
+            mAdapter: RecyclerView.Adapter<*>,
+            layoutManager: RecyclerView.LayoutManager
+        ) {
             mRecyclerView.layoutManager = layoutManager
             mRecyclerView.adapter = mAdapter
         }

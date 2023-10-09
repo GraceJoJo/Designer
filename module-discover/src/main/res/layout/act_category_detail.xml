@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
 
@@ -23,6 +23,7 @@
             app:titleEnabled="false">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/header_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -160,7 +161,8 @@
             <com.ogaclejapan.smarttablayout.SmartTabLayout
                 android:id="@+id/tablayout"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:minHeight="50dp"
+                android:layout_height="50dp"
                 android:layout_centerVertical="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -174,6 +176,19 @@
                 app:stl_indicatorWidth="10dp"
                 app:stl_titleOffset="auto_center"
                 app:stl_underlineThickness="0dp" />
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:textColor="@color/color_212121"
+                android:textSize="23sp"
+                android:text="点击恢复CollapsingToolBar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="match_parent"

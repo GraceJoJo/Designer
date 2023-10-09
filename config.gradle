@@ -4,7 +4,7 @@ ext {
      * isBuildModule=true
      * 修改之后需要Sync方可生效
      */
-    isBuildModule = false
+    isBuildModule = true
 
     android = [
             compileSdkVersion: 29,

@@ -1,20 +1,25 @@
 package com.jojo.design.common_ui.lrecyclerview.recyclerview;
 
 import android.content.Context;
+
 import com.google.android.material.appbar.AppBarLayout;
+
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jojo.design.common_ui.lrecyclerview.interfaces.ILoadMoreFooter;
 import com.jojo.design.common_ui.lrecyclerview.interfaces.IRefreshHeader;
 import com.jojo.design.common_ui.lrecyclerview.interfaces.OnLoadMoreListener;
@@ -24,10 +29,8 @@ import com.jojo.design.common_ui.lrecyclerview.view.ArrowRefreshHeader;
 import com.jojo.design.common_ui.lrecyclerview.view.LoadingFooter;
 
 /**
- *
  * @author lizhixian
  * @created 2016/8/29 11:21
- *
  */
 public class LRecyclerView extends RecyclerView {
     private boolean mPullRefreshEnabled = true;
@@ -105,6 +108,9 @@ public class LRecyclerView extends RecyclerView {
 
     private AppBarStateChangeListener.State appbarState = AppBarStateChangeListener.State.EXPANDED;
 
+    private boolean flag = false;
+    private boolean tempFlag = false;
+
     public LRecyclerView(Context context) {
         this(context, null);
     }
@@ -116,6 +122,20 @@ public class LRecyclerView extends RecyclerView {
     public LRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
+    }
+
+    @Override
+    public boolean dispatchNestedPreScroll(int dx, int dy, int[] consumed, int[] offsetInWindow) {
+        Log.e("JOJO", "----dispatchNestedPreScroll");
+        return super.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow);
+    }
+
+    @Override
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int[] offsetInWindow, int type) {
+        Log.e("JOJO", "----dispatchNestedScroll");
+//        return false;
+        return super.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow, type);
+
     }
 
     private void init() {
@@ -147,7 +167,7 @@ public class LRecyclerView extends RecyclerView {
         mWrapAdapter.setRefreshHeader(mRefreshHeader);
 
         //fix bug: https://github.com/jdsjlzx/LRecyclerView/issues/115
-        if (mLoadMoreEnabled && mWrapAdapter.getFooterViewsCount()==0) {
+        if (mLoadMoreEnabled && mWrapAdapter.getFooterViewsCount() == 0) {
             mWrapAdapter.addFooterView(mFootView);
         }
 
@@ -194,7 +214,7 @@ public class LRecyclerView extends RecyclerView {
 
             if (mWrapAdapter != null) {
                 mWrapAdapter.notifyDataSetChanged();
-                if(mWrapAdapter.getInnerAdapter().getItemCount() < mPageSize ) {
+                if (mWrapAdapter.getInnerAdapter().getItemCount() < mPageSize) {
                     mFootView.setVisibility(GONE);
                 }
             }
@@ -214,7 +234,7 @@ public class LRecyclerView extends RecyclerView {
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
             mWrapAdapter.notifyItemRangeRemoved(positionStart + mWrapAdapter.getHeaderViewsCount() + 1, itemCount);
-            if(mWrapAdapter.getInnerAdapter().getItemCount() < mPageSize ) {
+            if (mWrapAdapter.getInnerAdapter().getItemCount() < mPageSize) {
                 mFootView.setVisibility(GONE);
             }
 
@@ -230,6 +250,7 @@ public class LRecyclerView extends RecyclerView {
 
     /**
      * 解决嵌套RecyclerView滑动冲突问题
+     *
      * @param ev
      * @return
      */
@@ -321,7 +342,7 @@ public class LRecyclerView extends RecyclerView {
     }
 
     public boolean isOnTop() {
-        return  mPullRefreshEnabled && (mRefreshHeader.getHeaderView().getParent() != null);
+        return mPullRefreshEnabled && (mRefreshHeader.getHeaderView().getParent() != null);
     }
 
     /**
@@ -335,7 +356,6 @@ public class LRecyclerView extends RecyclerView {
     }
 
     /**
-     *
      * @param pageSize 一页加载的数量
      */
     public void refreshComplete(int pageSize) {
@@ -345,7 +365,7 @@ public class LRecyclerView extends RecyclerView {
             mRefreshing = false;
             mRefreshHeader.refreshComplete();
 
-            if(mWrapAdapter.getInnerAdapter().getItemCount() < pageSize) {
+            if (mWrapAdapter.getInnerAdapter().getItemCount() < pageSize) {
                 mFootView.setVisibility(GONE);
             }
         } else if (mLoadingData) {
@@ -357,12 +377,13 @@ public class LRecyclerView extends RecyclerView {
 
     /**
      * 设置是否已加载全部
+     *
      * @param noMore
      */
-    public void setNoMore(boolean noMore){
+    public void setNoMore(boolean noMore) {
         mLoadingData = false;
         isNoMore = noMore;
-        if(isNoMore) {
+        if (isNoMore) {
             mLoadMoreFooter.onNoMore();
         } else {
             mLoadMoreFooter.onComplete();
@@ -374,7 +395,7 @@ public class LRecyclerView extends RecyclerView {
      * 注意：setRefreshHeader方法必须在setAdapter方法之前调用才能生效
      */
     public void setRefreshHeader(IRefreshHeader refreshHeader) {
-        if(isRegisterDataObserver){
+        if (isRegisterDataObserver) {
             throw new RuntimeException("setRefreshHeader must been invoked before setting the adapter.");
         }
         this.mRefreshHeader = refreshHeader;
@@ -405,7 +426,7 @@ public class LRecyclerView extends RecyclerView {
      * 到底加载是否可用
      */
     public void setLoadMoreEnabled(boolean enabled) {
-        if(mWrapAdapter == null){
+        if (mWrapAdapter == null) {
             throw new NullPointerException("LRecyclerViewAdapter cannot be null, please make sure the variable mWrapAdapter have been initialized.");
         }
         mLoadMoreEnabled = enabled;
@@ -468,6 +489,7 @@ public class LRecyclerView extends RecyclerView {
 
     /**
      * 设置Footer文字颜色
+     *
      * @param indicatorColor
      * @param hintColor
      * @param backgroundColor
@@ -475,7 +497,7 @@ public class LRecyclerView extends RecyclerView {
     public void setFooterViewColor(int indicatorColor, int hintColor, int backgroundColor) {
         if (mLoadMoreFooter != null && mLoadMoreFooter instanceof LoadingFooter) {
             LoadingFooter loadingFooter = ((LoadingFooter) mLoadMoreFooter);
-            loadingFooter.setIndicatorColor(ContextCompat.getColor(getContext(),indicatorColor));
+            loadingFooter.setIndicatorColor(ContextCompat.getColor(getContext(), indicatorColor));
             loadingFooter.setHintTextColor(hintColor);
             loadingFooter.setViewBackgroundColor(backgroundColor);
         }
@@ -483,14 +505,15 @@ public class LRecyclerView extends RecyclerView {
 
     /**
      * 设置颜色
-     * @param indicatorColor Only call the method setRefreshProgressStyle(int style) to take effect
+     *
+     * @param indicatorColor  Only call the method setRefreshProgressStyle(int style) to take effect
      * @param hintColor
      * @param backgroundColor
      */
     public void setHeaderViewColor(int indicatorColor, int hintColor, int backgroundColor) {
         if (mRefreshHeader != null && mRefreshHeader instanceof ArrowRefreshHeader) {
             ArrowRefreshHeader arrowRefreshHeader = ((ArrowRefreshHeader) mRefreshHeader);
-            arrowRefreshHeader.setIndicatorColor(ContextCompat.getColor(getContext(),indicatorColor));
+            arrowRefreshHeader.setIndicatorColor(ContextCompat.getColor(getContext(), indicatorColor));
             arrowRefreshHeader.setHintTextColor(hintColor);
             arrowRefreshHeader.setViewBackgroundColor(backgroundColor);
         }
@@ -519,7 +542,7 @@ public class LRecyclerView extends RecyclerView {
         if (mPullRefreshEnabled && mRefreshListener != null) {
             mRefreshHeader.onRefreshing();
             int offSet = mRefreshHeader.getHeaderView().getMeasuredHeight();
-            mRefreshHeader.onMove(offSet,offSet);
+            mRefreshHeader.onMove(offSet, offSet);
             mRefreshing = true;
 
             mFootView.setVisibility(GONE);
@@ -676,23 +699,38 @@ public class LRecyclerView extends RecyclerView {
             }
             p = p.getParent();
         }
-        if(p instanceof CoordinatorLayout) {
-            CoordinatorLayout coordinatorLayout = (CoordinatorLayout)p;
+        if (p instanceof CoordinatorLayout) {
+            CoordinatorLayout coordinatorLayout = (CoordinatorLayout) p;
             final int childCount = coordinatorLayout.getChildCount();
             for (int i = childCount - 1; i >= 0; i--) {
                 final View child = coordinatorLayout.getChildAt(i);
-                if(child instanceof AppBarLayout) {
-                    appBarLayout = (AppBarLayout)child;
+                if (child instanceof AppBarLayout) {
+                    appBarLayout = (AppBarLayout) child;
                     break;
                 }
             }
-            if(appBarLayout != null) {
-                appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
-                    @Override
-                    public void onStateChanged(AppBarLayout appBarLayout, State state) {
-                        appbarState = state;
+
+            if (appBarLayout != null) {
+                if (flag) {
+                    if (appBarLayout.getChildAt(0) instanceof CollapsingToolbarLayout) {
+                        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) appBarLayout.getChildAt(0);
+                        collapsingToolbarLayout.getChildAt(0).setVisibility(VISIBLE);
+                        flag = false;
                     }
-                });
+                } else {
+                    appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+                        @Override
+                        public void onStateChanged(AppBarLayout appBarLayout, State state) {
+                            appbarState = state;
+//                            if (appbarState == AppBarStateChangeListener.State.COLLAPSED) {
+//                                if (appBarLayout.getChildAt(0) instanceof CollapsingToolbarLayout) {
+//                                    CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) appBarLayout.getChildAt(0);
+//                                    collapsingToolbarLayout.getChildAt(0).setVisibility(GONE);
+//                                }
+//                            }
+                        }
+                    });
+                }
             }
         }
     }

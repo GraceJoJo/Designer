@@ -10,9 +10,7 @@ import androidx.core.view.ViewCompat
 import com.jojo.design.module_test.R
 
 /**
- *    @author : zhoujuan
  *    @since : 2023/10/8 16:07
- *    @email : zhoujuan.jojo@bytedance.com
  */
 class NestedContentScrollBehavior(context: Context?, attrs: AttributeSet?) :
     CoordinatorLayout.Behavior<View>(context, attrs) {

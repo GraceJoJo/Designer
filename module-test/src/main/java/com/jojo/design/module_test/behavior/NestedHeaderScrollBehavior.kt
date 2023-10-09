@@ -8,9 +8,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.jojo.design.module_test.R
 
 /**
- *    @author : zhoujuan
  *    @since : 2023/10/8 16:08
- *    @email : zhoujuan.jojo@bytedance.com
  */
 class NestedHeaderScrollBehavior constructor(context: Context?, attrs: AttributeSet?) :
     CoordinatorLayout.Behavior<View>(context, attrs) {

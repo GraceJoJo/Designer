@@ -11,7 +11,6 @@ import com.jojo.design.module_discover.R;
 
 /**
  * author : JOJO
- * e-mail : zhoujuan26@jd.com
  * date   : 2023/8/9 15:00
  * desc   : 布局（视图）、布局上的子元素、将数据绑定到视图上
  */

@@ -1,16 +1,23 @@
 package com.jojo.design.module_discover.ui
 
+import android.opengl.Visibility
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.appbar.AppBarLayout
 import androidx.viewpager.widget.ViewPager
 import android.view.View
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
+import com.google.android.material.appbar.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
 import com.jojo.design.common_base.BaseAppliction
 import com.jojo.design.common_base.config.arouter.ARouterConfig
 import com.jojo.design.common_base.config.arouter.ARouterConstants
 import com.jojo.design.common_base.dagger.mvp.BaseActivity
 import com.jojo.design.common_base.utils.StatusBarHelper
+import com.jojo.design.common_base.utils.ToastUtils
 import com.jojo.design.common_base.utils.glide.GlideUtils
 import com.jojo.design.common_ui.view.MultipleStatusView
 import com.jojo.design.module_core.dagger2.DaggerFoundComponent
@@ -76,37 +83,68 @@ class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), Cat
     }
 
     private var mState: AppBarState? = null
+    private var scrollState = 0
+    private var originHeight = 0
+    private var originHeight2 = 0
     private fun initListener() {
+        originHeight = toolbar_layout.layoutParams.height
+        originHeight2 = header_layout.layoutParams.height
         appbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            Log.e("JOJO", "-----verticalOffset:${verticalOffset} mState:${mState}")
             if (verticalOffset == 0) {
                 if (mState != AppBarState.EXPANDED) {
                     mState = AppBarState.EXPANDED//修改状态标记为展开
-                    tv_title.visibility = View.GONE
-                    toolbar.setNavigationIcon(R.drawable.ic_back_arrow_white)
-//                    view_title_divider.visibility = View.GONE
-                    StatusBarHelper.setStatusTextColor(false, this)
+
+                    titleBlackMode(true)
                 }
             } else if (Math.abs(verticalOffset) >= appBarLayout.totalScrollRange) {
                 if (mState != AppBarState.COLLAPSED) {
                     mState = AppBarState.COLLAPSED//修改状态标记为折叠
-                    tv_title.visibility = View.VISIBLE
-                    toolbar.setNavigationIcon(R.drawable.ic_back_arrow_black)
-//                    view_title_divider.visibility = View.VISIBLE
-                    StatusBarHelper.setStatusTextColor(true, this)
+
+                    if (scrollState == 0) {
+                        header_layout.layoutParams.height = 0
+                        scrollState = 1
+                    } else {
+                        titleBlackMode(true)
+                    }
                 }
             } else {
                 if (mState != AppBarState.MIDDLE) {
                     if (mState == AppBarState.COLLAPSED) {
-                        tv_title.visibility = View.GONE
-                        toolbar.setNavigationIcon(R.drawable.ic_back_arrow_white)
-//                        view_title_divider.visibility = View.GONE
-                        StatusBarHelper.setStatusTextColor(false, this)
+
+                        titleBlackMode(false)
                     }
                     mState = AppBarState.MIDDLE//修改状态标记为中间
 
                 }
             }
         })
+        tv.setOnClickListener {
+            ToastUtils.makeEventToast("触发appBar恢复", false)
+//            toolbar_layout.layoutParams.height = originHeight
+            if (scrollState == 1) {
+                header_layout.layoutParams.height = originHeight2
+                (toolbar_layout.layoutParams as AppBarLayout.LayoutParams).scrollFlags =
+                    SCROLL_FLAG_SCROLL or SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
+                appbar.setExpanded(false, false)
+                toolbar_layout.requestLayout()
+                scrollState = 2
+            }
+        }
+    }
+
+    fun titleBlackMode(isDark: Boolean) {
+        if (isDark) {
+            tv_title.visibility = View.VISIBLE
+            toolbar.setNavigationIcon(R.drawable.ic_back_arrow_black)
+//            view_title_divider.visibility = View.VISIBLE
+            StatusBarHelper.setStatusTextColor(true, this)
+        } else {
+            tv_title.visibility = View.GONE
+//            view_title_divider.visibility = View.GONE
+            toolbar.setNavigationIcon(R.drawable.ic_back_arrow_white)
+            StatusBarHelper.setStatusTextColor(false, this)
+        }
     }
 
     /**

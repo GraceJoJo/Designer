@@ -74,6 +74,17 @@ public abstract class CommonAdapter<T> extends MultiItemTypeAdapter<T> {
         notifyDataSetChanged();
     }
 
+    //增加下拉加载更多数据的方法
+    public void updateForward(List<T> dataList, Boolean isClear) {
+        if (isClear) {
+            clear();
+        }
+        if (dataList != null) {
+            mDatas.addAll(0, dataList);
+        }
+        notifyDataSetChanged();
+    }
+
     /**
      * 单条刷新
      *

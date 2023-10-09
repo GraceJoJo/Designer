@@ -25,9 +25,10 @@ android {
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
         //MultiDex分包方法
         multiDexEnabled true
+        // 设置支持的 SO 库构架，注意这里要根据你的实际情况来设置
         ndk {
-            //APP的build.gradle设置支持的SO库架构
-            abiFilters 'armeabi', 'armeabi-v7a'
+            //'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+            abiFilters 'armeabi-v7a', 'x86'
         }
         //支持DataBinding
         dataBinding {

@@ -127,6 +127,7 @@ class FRA_CategoryDetail : BaseFragment<CategoryPresenter, CategoryModel>(), Cat
 
                 mAdapter2?.updateForward(dataList, false)
                 rv.refreshComplete(1)
+                (activity as ACT_CategoryDetail).restoreNestedScrollState()
 
             }, 2000)
 

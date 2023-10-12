@@ -133,6 +133,17 @@ class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), Cat
         }
     }
 
+    fun restoreNestedScrollState() {
+        if (scrollState == 1) {
+            header_layout.layoutParams.height = originHeight2
+            (toolbar_layout.layoutParams as AppBarLayout.LayoutParams).scrollFlags =
+                SCROLL_FLAG_SCROLL or SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
+            appbar.setExpanded(false, false)
+            toolbar_layout.requestLayout()
+            scrollState = 2
+        }
+    }
+
     fun titleBlackMode(isDark: Boolean) {
         if (isDark) {
             tv_title.visibility = View.VISIBLE

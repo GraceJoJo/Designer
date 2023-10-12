@@ -184,7 +184,7 @@
                 android:layout_gravity="center|top"
                 android:textColor="@color/color_212121"
                 android:textSize="23sp"
-                android:text="点击恢复CollapsingToolBar"
+                android:text=""
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -39,7 +39,7 @@ import kotlinx.android.synthetic.main.act_category_detail.*
  *    author : JOJO
  *    e-mail : 18510829974@163.com
  *    date   : 2019/1/23 4:58 PM
- *    desc   : 开眼视频分类详情页（5.0新特性CoordinatorLayout +AppBarLayout效果）
+ *    desc   : 开眼视频分类详情页面（5.0新特性CoordinatorLayout +AppBarLayout效果）
  */
 @Route(path = ARouterConfig.ACT_CategoryDetail)
 class ACT_CategoryDetail : BaseActivity<CategoryPresenter, CategoryModel>(), CategoryContract.View {
